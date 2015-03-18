@@ -37,7 +37,7 @@ uint16_t *terminal_buffer;
 
 /* Functions */
 uint8_t make_color(enum vga_color fg, enum vga_color bg);
-uint16_t make_vgaentry(int8_t c, int16_t color);
+uint16_t make_vgaentry(int8_t c, uint8_t color);
 
 void terminal_initialize(void);
 void terminal_setcolor(uint8_t color);

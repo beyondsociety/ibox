@@ -71,10 +71,8 @@ int32_t console_init_fb()
 
 	/* Clear screen */
 	//memclr((void *) video_base, bytesPerLine * height);
-
-        /* Fix: error: implicit conversion loses integer precision: 'int' to 'int8_t' (aka 'char') [-Werror,-Wconversion]
-         * issue is at 'bytesPerLine * height', issue with tye conversions, for now disabled with -Wno-conversion */
-       	memset((void *) 0xb8000, bytesPerLine * height, 00); 
+       	//memset((void *) 0xb8000, (int8_t) bytesPerLine * (int8_t) height, 00);
+ 
 	is_bold = false;
 	next_char_is_escape_seq = false;
 	fg_colour = 0x0F;

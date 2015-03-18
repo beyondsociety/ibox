@@ -17,7 +17,7 @@ INCLUDES     = -I ./include
 WARNINGS     = -Wall -Wextra -Werror -pedantic -Wshadow -Wpointer-arith -Wcast-align \
                -Wwrite-strings -Wmissing-prototypes -Wmissing-declarations \
                -Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
-               -Wuninitialized -Wstrict-prototypes -Wno-conversion 
+               -Wuninitialized -Wstrict-prototypes -Wconversion
 
 
 

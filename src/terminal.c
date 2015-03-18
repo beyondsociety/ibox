@@ -3,20 +3,17 @@
 #include <string.h>
 #include <terminal.h>
 
-/* 3/16/15 - Todo: need to fix the conversion type errors in make_color and make_vgaentry, 
- * for some reason clang/gcc doesnt like it, for now they are turned off with -Wno-conversion */
-
 uint8_t make_color(enum vga_color fg, enum vga_color bg)
 {
-	return fg | bg << 4;
+	return (uint8_t)(fg | bg << 4);
 }
  
-uint16_t make_vgaentry(int8_t c, int16_t color)
+uint16_t make_vgaentry(int8_t c, uint8_t color)
 {
-	int8_t c16 = c;
-	int16_t color16 = color;
+	uint16_t c16 = (uint16_t) c;
+	uint16_t color16 = color;
 
-	return c16 | color16 << 8;
+	return (uint16_t)(c16 | color16 << 8);
 }
  
 void terminal_initialize(void)

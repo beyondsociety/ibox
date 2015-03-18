@@ -20,9 +20,9 @@
 int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 {
      unsigned flags, actual_wd, count, given_wd;
-     int8_t *where, buf[PR_BUFLEN];
+     int8_t *where, buffer[PR_BUFLEN];
      uint8_t state, radix;
-     long num;
+     int64_t number;
 
      state = flags = count = given_wd = 0;
         
@@ -77,7 +77,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
                case 2:
                      if(*fmt >= '0' && *fmt <= '9')
                      {
-                          given_wd = 10 * given_wd + (*fmt - '0');
+                          given_wd = 10 * given_wd + (uint32_t)(*fmt - '0');
                           break;
                      }
             
@@ -112,7 +112,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 
                /* STATE 4: AWAITING CONVERSION CHARS (Xxpndiuocs) */
                case 4:
-                     where = buf + PR_BUFLEN - 1;
+                     where = buffer + PR_BUFLEN - 1;
                      *where = '\0';
 			
                      switch(*fmt)
@@ -138,33 +138,33 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 /* Load the value to be printed. l = long = 32 bits */
 DO_NUM:				
                      if(flags & PR_32)
-                          num = va_arg(args, unsigned long);
+                          number = (int64_t) va_arg(args, uint64_t);
                                 
                      /* H = short = 16 bits (signed or unsigned) */
                      else if(flags & PR_16)
                      {
                           if(flags & PR_SG)
-                               num = va_arg(args, int); 
+                               number = (int32_t) va_arg(args, int32_t); 
                           else
-                               num = va_arg(args, unsigned int); 
+                               number = (int32_t) va_arg(args, int32_t); 
                      }
                                 
                      /* No h nor l: sizeof(int) bits (signed or unsigned) */
                      else
                      {
                           if(flags & PR_SG)
-                               num = va_arg(args, int);
+                               number = va_arg(args, int32_t);
                           else
-                               num = va_arg(args, unsigned int);
+                               number = va_arg(args, int64_t);
                      }
                                 
                      /* Take care of sign */
                      if(flags & PR_SG)
                      {
-                          if(num < 0)
+                          if(number < 0)
                           {
                                flags |= PR_WS;
-                               num = -num;
+                               number = -number;
                           }
                      }
                                 
@@ -172,33 +172,33 @@ DO_NUM:
                       * OK, I found my mistake. The math here is _always_ unsigned */
                      do
                      {
-                          unsigned long temp;
-                          temp = (unsigned long)num % radix;
+                          uint64_t temp;
+                          temp = (uint64_t) number % radix;
                           where--;
 			   
                           if(temp < 10)
-                               *where = temp + '0';
+                               *where = (int8_t)(temp + '0');
                           else if(flags & PR_CA)
-                               *where = temp - 10 + 'A';
+                               *where = (int8_t)(temp - 10 + 'A');
                           else
-                               *where = temp - 10 + 'a';
-                               num = (unsigned long) num / radix;
+                               *where = (int8_t)(temp - 10 + 'a');
+                               number = (int64_t) number / radix;
                      }
                    
-                     while(num != 0);
+                     while(number != 0);
                      goto EMIT;
 			
                          case 'c':
                                  /* Disallow pad-left-with-zeroes for %c */
-                                 flags &= ~PR_LZ;
+                                 flags &= (uint32_t)(~PR_LZ);
                                  where--;
-                                 *where = (int32_t)va_arg(args, int32_t); 
+                                 *where = (int8_t)va_arg(args, int32_t); 
                                  actual_wd = 1;
                                  goto EMIT2;
 			
                          case 's':
                                  /* Disallow pad-left-with-zeroes for %s */
-                                 flags &= ~PR_LZ;
+                                 flags &= (uint32_t)(~PR_LZ);
                                  where = va_arg(args, int8_t *); 
 
 EMIT:
@@ -262,5 +262,5 @@ EMIT2:
                break;
           }
      }
-     return count;
+     return (int32_t) count;
 }
