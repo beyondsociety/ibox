@@ -13,7 +13,7 @@ Need git, make, nasm, clang/llvm, gcc cross-compiler to build
 # Todo
 
 1. Update Documentation / important project files
-<div style="text-decoration:line-through">2. Fix Todo's in code dated 3/16/15</div>
+<del>2. Fix Todo's in code dated 3/16/15</del>
 <div style="text-decoration:line-through">3. Fix and close open code Issues</div>
 4. Create tests and check all code for first release
 5. Merge code with myos project and update with working code
