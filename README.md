@@ -3,11 +3,15 @@ Ibox is a operating system project being developed for research and academic pur
 
 # Feature
 Own custom multiboot bootloader capable of booting from numerous hardware device
+
 Written in a high level language that supports object oriented features and concurrency
 
 Uses a second generation microkernel based on ideas from L4
+
 Support for 64-bit, multicore and mutiprocessor systems including numa
+
 Support for homogeneous and heterogeneous distributed systems
+
 Support for computer clusters, grid computing and network nodes 
 
 # Build Instructions
