@@ -17,9 +17,10 @@ Ibox is a operating system project being developed for research and academic pur
 # Build Instructions
 You Need git, make, nasm, clang/llvm and a gcc cross-compiler to build ibox. You may also have to add permissions to your system to get it to work, other on linux systems you will have to sudo which bad 
 
-1. First, you need to either clone the repository with git clone or download / fork from the repo
-2. Then you need to Cd into the directory where you stored the repo
-3. In the main directory, type make to auto build
-4. Once its done building, type 'make bochs' or 'make qemu' to run the iso
-5. Type 'make clean' to clean the build and start over
+- First, you need to either clone the repository with git clone or download / fork from the repo
+
+- Then you need to Cd into the directory where you stored the repo
+- In the main directory, type make to auto build
+- Once its done building, type 'make bochs' or 'make qemu' to run the iso
+- Type 'make clean' to clean the build and start over
 
