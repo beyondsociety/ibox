@@ -1,4 +1,6 @@
-# 3/16/15 - Todo: clean up code, added config files for 32/64 bit compile options  
+# 3/16/15 - Todo: clean up code base, added config files for 32/64 bit compile options  
+# 3/17/15 - Added files for removal to clean
+
 include ./rules32.mk
 #include ./rules64.mk
 
