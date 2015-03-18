@@ -11,17 +11,17 @@ CC           = clang
 CFLAGS       = -m64 -O2 -ffreestanding -std=gnu99 -mno-red-zone $(WARNINGS) $(INCLUDES) 
 
 LD           = $(TARGET_ARCH)/x86_64-elf-ld 
-LDFLAGS     = -z max-page-size=0x1000 -Map info.map -nostdlib -T linker.ld 
+LDFLAGS      = -z max-page-size=0x1000 -Map info.map -nostdlib -T linker.ld 
 
 ASM          = nasm  
-ASMFLAGS    = elf64
+ASMFLAGS     = elf64
 
 INCLUDES     = -I ./include
 
-WARNINGS    = -Wall -Wextra -Werror -pedantic -Wshadow -Wpointer-arith -Wcast-align \
-              -Wwrite-strings -Wmissing-prototypes -Wmissing-declarations \
-              -Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
-              -Wuninitialized -Wstrict-prototypes -Wno-conversion 
+WARNINGS     = -Wall -Wextra -Werror -pedantic -Wshadow -Wpointer-arith -Wcast-align \
+               -Wwrite-strings -Wmissing-prototypes -Wmissing-declarations \
+               -Wredundant-decls -Wnested-externs -Winline -Wno-long-long \
+               -Wuninitialized -Wstrict-prototypes -Wno-conversion 
 
 
 
