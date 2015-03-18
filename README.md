@@ -1,20 +1,14 @@
-# ibox Operating System
+# Ibox Operating System
 32 / 64 bit hobby Operating System project being developed by me for academic purposes. 
 
+# Features
+
 # Build Instructions
-Need git, make, nasm, clang/llvm, gcc cross-compiler to build 
+You Need git, make, nasm, clang/llvm and a gcc cross-compiler to build ibox. You may also have to add permissions to the folder to get it to work on some linux systems depending on whether or not you added to path or not 
 
-1. First, either clone the repository with git clone or download / fork from repo
-2. Cd into directory where you stored repo
+1. First, you need to either clone the repository with git clone or download / fork from the repo
+2. Then you need to Cd into the directory where you stored the repo
 3. In the main directory, type make to auto build
-4. Once its done building, type 'make bochs' or 'make qemu' to run iso
-5. Type 'make clean to clean build and start over
+4. Once its done building, type 'make bochs' or 'make qemu' to run the iso
+5. Type 'make clean' to clean the build and start over
 
-# Todo
-
-1. Update Documentation / important project files
-2. <del>Fix Todo's in code dated 3/16/15</del>
-3. <del>Fix and close open code Issues</del>
-4. Create tests and check all code for first release
-5. Merge code with myos project and update with working code
-6. Add new features, test and fix bugs, release 
