@@ -1,6 +1,7 @@
 #ifndef SVGA_H
 #define SVGA_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #define SVGA_DEFAULT_MODE 0x117
@@ -70,5 +71,6 @@ svga_mode_info_t *svga_mode_get_info(uint16_t);
 uint32_t svga_map_fb(uint32_t, uint32_t);
 
 int32_t console_init_fb(void);
+void fb_console_set_font(void *reg, void *bold);
 
 #endif

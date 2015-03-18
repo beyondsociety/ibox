@@ -1,10 +1,9 @@
 #ifndef INCLUDE_STDIO_H
 #define INCLUDE_STDIO_H
 
+#include <kernel.h>
 #include <stdarg.h>
 #include <stdint.h>
-
-#define UNUSED __attribute__((unused))
 
 typedef struct _FILE FILE; 
 

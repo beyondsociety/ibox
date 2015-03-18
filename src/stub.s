@@ -21,21 +21,10 @@ align 4
 start:                       
     mov esp, stack_top
 
-;    call check_cpu                       ; Check whether we support Long Mode or not.
-;    jc no_longmode
-
-;    call longmode
-    
-;[bits 64]
-;.long:    
-;    push rax
-;    push rbx  
-
     push eax
     push ebx 
          
     [extern sys_multiboot_info]
-;    mov rbx, sys_multiboot_info
     mov ebx, sys_multiboot_info
 
     [extern kernel_init]
@@ -47,14 +36,6 @@ start:
 .hang:
     jmp .hang
     
-;[bits 32]
-;no_longmode:
-;    mov byte [ds:0b8000h], 'F'
-;    mov byte [ds:0b8001h], 1bh
-;   jmp $
-    
-;%include "src/functions.inc"   
- 
 [section .bss]				; .BSS section 
 align 4
 stack_bottom:

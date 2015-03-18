@@ -38,5 +38,7 @@ clean:
 	rm -f $(ISO)
 	rm -f $(COBJECTS)
 	rm -f $(AOBJECTS)
+	rm -f bochsout.txt
+	rm -f info.map
 	
 .PHONY: clean qemu bochs

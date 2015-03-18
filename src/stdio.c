@@ -1,3 +1,4 @@
+#include <kernel.h>
 #include <io.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -19,7 +20,7 @@ void clear_screen(void)
      while(i < (80 * 25 * 2))
      {
           video_memory[i++] = ' ';  /* 0x20 */
-          video_memory[i++] = 0x17;
+          video_memory[i++] = 0x1F;
      }
      
      /* Set the cursor to the upper-left corner of the screen */
@@ -32,10 +33,10 @@ void gotoxy(int32_t x, int32_t y)
      uint16_t position = (uint16_t)(y * 80 + x);
 
      outportb(0x3d4, 0x0f);
-     outportb(0x3d5, (uint8_t) (position & 0xff));
+     outportb(0x3d5, (uint8_t)(position & 0xff));
 
      outportb(0x3d4, 0x0e);
-     outportb(0x3d5, (uint8_t) ((position >> 8) & 0xff));
+     outportb(0x3d5, (uint8_t)((position >> 8) & 0xff));
 
      /* Update coordinates */
      screen_x = x;
@@ -70,7 +71,7 @@ int32_t putchar(int32_t c)
                     video_index <<= 1;
                     
                     video_memory[video_index] = ' ';
-                    video_memory[video_index + 1] = 0x17; /* White text on blue background */
+                    video_memory[video_index + 1] = 0x1F; /* White text on blue background */
 
                     gotoxy(screen_x, screen_y);
                     break;
@@ -86,7 +87,7 @@ int32_t putchar(int32_t c)
                video_index <<= 1; /* Multiply by 2 */
 
                video_memory[video_index] = (uint8_t) c; /* Put c into video memory */
-               video_memory[video_index + 1] = 0x17; /* White text on blue background */
+               video_memory[video_index + 1] = 0x1F; /* White text on blue background */
 
                /* Update coordinates */
                screen_x++;

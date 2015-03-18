@@ -33,8 +33,8 @@ typedef uint64_t uintptr_t;
 /* Standard size_t type */
 //typedef unsigned size_t;
 
-#define NULL (void*)0
-typedef int bool;
+#define NULL (void *) 0
+//typedef int bool;
 
 /************************************************************************
  * END stdint.h 
