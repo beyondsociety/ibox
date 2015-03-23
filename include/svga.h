@@ -13,20 +13,20 @@
 #define CHAR_WIDTH 8
 
 // Pointers to fonts
-static uint8_t *font_reg, *font_bold;
+static uint8_t UNUSED *font_reg, UNUSED *font_bold;
 
 // Video mode info
-static uint16_t width, height, depth, bytesPerLine;
+static uint16_t UNUSED width, UNUSED height, UNUSED depth, UNUSED bytesPerLine;
 //static uint32_t video_base, video_size;
 
 // Cursor location (in text cells)
-static uint16_t col, row;
+static uint16_t UNUSED col, UNUSED row;
 
 // Set by escape sequences
-static uint8_t fg_colour, bg_colour;
+static uint8_t UNUSED fg_colour, UNUSED bg_colour;
 
 // Used to parse escape codes
-static bool next_char_is_escape_seq, is_bold;
+static bool UNUSED next_char_is_escape_seq, UNUSED is_bold;
 
 // Colour code -> 16bpp
 /*static uint32_t fb_console_col_map[16] = 

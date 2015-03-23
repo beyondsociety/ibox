@@ -1,6 +1,3 @@
-# 3/16/15 - Todo: clean up code base, added config files for 32/64 bit compile options  
-# 3/17/15 - Added files for removal to clean
-
 include ./rules32.mk
 #include ./rules64.mk
 
@@ -17,20 +14,20 @@ all: $(ISO)
 
 $(ISO): $(KERNEL)	
 	cp $(KERNEL) ~/Desktop/ibox/iso/boot/
-	grub-mkrescue -o boot.iso iso
+	mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
+	-boot-info-table -input-charset utf8 -quiet -o boot.iso iso 
 	
-$(KERNEL): $(ASOURCES) $(AOBJECTS) $(CSOURCES) $(COBJECTS) 
-	$(LD) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
-	#$(CC) $(CFLAGS) -o $@
+$(KERNEL): $(AOBJECTS) $(COBJECTS)  
+	$(CC) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS) 
 
 %.o: %.s
-	$(ASM) $(ASMFLAGS) $< -o $@ 
+	$(ASM) $< -o $@ $(ASMFLAGS) 
 
 qemu: 
-	qemu-system-x86_32 -vga std -cdrom $(ISO)
+	qemu-system-x86_64 -vga std -cdrom $(ISO)
 
 bochs: 
 	bochs -f .bochsrc -q

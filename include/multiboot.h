@@ -22,7 +22,7 @@
 #define MULTIBOOT_HEADER 1
      
 /* Check if the bit BIT in FLAGS is set. */
-#define CHECK_FLAG(flags,bit)   ((flags) & (1 << (bit)))
+#define CHECK_FLAG(flags,bit) ((flags) & (1 << (bit)))
 
 /* How many bytes from the start of the file we search for the header. */
 #define MULTIBOOT_SEARCH                        8192
@@ -37,7 +37,7 @@
 #define MULTIBOOT_UNSUPPORTED                   0x0000fffc
      
 /* Alignment of multiboot modules. */
-#define MULTIBOOT_MOD_ALIGN                     0x00001000
+#define MULTIBOOT_MODULE_ALIGN                  0x00001000
      
 /* Alignment of the multiboot info structure. */
 #define MULTIBOOT_INFO_ALIGN                    0x00000004
@@ -93,138 +93,135 @@
 /* Is there video information? */
 #define MULTIBOOT_INFO_VIDEO_INFO               0x00000800
      
-#ifndef ASM_FILE
 #include <stdint.h>
      
 typedef struct multiboot_header
 {
-     /* Must be MULTIBOOT_MAGIC - see above. */
-     uint32_t magic;
+	/* Must be MULTIBOOT_MAGIC - see above. */
+     	uint32_t magic;
      
-     /* Feature flags. */
-     uint32_t flags;
+     	/* Feature flags. */
+     	uint32_t flags;
      
-     /* The above fields plus this one must equal 0 mod 2^32. */
-     uint32_t checksum;
+     	/* The above fields plus this one must equal 0 mod 2^32. */
+     	uint32_t checksum;
      
-     /* These are only valid if MULTIBOOT_AOUT_KLUDGE is set. */
-     uint32_t header_address;
-     uint32_t load_address;
-     uint32_t load_end_address;
-     uint32_t bss_end_address;
-     uint32_t entry_address;
+     	/* These are only valid if MULTIBOOT_AOUT_KLUDGE is set. */
+     	uint32_t header_address;
+     	uint32_t load_address;
+     	uint32_t load_end_address;
+     	uint32_t bss_end_address;
+     	uint32_t entry_address;
      
-     /* These are only valid if MULTIBOOT_VIDEO_MODE is set. */
-     uint32_t mode_type;
-     uint32_t width;
-     uint32_t height;
-     uint32_t depth;
+     	/* These are only valid if MULTIBOOT_VIDEO_MODE is set. */
+     	uint32_t mode_type;
+     	uint32_t width;
+     	uint32_t height;
+     	uint32_t depth;
 } multiboot_header_t;
      
 /* The symbol table for a.out. */
 typedef struct multiboot_aout_symbol_table
 {
-     uint32_t tabsize;
-     uint32_t strsize;
-     uint32_t address;
-     uint32_t reserved;
+     	uint32_t tabsize;
+     	uint32_t strsize;
+     	uint32_t address;
+     	uint32_t reserved;
 } multiboot_aout_symbol_table_t;
      
 /* The section header table for ELF. */
 typedef struct multiboot_elf_section_header_table
 {
-     uint32_t number;
-     uint32_t size;
-     uint32_t address;
-     uint32_t shndx;
+     	uint32_t number;
+     	uint32_t size;
+     	uint32_t address;
+     	uint32_t shndx;
 } multiboot_elf_section_header_table_t;
      
 typedef struct multiboot_info
 {
-     /* Multiboot info version number */
-     uint32_t flags;
+     	/* Multiboot info version number */
+     	uint32_t flags;
      
-     /* Available memory from BIOS */
-     uint32_t memory_lower;
-     uint32_t memory_upper;
+     	/* Available memory from BIOS */
+     	uint32_t memory_lower;
+     	uint32_t memory_upper;
      
-     /* "root" partition */
-     uint32_t boot_device;
+     	/* "root" partition */
+     	uint32_t boot_device;
      
-     /* Kernel command line */
-     uint32_t cmdline;
+     	/* Kernel command line */
+     	uint32_t cmdline;
      
-     /* Boot-Module list */
-     uint32_t mods_count;
-     uint32_t mods_address;
+     	/* Boot-Module list */
+     	uint32_t module_count;
+     	uint32_t module_address;
      
-     union
-     {
-         multiboot_aout_symbol_table_t aout_symbol;
-         multiboot_elf_section_header_table_t elf_section;
-     } u;
+     	union
+     	{
+        	multiboot_aout_symbol_table_t aout_symbol;
+        	multiboot_elf_section_header_table_t elf_section;
+     	} u;
      
-     /* Memory Mapping buffer */
-     uint32_t mmap_length;
-     uint32_t mmap_addr;
+     	/* Memory Mapping buffer */
+     	uint32_t mmap_length;
+     	uint32_t mmap_address;
      
-     /* Drive Info buffer */
-     uint32_t drives_length;
-     uint32_t drives_address;
+     	/* Drive Info buffer */
+     	uint32_t drives_length;
+     	uint32_t drives_address;
      
-     /* ROM configuration table */
-     uint32_t config_table;
+     	/* ROM configuration table */
+     	uint32_t config_table;
      
-     /* Boot Loader Name */
-     uint32_t boot_loader_name;
+     	/* Boot Loader Name */
+     	uint32_t boot_loader_name;
      
-     /* APM table */
-     uint32_t apm_table;
+     	/* APM table */
+     	uint32_t apm_table;
      
-     /* Video */
-     uint32_t vbe_control_info;
-     uint32_t vbe_mode_info;
-     uint16_t vbe_mode;
-     uint16_t vbe_interface_segment;
-     uint16_t vbe_interface_offset;
-     uint16_t vbe_interface_length;
+     	/* Video */
+     	uint32_t vbe_control_info;
+     	uint32_t vbe_mode_info;
+     	uint16_t vbe_mode;
+     	uint16_t vbe_interface_segment;
+     	uint16_t vbe_interface_offset;
+     	uint16_t vbe_interface_length;
 } multiboot_info_t;
      
-//#define MULTIBOOT_MEMORY_AVAILABLE              1
-//#define MULTIBOOT_MEMORY_RESERVED               2
+#define MULTIBOOT_MEMORY_AVAILABLE 1
+#define MULTIBOOT_MEMORY_RESERVED 2
 
 /* The Memory Map Structure */
-/* struct mmap_entry
+typedef struct multiboot_map
 {
-   uint32_t size;
-   uint32_t base_addr_low;
-   uint32_t base_addr_high;
-   uint32_t length_low;
-   uint32_t length_high;
-   uint32_t type;
-   uint32_t acpi_3_0;
-} __attribute__((packed)) memory_map_t; */
+   	uint32_t size;
+   	uint32_t base_address_low;
+        uint32_t base_address_high;
+   	uint32_t length_low;
+        uint32_t length_high;
+   	uint32_t type;
+   	//uint32_t acpi_3_0;
+} multiboot_map_t;
 
-struct multiboot_mod_list
+typedef struct multiboot_module_list
 {
-     /* the memory used goes from bytes 'mod_start' to 'mod_end-1' inclusive */
-     uint32_t mod_start;
-     uint32_t mod_end;
+     	/* The memory used goes from bytes 'mod_start' to 'mod_end-1' inclusive */
+     	uint32_t module_start;
+     	uint32_t module_end;
      
-     /* Module command line */
-     uint32_t cmdline;
+     	/* Module command line */
+     	uint32_t cmdline;
      
-     /* padding to take it to 16 bytes (must be zero) */
-     uint32_t pad;
-};
-typedef struct multiboot_mod_list multiboot_module_t;
+     	/* Padding to take it to 16 bytes (must be zero) */
+     	uint32_t padding;
+} multiboot_module_t;
 
 /* Multiboot function */
-void multiboot_parse(void);
+void multiboot_parse(multiboot_info_t *mbi);
 
 /* Prints the memory map as reported by grub, map = memory map pointer, size = size of map */
-void print_memory_map(unsigned int *map, unsigned int size);
+void print_memory_map(uint32_t *map, uint32_t size);
 
-#endif /* ! ASM_FILE */
 #endif /* ! MULTIBOOT_HEADER */
 
