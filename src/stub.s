@@ -20,7 +20,7 @@ multiboot:
 [section .text]
 [global start]
 start:                       
-    ;mov esp, stack_top
+    mov esp, stack_top
 
     push eax
     push ebx 
@@ -37,10 +37,10 @@ start:
 .hang:
     jmp .hang
     
-;[section .bss]				; .BSS section 
-;align 4
-;stack_bottom:
-;  resb 16384 					
-;stack_top:
+[section .bss]				; .BSS section 
+align 4
+stack_bottom:
+  resb 16384 					
+stack_top:
 
 

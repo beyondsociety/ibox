@@ -351,7 +351,7 @@ romimage: file=$BXSHARE/BIOS-bochs-latest
 # used all allocated host memory and wants more.
 #
 #=======================================================================
-memory: guest=32, host=512
+memory: guest=512, host=512
 
 #=======================================================================
 # OPTROMIMAGE[1-4]:
