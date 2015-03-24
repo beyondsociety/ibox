@@ -4,10 +4,10 @@
 CC           = clang
 #CC          = $(TARGET_ARCH)/i686-elf-gcc 		
 
-CFLAGS       = -m32 -O2 -ffreestanding -std=gnu11 $(WARNINGS) $(INCLUDES)
+CFLAGS       = -m32 -O2 -ffreestanding -std=gnu99 $(WARNINGS) $(INCLUDES)
 
-LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-m,elf_i386 -Wl,-Map,boot.map  	# For clang
-#LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-Map,boot.map  		# For cross-comiled gcc
+LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-m,elf_i386 -Wl,-Map,boot.map     	# For clang
+#LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-Map,boot.map  				# For cross-comiled gcc
 
 ASM          = yasm  
 ASMFLAGS     = -f elf32

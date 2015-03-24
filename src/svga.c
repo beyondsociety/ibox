@@ -1,6 +1,7 @@
 #include <kernel.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <svga.h>
 
 /* Changes video modes */
@@ -28,8 +29,7 @@ int32_t console_init_fb()
 	//fb_console_set_font(&ter_i16n_raw, &ter_i16b_raw);
 
 	/* Clear screen */
-	//memclr((void *) video_base, bytesPerLine * height);
-       	//memset((void *) 0xb8000, (int8_t) bytesPerLine * (int8_t) height, 00);
+       	memset((void *) video_base, (int8_t) bytesPerLine * (int8_t) height, 00);
  
 	is_bold = false;
 	next_char_is_escape_seq = false;
@@ -58,7 +58,7 @@ void fb_console_set_font(void *reg, void *bold)
 	// Map enough framebuffer 
 	for(i = 0xD0000000; i < 0xD0000000 + fb_length; i += 0x1000) 
 	{
-		page_t* page = paging_get_page(i, true, kernel_directory);
+		page_t *page = paging_get_page(i, true, kernel_directory);
 
 	    fb_addr = (i & 0x0FFFF000) + real_addr;
 

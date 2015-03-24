@@ -17,7 +17,7 @@ static uint8_t UNUSED *font_reg, UNUSED *font_bold;
 
 // Video mode info
 static uint16_t UNUSED width, UNUSED height, UNUSED depth, UNUSED bytesPerLine;
-//static uint32_t video_base, video_size;
+static uint32_t video_base, video_size;
 
 // Cursor location (in text cells)
 static uint16_t UNUSED col, UNUSED row;
@@ -29,14 +29,14 @@ static uint8_t UNUSED fg_colour, UNUSED bg_colour;
 static bool UNUSED next_char_is_escape_seq, UNUSED is_bold;
 
 // Colour code -> 16bpp
-/*static uint32_t fb_console_col_map[16] = 
+static uint32_t fb_console_col_map[16] = 
 {
 	0x000000, 0x0000AA, 0x00AA00, 0x00AAAA,
 	0xAA0000, 0xAA00AA, 0xAA5500, 0xAAAAAA,
 
 	0x555555, 0x5555FF, 0x55FF55, 0x55FFFF,
 	0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF
-};*/
+};
 
 typedef struct svga_mode_info 
 {
