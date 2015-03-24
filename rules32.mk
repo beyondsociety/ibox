@@ -2,12 +2,12 @@
 #TARGET_ARCH  = $(HOME)/opt/cross/bin
 
 CC           = clang
-#CC          = $(TARGET_ARCH)/i686-elf-gcc 
+#CC          = $(TARGET_ARCH)/i686-elf-gcc 		
 
 CFLAGS       = -m32 -O2 -ffreestanding -std=gnu11 $(WARNINGS) $(INCLUDES)
 
-#LD          = $(TARGET_ARCH)/i686-elf-ld 
-LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-m,elf_i386 -Wl,-Map,boot.map 
+LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-m,elf_i386 -Wl,-Map,boot.map  	# For clang
+#LDFLAGS      = -nostdlib -Wl,-T,linker.ld -Wl,-Map,boot.map  		# For cross-comiled gcc
 
 ASM          = yasm  
 ASMFLAGS     = -f elf32
