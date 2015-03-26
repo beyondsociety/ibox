@@ -1,34 +1,34 @@
-; Multiboot Header 
-MULTIBOOT_PAGE_ALIGN      equ  1 << 0   ; Align loaded modules on page boundaries
-MULTIBOOT_MEMORY_INFO     equ  1 << 1   ; Provide memory map
-MULTIBOOT_VIDEO           equ  1 << 2   ; Video Information
+# Multiboot Header 
+.set MULTIBOOT_PAGE_ALIGN,      1 << 0   # Align loaded modules on page boundaries
+.set MULTIBOOT_MEMORY_INFO,     1 << 1   # Provide memory map
+.set MULTIBOOT_VIDEO,           1 << 2   # Video Information
 
-MULTIBOOT_HEADER_MAGIC    equ  0x1badb002  ; 'magic number' lets bootloader find the header
-MULTIBOOT_HEADER_FLAGS    equ  MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO ; Multiboot flags  
-MULTIBOOT_HEADER_CHECKSUM equ  - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS) ; Multiboot Checksum 
+.set MULTIBOOT_HEADER_MAGIC,    0x1badb002  # 'magic number' lets bootloader find the header
+.set MULTIBOOT_HEADER_FLAGS,    MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO # Multiboot flags  
+.set MULTIBOOT_HEADER_CHECKSUM, - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS) # Multiboot Checksum 
 
-[section .multiboot]
-align 4
-multiboot:
-  dd MULTIBOOT_HEADER_MAGIC
-  dd MULTIBOOT_HEADER_FLAGS
-  dd MULTIBOOT_HEADER_CHECKSUM
-  dd 0, 0, 0, 0, 0                      ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr 
-  dd 1                                  ; 0 = linear graphics mode, 1 = EGA-standard text mode
-  dd 1024, 768, 32                      ; Width, Height, Depth
+.section .multiboot
+.align 4
+  .long MULTIBOOT_HEADER_MAGIC
+  .long MULTIBOOT_HEADER_FLAGS
+  .long MULTIBOOT_HEADER_CHECKSUM
+  .long 0, 0, 0, 0, 0                # Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr 
+  .long 1                            # 0 = linear graphics mode, 1 = EGA-standard text mode
+  .long 1024, 768, 32                # Width, Height, Depth
 
-[section .text]
-[global start]
-start:                       
-    mov esp, stack_top
+.section .text
+.global start
+.type start, @function
+start:                        
+    movl $stack_top, %esp
 
-    push eax
-    push ebx 
+    pushl %eax
+    pushl %ebx 
          
-    [extern sys_multiboot_info]
-    mov ebx, sys_multiboot_info
+    .extern sys_multiboot_info
+    movl $sys_multiboot_info, %ebx
 
-    [extern kernel_init]
+    .extern kernel_init
     call kernel_init
     
     cli
@@ -37,10 +37,12 @@ start:
 .hang:
     jmp .hang
     
-[section .bss]				; .BSS section 
-align 4
+# Set the size of the _start symbol to the current location '.' minus its start.
+# This is useful when debugging or when you implement call tracing.
+.size start, . - start
+
+.section .bootstrap_stack, "aw", @nobits	# .BSS section 
+.align 4
 stack_bottom:
-  resb 16384 					
+  .skip 16384 # 16 KB 					
 stack_top:
-
-

@@ -5,7 +5,11 @@
 
 void bga_init(void)
 {
-   printk("\nInitializing Bochs Graphics Adapter...\n");      
+   printk("\nInitializing Bochs Graphics Adapter..\n"); 
+   
+   /* Wait a bit */  
+   for(volatile int32_t i = 0; i < 10000000; i++) { }
+
    if(VBE_DISPI_INDEX_ID > VBE_DISPI_ID5)
    {
       printk("You are using an outdated version of the Bochs VGA Bios or are not using a VM with BGA."
@@ -19,10 +23,10 @@ void bga_init(void)
    }
 
    /* Wait a bit */
-   for(volatile int i = 0; i < 100000000; ++i) { }
+   for(volatile int32_t i = 0; i < 10000000; ++i) { }
    
    /* Set Bochs Video mode */
-   BgaSetVideoMode(1024, 768, 32, true, false);        
+   BgaSetVideoMode(1024, 768, 32, false, true);        
 }
 
 void BgaWriteRegister(uint16_t IndexValue, uint16_t DataValue)

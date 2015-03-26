@@ -7,39 +7,35 @@ SECTIONS
 	/* Load kernel at 1MB */
     	. = 1M;
 
-        /* Multiboot header */
-        .multiboot :
-	{
-		*(.multiboot)
-	}
-
-    	/* Text section */
-	.text BLOCK(4k) : ALIGN(4k) 
+    	/* Multiboot header and Text section */
+	.text :  
     	{
         	kernel_code = .;
+                *(.multiboot)
 		*(.text)
 	}
 
     	/* Read-only data */
-	.rodata BLOCK(4k) : ALIGN(4k) 
+	.rodata :  
 	{
 	    	kernel_rodata = .;
 		*(.rodata)
 	}
 
     	/* Read-write data (initialized) */
-	.data BLOCK(4k) : ALIGN(4k) 
+	.data :  
 	{
 	    	kernel_data = .;
 		*(.data)
 	}
 	
    	/* Read-write data (uninitialized) and stack */
-	.bss BLOCK(4k) : ALIGN(4k) 
+	.bss :  
 	{
 	    	kernel_bss = .;		 
 	    	*(COMMON)
 		*(.bss)
+                *(.bootstrap_stack)
 	}
 
     	kernel_end = .;

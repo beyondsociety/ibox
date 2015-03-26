@@ -31,15 +31,13 @@ void kernel_init(multiboot_info_t *mbi, uint32_t magic)
 
 void kernel_main(void) 
 {
-       printk("Booted into kernel mode...");       
- 
-       /* Check if we're in a VBE mode that's 32bpp or 16bpp and set up FB console */
-       svga_mode_info_t *vbe_info = (svga_mode_info_t *) sys_multiboot_info->vbe_mode_info;
+	printk("Booted into kernel mode..\n");
 
-       if(vbe_info->bpp == 32 || vbe_info->bpp == 16) 
-       {
-              console_init_fb(); 
-       }
+	/* Wait a bit */
+   	for(volatile int32_t i = 0; i < 10000000; ++i) { }       
+
+	/* initialize the bochs video adapter interface */ 
+	bga_init();       
 }
 
 
