@@ -6,7 +6,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <svga.h>
 #include <terminal.h>
 
 /* Perform some preloading stuff */
