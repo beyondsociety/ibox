@@ -1,3 +1,5 @@
+# 4/1/15 -  need to figure out how to not hardcode the paths for copying/removing files, maybe a build directory
+
 include ./rules32.mk
 #include ./rules64.mk
 
@@ -6,7 +8,7 @@ INCDIRS   = include
 
 HEADERS   = $(foreach DIR, $(INCDIRS), $(wildcard $(DIR)/*.h))
 SOURCES   = $(foreach DIR, $(SRCDIRS), $(wildcard $(DIR)/*.s $(DIR)/*.c))
-OBJECTS   = $(foreach OBJECT, $(patsubst %.s, %.o, $(patsubst %.c, %.o, $(patsubst %.cpp, %.o, $(SOURCES)))), $(OBJECT))
+OBJECTS   = $(foreach OBJECT, $(patsubst %.s, %.o, $(patsubst %.c, %.o, $(SOURCES))), $(OBJECT))
 
 TARGET    = kernel.elf
 ISO       = boot.iso
@@ -35,6 +37,7 @@ bochs :
 
 clean :
 	rm -f $(TARGET)
+	rm -f ~/Desktop/ibox/iso/boot/$(TARGET)
 	rm -f $(ISO)
 	rm -f $(OBJECTS)
 	rm -f bochsout.txt
