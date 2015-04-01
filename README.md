@@ -18,4 +18,4 @@ You need git, make, nasm, clang/llvm or gcc cross-compiler to build ibox. You ma
 - Once its done building, type **make bochs** or **make qemu** to run the iso
 - Type **make clean** to clean the build and start over
 
-Ibox is built using clang and LLVM but also can be built with a **cross-compiled gcc** as well if you want, You just need to edit the rules.mk file and change **CC** from **'clang'** to **'cross-compiled gcc'** as well as the **LDFLAGS**. Eventually I want to switch to a build script to detect and auto build based on your installed tools.  
+Ibox is built using **clang*8 and **LLVM** but also can be built with a **cross-compiled gcc** as well if you want, You just need to edit the rules.mk file and change **CC** from **'clang'** to **'cross-compiled gcc'** as well as the **LDFLAGS**. Eventually I want to switch to a build script to detect and auto build based on your installed tools.  
