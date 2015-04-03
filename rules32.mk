@@ -19,7 +19,7 @@ LDFLAGS	= -nostdlib -Wl,-T,linker.ld -Wl,-m,elf_i386 -Wl,-Map,info.map $(LIBS)
 # LDFLAGS for Cross-compiled Gcc
 #LDFLAGS	= -nostdlib -Wl,-Map,info.map $(LIBS)				
 
-AS	= $(TARGET_LOCATION)/$(TARGET_ARCH)-as 
+AS	= $(TARGET_LOCATION)/$(TARGET_ARCH)-as
 INCLUDES	= $(foreach INCDIR, $(INCDIRS), -I./$(INCDIR)) 
 
 #LIBS for Clang
