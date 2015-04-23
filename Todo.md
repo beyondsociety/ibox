@@ -10,5 +10,6 @@
 8.  Build script to detect and auto build based on installed tools.
 9.  Fix the 32/64 bit rules files and setup 32 bit/64 bit folders
 10. Future goal is 64 bit mode loaded by loader that switches from 32 to 64 after detection
+
 11. Get vagrant to create a sucessful build environment for building my os and get it to run 
 This means modifiy files/path for vagrant and editing the Vagrant file
