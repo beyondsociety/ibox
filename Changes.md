@@ -10,7 +10,7 @@
 
 5. Options to build Ibox with CLANG/LLVM or gcc-cross-compiler, eventually want to switch to D and use their tools.
 
-6. Code written in C amd Intel Assembly, eventually want to switch code base to D.
+6. Code written in C and Intel Assembly, eventually want to switch code base to D.
 
 7. Source-based and project auto documentation.
 
