@@ -10,4 +10,4 @@ Ibox is a operating system project being developed for research and academic pur
 - Support for computer clusters, grid computing and network nodes 
 
 ## **How to build Ibox**
-Instructions on how to  build Ibox, are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
+Instructions on how to  build Ibox are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
