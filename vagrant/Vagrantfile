@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 #vi: set ft=ruby :
 
-Vagrant.configure(2) do |config|
+Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   config.vm.provider 'virtualbox' do |vb|
@@ -9,5 +9,4 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision 'shell', path: './cross-compiler.sh'
-  config.ssh.forward_x11 = true
 end
