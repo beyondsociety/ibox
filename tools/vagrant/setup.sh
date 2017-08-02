@@ -7,11 +7,8 @@ vagrant plugin install vagrant-vbguest
 # Update the vagrant box
 vagrant box update
 
-# Reload the vagrant box to fix issues with guest additons and virtualbox
-vagrant reload --no-provision
-
 # Start the vagrant box and setup our linux environment
-vagrant up --provision
+vagrant up --provision --provider=virtualbox
 
 # Ssh into the vagrant box automatically
 vagrant ssh
