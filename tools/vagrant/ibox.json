@@ -1,0 +1,11 @@
+{
+    "name": "ibox",
+    "description": "This box contains Ubuntu 16.04 LTS 64-bit.",
+    "versions": [{
+        "version": "0.0.1",
+        "providers": [{
+                "name": "virtualbox",
+                "url": "https://www.dropbox.com/s/4oubpwexumbrbnk/vagrant-ibox_0.0.1.box?dl=0
+Open in new tab"
+    }]
+}
