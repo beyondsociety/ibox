@@ -8,12 +8,12 @@ CC               = clang
 #CC              = $(TARGET_LOCATION)/$(TARGET_ARCH)-gcc
 
 # CFLAGS for Clang
-#CFLAGS          = -m64 -O2 -ffreestanding -std=gnu99 -mcmodel=large -mno-red-zone -mno-mmx -mno-sse \
-#                  -mno-sse2 -mno-sse3 -mno-3dnow $(WARNINGS) $(INCLUDES)
+CFLAGS           = -m64 -O2 -ffreestanding -std=gnu99 -mcmodel=large -mno-red-zone -mno-mmx -mno-sse \
+                   -mno-sse2 -mno-sse3 -mno-3dnow $(WARNINGS) $(INCLUDES)
                
 # CFLAGS for Cross-compiled Gcc
-#CFLAGS          = -O2 -ffreestanding -std=gnu99 -mcmodel=large -mno-red-zone -mno-mmx -mno-sse \
-#                  -mno-sse2 -mno-sse3 -mno-3dnow $(WARNINGS) $(INCLUDES) 
+#CFLAGS           = -O2 -ffreestanding -std=gnu99 -mcmodel=large -mno-red-zone -mno-mmx -mno-sse \
+#                   -mno-sse2 -mno-sse3 -mno-3dnow $(WARNINGS) $(INCLUDES) 
 
 # LDFLAGS for Clang
 LDFLAGS          = -zmax-page-size=0x1000 -Wl,-Map,info. map -nostdlib -Wl,-T,linker.ld $(LIBS)
