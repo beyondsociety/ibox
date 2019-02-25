@@ -1,0 +1,179 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+terminal_color      0x1               src/25a6634@@kernel.elf@exe/kernel.c.o
+screen_x            0x4               src/25a6634@@kernel.elf@exe/stdio.c.o
+screen_y            0x4               src/25a6634@@kernel.elf@exe/stdio.c.o
+terminal_column     0x4               src/25a6634@@kernel.elf@exe/kernel.c.o
+terminal_buffer     0x4               src/25a6634@@kernel.elf@exe/kernel.c.o
+sys_multiboot_info  0x4               src/25a6634@@kernel.elf@exe/bga.c.o
+terminal_row        0x4               src/25a6634@@kernel.elf@exe/kernel.c.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD src/25a6634@@kernel.elf@exe/stub.o
+LOAD src/25a6634@@kernel.elf@exe/bga.c.o
+LOAD src/25a6634@@kernel.elf@exe/kernel.c.o
+LOAD src/25a6634@@kernel.elf@exe/io.c.o
+LOAD src/25a6634@@kernel.elf@exe/multiboot.c.o
+LOAD src/25a6634@@kernel.elf@exe/stdio.c.o
+LOAD src/25a6634@@kernel.elf@exe/string.c.o
+LOAD src/25a6634@@kernel.elf@exe/terminal.c.o
+LOAD src/25a6634@@kernel.elf@exe/vsprintf.c.o
+                0x0000000000100000                . = 0x100000
+
+.multiboot      0x0000000000100000       0x30
+ *(.multiboot)
+ .multiboot     0x0000000000100000       0x30 src/25a6634@@kernel.elf@exe/stub.o
+
+.text           0x0000000000100030     0x19ee
+ *(.text)
+ .text          0x0000000000100030        0xb src/25a6634@@kernel.elf@exe/stub.o
+                0x0000000000100030                start
+ *fill*         0x000000000010003b        0x5 
+ .text          0x0000000000100040      0x2e4 src/25a6634@@kernel.elf@exe/bga.c.o
+                0x0000000000100040                bga_init
+                0x0000000000100100                BgaSetVideoMode
+                0x00000000001001d0                BgaWriteRegister
+                0x0000000000100220                BgaReadRegister
+                0x0000000000100260                BgaIsAvailable
+                0x0000000000100290                BgaSetBank
+                0x00000000001002c0                GetResX
+                0x00000000001002e0                GetResY
+                0x0000000000100300                Disable
+ *fill*         0x0000000000100324        0xc 
+ .text          0x0000000000100330       0xa5 src/25a6634@@kernel.elf@exe/kernel.c.o
+                0x0000000000100330                kernel_init
+                0x0000000000100380                kernel_main
+ *fill*         0x00000000001003d5        0xb 
+ .text          0x00000000001003e0      0x135 src/25a6634@@kernel.elf@exe/io.c.o
+                0x00000000001003e0                inportb
+                0x0000000000100400                inportw
+                0x0000000000100420                inportl
+                0x0000000000100440                outportb
+                0x0000000000100470                outportw
+                0x00000000001004a0                outportl
+                0x00000000001004d0                sti
+                0x00000000001004e0                cli
+                0x00000000001004f0                hlt
+                0x0000000000100500                idle
+ *fill*         0x0000000000100515        0xb 
+ .text          0x0000000000100520      0x369 src/25a6634@@kernel.elf@exe/multiboot.c.o
+                0x0000000000100520                multiboot_parse
+                0x00000000001007c0                print_memory_map
+ *fill*         0x0000000000100889        0x7 
+ .text          0x0000000000100890      0x3d9 src/25a6634@@kernel.elf@exe/stdio.c.o
+                0x0000000000100890                clear_screen
+                0x0000000000100900                gotoxy
+                0x00000000001009a0                putchar
+                0x0000000000100b80                putc
+                0x0000000000100bb0                printk
+                0x0000000000100bf0                vprintf
+                0x0000000000100c40                vprintf_help
+ *fill*         0x0000000000100c69        0x7 
+ .text          0x0000000000100c70      0x500 src/25a6634@@kernel.elf@exe/string.c.o
+                0x0000000000100c70                itoa
+                0x0000000000100d20                reverse
+                0x0000000000100da0                strlen
+                0x0000000000100df0                strncmp
+                0x0000000000100ea0                strcmp
+                0x0000000000100f20                strcat
+                0x0000000000100fa0                strncat
+                0x0000000000101050                strcpy
+                0x00000000001010b0                memcpy
+                0x0000000000101120                memset
+ .text          0x0000000000101170      0x2b2 src/25a6634@@kernel.elf@exe/terminal.c.o
+                0x0000000000101170                make_color
+                0x00000000001011a0                make_vgaentry
+                0x00000000001011f0                terminal_initialize
+                0x00000000001012c0                terminal_setcolor
+                0x00000000001012e0                terminal_putentryat
+                0x0000000000101340                terminal_putchar
+                0x00000000001013d0                terminal_writestring
+ *fill*         0x0000000000101422        0xe 
+ .text          0x0000000000101430      0x5ee src/25a6634@@kernel.elf@exe/vsprintf.c.o
+                0x0000000000101430                do_printf
+
+.iplt           0x0000000000101a20        0x0
+ .iplt          0x0000000000101a20        0x0 src/25a6634@@kernel.elf@exe/stub.o
+
+.rodata         0x0000000000101a20       0xb0
+ *(.rodata)
+ .rodata        0x0000000000101a20       0x18 src/25a6634@@kernel.elf@exe/stdio.c.o
+ .rodata        0x0000000000101a38       0x98 src/25a6634@@kernel.elf@exe/vsprintf.c.o
+
+.rodata.str1.1  0x0000000000101ad0      0x319
+ .rodata.str1.1
+                0x0000000000101ad0       0x5d src/25a6634@@kernel.elf@exe/bga.c.o
+ .rodata.str1.1
+                0x0000000000101b2d       0x5f src/25a6634@@kernel.elf@exe/kernel.c.o
+ .rodata.str1.1
+                0x0000000000101b8c      0x246 src/25a6634@@kernel.elf@exe/multiboot.c.o
+ .rodata.str1.1
+                0x0000000000101dd2       0x17 src/25a6634@@kernel.elf@exe/terminal.c.o
+
+.rel.dyn        0x0000000000101dec        0x0
+ .rel.iplt      0x0000000000101dec        0x0 src/25a6634@@kernel.elf@exe/stub.o
+ .rel.text      0x0000000000101dec        0x0 src/25a6634@@kernel.elf@exe/stub.o
+
+.data           0x0000000000101dec        0x4
+ *(.data)
+ .data          0x0000000000101dec        0x4 src/25a6634@@kernel.elf@exe/stdio.c.o
+                0x0000000000101dec                video_memory
+
+.igot.plt       0x0000000000101df0        0x0
+ .igot.plt      0x0000000000101df0        0x0 src/25a6634@@kernel.elf@exe/stub.o
+
+.bss            0x0000000000101df0       0x1c
+ *(COMMON)
+ COMMON         0x0000000000101df0        0x4 src/25a6634@@kernel.elf@exe/bga.c.o
+                0x0000000000101df0                sys_multiboot_info
+ COMMON         0x0000000000101df4       0x10 src/25a6634@@kernel.elf@exe/kernel.c.o
+                0x0000000000101df4                terminal_color
+                0x0000000000101df8                terminal_column
+                0x0000000000101dfc                terminal_buffer
+                0x0000000000101e00                terminal_row
+ COMMON         0x0000000000101e04        0x8 src/25a6634@@kernel.elf@exe/stdio.c.o
+                0x0000000000101e04                screen_x
+                0x0000000000101e08                screen_y
+ *(.bss)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+OUTPUT(src/kernel.elf elf32-i386)
+
+.comment        0x0000000000000000       0x23
+ .comment       0x0000000000000000       0x23 src/25a6634@@kernel.elf@exe/bga.c.o
+                                         0x24 (size before relaxing)
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/kernel.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/io.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/multiboot.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/stdio.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/string.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/terminal.c.o
+ .comment       0x0000000000000023       0x24 src/25a6634@@kernel.elf@exe/vsprintf.c.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/bga.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/kernel.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/io.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/multiboot.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/stdio.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/string.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/terminal.c.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 src/25a6634@@kernel.elf@exe/vsprintf.c.o

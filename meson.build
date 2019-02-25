@@ -1,7 +1,7 @@
 # Specify the project
 project('ibox', 'c',
 	version : '0.0.1',
-	license : 'MIT',
+	license : 'BSD 3-Clause',
 	meson_version : '>=0.49.0',
 	default_options : ['buildtype=plain', 'c_std=c99'])
 

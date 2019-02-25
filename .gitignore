@@ -1,0 +1,6 @@
+build/
+clang.build/
+boot.iso
+kernel.elf
+
+

@@ -13,10 +13,10 @@ kernel_sources = files(['bga.c', 'kernel.c', 'io.c', 'multiboot.c', 'stdio.c', '
 
 if meson.get_compiler('c').get_id() == 'clang'
 	c_args = ['-m32', '-c', '-ffreestanding', '-Wall', '-Wextra']
-	link_args = ['-nostdlib', '-Wl,-T,../linker.ld', '-Wl,-m,elf_i386', '-Wl,-Map,info.map', '-Wl,-L,libgcc']
+	link_args = ['-nostdlib', '-Wl,-T,../src/linker.ld', '-Wl,-m,elf_i386', '-Wl,-Map,info.map', '-Wl,-L,libgcc']
 else
 	c_args = ['-c', '-ffreestanding', '-Wall', '-Wextra']
-        link_args = ['-nostdlib', '-T', '../linker.ld', '-Map,info.map', '-lgcc']
+        link_args = ['-nostdlib', '-T', '../src/linker.ld', '-Wl,-Map,info.map', '-lgcc']
 endif
 
 linker_file = files('linker.ld')
