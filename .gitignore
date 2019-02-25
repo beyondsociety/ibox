@@ -1,5 +1,5 @@
 build/
-clang.build/
+clang-build/
 boot.iso
 kernel.elf
 
