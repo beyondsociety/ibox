@@ -45,7 +45,7 @@ while [ opt != '' ]
 			;;
 
 			3) clear;
-			echo "${GREEN_TEXT}Running Toolchain${NORMAL}";
+			echo "${GREEN_TEXT}Setting Up Toolchain${NORMAL}";
 			echo '';
 			show_menu;
 			;;
