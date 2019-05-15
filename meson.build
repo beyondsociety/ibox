@@ -10,3 +10,4 @@ subdir('src')
 
 # Script that runs the ISO Image with qemu
 run_target('qemu', command : 'scripts/qemu-meson-wrapper.sh')
+run_target('bochs', command : 'scripts/bochs-meson-wrapper.sh')

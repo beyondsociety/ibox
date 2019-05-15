@@ -19,6 +19,7 @@ cp ./build/src/kernel.elf ./iso/boot/
 mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
 -boot-info-table -input-charset utf8 -o boot.iso iso
 
-echo ''
-echo "${Yellow}Runing ISO image...${Normal}"
-ninja -C build qemu
+#echo ''
+#echo "${Yellow}Runing ISO image...${Normal}"
+#ninja -C build qemu
+#ninja -C build bochs

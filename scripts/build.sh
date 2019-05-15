@@ -13,8 +13,10 @@ show_menu()
 	echo "${MENU}** ${NUMBER}1) ${YELLOW_TEXT} Build Ibox with Cross-gcc ${NORMAL}"
 	echo "${MENU}** ${NUMBER}2) ${YELLOW_TEXT} Build Ibox with Clang ${NORMAL}"
 	echo "${MENU}** ${NUMBER}3) ${YELLOW_TEXT} Build Ibox Toolchain ${NORMAL}"
-        echo "${MENU}** ${NUMBER}4) ${YELLOW_TEXT} Quit ${NORMAL}"
-        echo "${MENU}***********************************************${NORMAL}"
+        echo "${MENU}** ${NUMBER}4) ${YELLOW_TEXT} Run Qemu ${NORMAL}"
+	echo "${MENU}** ${NUMBER}5) ${YELLOW_TEXT} Run Bochs ${NORMAL}"
+	echo "${MENU}** ${NUMBER}6) ${YELLOW_TEXT} Quit ${NORMAL}"
+	echo "${MENU}***********************************************${NORMAL}"
 	echo "${YELLOW_TEXT}Please select an option from the menu: ${NORMAL}"
 
         read opt
@@ -36,13 +38,34 @@ while [ opt != '' ]
 			;;
 
 			2) clear;
-			echo "${GREEN_TEXT}Running Build Script${Normal}"
+			echo "${GREEN_TEXT}Running Build Script${Normal}";
 			sh ./scripts/run-clang.sh
 			echo '';
 			show_menu;
 			;;
 
-			4) break;
+			3) clear;
+			echo "${GREEN_TEXT}Running Toolchain${NORMAL}";
+			echo '';
+			show_menu;
+			;;
+
+			4) clear;
+			echo "${GREEN_TEXT}Running Qemu${NORMAL}";
+			ninja -C build qemu
+			echo '';
+			show_menu;
+			;;
+
+			5) clear;
+			echo "${GREEN_TEXT}Running Bochs${NORMAL}";
+			ninja -C build bochs
+			#sh ./scripts/bochs-meson-wrapper.sh
+			echo '';
+			show_menu;
+			;;
+
+			6) break;
 			;;
 
 			*) clear;

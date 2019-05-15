@@ -16,6 +16,6 @@ cp ./clang-build/src/kernel.elf ./iso/boot/
 mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
 -boot-info-table -input-charset utf8 -o boot.iso iso
 
-echo ''
-echo "${Yellow}Runing ISO Image...${Normal}"
-ninja -C clang-build qemu
+#echo ''
+#echo "${Yellow}Runing ISO Image...${Normal}"
+#ninja -C clang-build qemu
