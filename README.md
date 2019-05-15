@@ -1,13 +1,16 @@
-## **About Ibox** 
-Ibox is a operating system project being developed for research and academic purposes. Its intent is to create an operating system capable of supporting future and advancing technologies. One day it may become stable enough to be used in the embedded, high-end desktop, server, mainframe and research markets.
+## **How to use the meson build system**
+Meson requires two main dependences to run: \
+**Python 3 and Ninja** 
 
-## **Features**
-- Own custom multiboot bootloader capable of booting from numerous hardware device
-- Written in a high level language that supports object oriented features and concurrency
-- Uses a second generation microkernel based on ideas from L4
-- Support for 64-bit, multicore and mutiprocessor systems including numa
-- Support for homogeneous and heterogeneous distributed systems
-- Support for computer clusters, grid computing and network nodes 
+On Ubuntu these can be easily installed with the following command: \
+**$ sudo apt-get install python3 python3-pip ninja-build**
+
+The best way to get Meson is to use **pip install** for the user. \
+**$ pip3 install --user meson**
+
+You can also get the Meson package from your distro, but beware that due to their frequent release cycle and development speed, the distro version might be out of date. Another option is to clone the git repository and run it directly from there.
 
 ## **How to build Ibox**
-Instructions on how to  build Ibox are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
+If you need a build environment for Ibox, see the wiki below. If you just want to build Ibox, ignore the build instructions on the wiki and instead run the **build.sh** file in the scripts folder.
+
+Instructions on how to build Ibox are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
