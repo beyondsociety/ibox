@@ -1,4 +1,4 @@
-build/
+cross-build/
 clang-build/
 boot.iso
 kernel.elf

@@ -19,9 +19,11 @@ else
         link_args = ['-nostdlib', '-T', '../src/linker.ld', '-Wl,-Map,info.map', '-lgcc']
 endif
 
+inc_dirs = include_directories('../include')
+
 linker_file = files('linker.ld')
 image = executable('kernel.elf', asm_sources, kernel_sources,
         c_args : c_args,
         link_args : link_args,
 	link_depends : 'linker.ld',
-        include_directories : inc)
+        include_directories : inc_dirs)

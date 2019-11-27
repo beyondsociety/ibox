@@ -16,18 +16,17 @@ align 4
 	dd 1                            ; 0 = linear graphics mode, 1 = EGA-standard text mode
 	dd 1024, 768, 32                ; Width, Height, Depth
 
-;section .bss
-;align 16
-;stack_bottom:
-;	resb 16384
-;stack_top:
+section .bss
+align 16
+stack_bottom:
+	resb 16384
+stack_top:
 
 [section .text]
-;global start:function (start.end - start)
-global start
+global start:function (start.end - start)
 start:
 
-;	mov esp, stack_top
+	mov esp, stack_top
 
 ;	mov ebx, 0xb8000
 ;	mov al, '!'
@@ -46,4 +45,4 @@ start:
 	hlt
 	jmp .halt
 
-;.end:
+.end:

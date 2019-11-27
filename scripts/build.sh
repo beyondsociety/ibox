@@ -1,11 +1,11 @@
 #!/bin/bash
 # Bash Menu Script Example
 
-NORMAL='\033[0;m'        # No color
-MENU='\033[0;36m'        # Cyan
-NUMBER='\033[0;37m'      # White
-GREEN_TEXT='\033[1;32m'  # Light Green
-YELLOW_TEXT='\033[1;33m' # Light Yellow
+NORMAL=\033[0;m        # No color
+MENU=\033[0;36m        # Cyan
+NUMBER=\033[0;37m      # White
+GREEN_TEXT=\033[1;32m  # Light Green
+YELLOW_TEXT=\033[1;33m # Light Yellow
 
 show_menu()
 {
@@ -52,15 +52,16 @@ while [ opt != '' ]
 
 			4) clear;
 			echo "${GREEN_TEXT}Running Qemu${NORMAL}";
-			ninja -C build qemu
+			#ninja -C build qemu
+			sh ./scripts/qemu-meson-wrapper.sh
 			echo '';
 			show_menu;
 			;;
 
 			5) clear;
 			echo "${GREEN_TEXT}Running Bochs${NORMAL}";
-			ninja -C build bochs
-			#sh ./scripts/bochs-meson-wrapper.sh
+			#ninja -C build bochs
+			sh ./scripts/bochs-meson-wrapper.sh
 			echo '';
 			show_menu;
 			;;

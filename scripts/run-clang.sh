@@ -2,12 +2,13 @@
 Yellow='\033[1;33m'
 Normal='\033[0;m'
 
+echo ''
 echo "${Yellow}Removing build directory for new build...${Normal}"
-rm -rf ./clang-build
+rm -rfv ./clang-build
 
 echo ''
 echo "${Yellow}Building Ibox...${Normal}"
-~/meson/meson.py clang-build --native-file clang.build
+~/.local/bin/meson clang-build --native-file clang.build
 ninja -C clang-build
 
 echo ''
