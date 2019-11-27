@@ -2,7 +2,7 @@
 Yellow='\033[1;33m'
 Normal='\033[0;m'
 
-echo ''
+#echo ''
 echo "${Yellow}Found cross-compiler...${Normal}"
 export PATH="/usr/local/cross/bin:$PATH"
 echo /usr/local/cross/bin
@@ -13,8 +13,9 @@ rm -rfv ./cross-build
 
 echo ''
 echo "${Yellow}Building Ibox...${Normal}"
+export PATH="$PATH:~/.local/bin/"
 #~/meson/meson.py cross-build --cross-file cross-compiler.build
-~/.local/bin/meson cross-build --cross-file cross-compiler.build
+meson cross-build --cross-file cross-compiler.build
 ninja -C cross-build
 
 echo ''
