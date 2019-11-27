@@ -1,11 +1,11 @@
 ## **How to use the meson build system**
-Meson requires two main dependences to run: 
+Meson requires two main dependences to run: \
 ``` Python 3 and Ninja ```
 
-On Ubuntu these can be easily installed with the following command: 
+On Ubuntu these can be easily installed with the following command: \
 ``` $ sudo apt-get install python3 python3-pip ninja-build ```
 
-The best way to get Meson is to use **pip install** for the user. 
+The best way to get Meson is to use **pip install** for the user. \
 ``` $ pip3 install --user meson ```
 
 This will install the package in **~/.local/**, so you will have to add **~/.local/bin** to your **PATH**.
