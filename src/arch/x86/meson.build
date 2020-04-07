@@ -1,13 +1,13 @@
-# Find Nasm
+# Finds the assembler program Nasm
 nasm = find_program('nasm', required: true)
 
-# Generator that will take object files
+# Assembler sources for ibox
+asm_sources = files('stub.s')
+
+# Generator that creates object files from assembler
 asm_gen = generator(nasm,
         output : '@BASENAME@.o',
-        arguments : ['-f', 'elf32', '@INPUT@', '-o', '@OUTPUT@'])
+        arguments : ['-f', 'elf32', '@INPUT@', '-o', '@OUTPUT@', '-F', 'dwarf'])
 
-# Generators take in an array of files to generate
-asm_sources = asm_gen.process(['stub.s'])
-
-
-
+# Generator then processes the object files to assembler
+arch_asm = asm_gen.process(asm_sources)

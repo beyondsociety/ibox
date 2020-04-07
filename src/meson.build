@@ -1,21 +1,36 @@
-# Sub directory for asm files
-subdir('arch/x86')
+# Finds subdirectory for asm files depending on architecture
+arch_path = 'arch/@0@/'.format(host_machine.cpu_family())
 
-kernel_sources = files(['bga.c', 'kernel.c', 'io.c', 'multiboot.c', 'stdio.c', 'string.c', 'terminal.c', 'vsprintf.c']) 
+# Sub directory for arch specific files
+subdir(arch_path)
 
-if meson.get_compiler('c').get_id() == 'clang'
+arch_linker_file = meson.current_source_dir() + '/arch/x86/linker.ld'
+
+# Kernel sources
+kernel_srcs = files(
+	'bga.c', 'kernel.c',
+	'io.c', 'multiboot.c',
+	'stdio.c', 'string.c',
+	'terminal.c', 'vsprintf.c')
+
+# Compiler options based on type of compiler used
+compiler = meson.get_compiler('c')
+if compiler.get_id() == 'clang'
 	c_args = ['-m32', '-c', '-ffreestanding', '-Wall', '-Wextra']
-	link_args = ['-nostdlib', '-Wl,-T,../src/linker.ld', '-Wl,-m,elf_i386', '-Wl,-Map,info.map', '-Wl,-L,libgcc']
+	link_args = ['-nostdlib', '-Wl,-T',arch_linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 else
-	c_args = ['-c', '-ffreestanding', '-Wall', '-Wextra']
-        link_args = ['-nostdlib', '-T', '../src/linker.ld', '-Wl,-Map,info.map', '-lgcc']
+	compiler.get_id() == 'gcc'
+		c_args = ['-c', '-ffreestanding', '-Wall', '-Wextra']
+		link_args = ['-nostdlib', '-T',arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
 endif
 
-inc_dirs = include_directories('../include')
+# Include directory
+inc_dirs = include_directories('include')
 
-linker_file = files('linker.ld')
-image = executable('kernel.elf', asm_sources, kernel_sources,
+# Executable
+image = executable(
+	'kernel.elf',
+	arch_asm, kernel_srcs,
         c_args : c_args,
         link_args : link_args,
-	link_depends : 'linker.ld',
         include_directories : inc_dirs)

@@ -1,6 +1,5 @@
 [binaries]
 c = 'i686-elf-gcc'
-cpp = 'i686-elf-g++'
 ld = 'i686-elf-ld'
 ar = 'i686-elf-ar'
 strip = 'i686-elf-strip'
@@ -10,12 +9,20 @@ pkgconfig = ''
 exe_wrapper = ''
 
 [properties]
+#c_args = '-ffreestanding'
+#link_args = '-nostdlib'
+
 has_function_printf = 'false'
 needs_exe_wrapper = 'false'
+
+project_configuration = [
+	'b_as_needed=false',
+	'b_no_undefined=false',
+	'buildtype=plain',
+	'c_std=c99' ]
 
 [host_machine]
 system = 'ibox-kernel'
 cpu_family = 'x86'
 cpu = 'i686'
 endian = 'little'
-

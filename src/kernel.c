@@ -35,10 +35,10 @@ void kernel_main(void)
 	/* Wait a bit */
    	for(volatile int32_t i = 0; i < 10000000; ++i) { }
 
+	printk("Testing delay...\n");
+
 	/* initialize the bochs video adapter interface */
 	//bga_init();
-
-        printk("Testing delay...\n");
 }
 
 
