@@ -15,8 +15,8 @@ needs_exe_wrapper = 'false'
 project_configuration = [
 	'b_as_needed=false',
 	'b_no_undefined=false',
-  'buildtype=plain',
-  'c_std=c99' ]
+  	'buildtype=plain',
+  	'c_std=c99' ]
 
 [host_machine]
 system = 'ibox-kernel'
