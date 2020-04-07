@@ -1,5 +1,6 @@
 cross-build/
 clang-build/
+version/
 boot.iso
 kernel.elf
 bochsout.txt
