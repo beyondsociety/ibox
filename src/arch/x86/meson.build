@@ -10,4 +10,4 @@ asm_gen = generator(nasm,
         arguments : ['-f', 'elf32', '@INPUT@', '-o', '@OUTPUT@', '-F', 'dwarf'])
 
 # Generator then processes the object files to assembler
-arch_asm = asm_gen.process(asm_sources)
+asm_srcs = asm_gen.process(asm_sources)
