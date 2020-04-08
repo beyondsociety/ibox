@@ -14,7 +14,7 @@ needs_exe_wrapper = 'false'
 
 project_configuration = [
 	'b_asneeded=false',
-	'b_noundefined=false',
+	'b_lundef=false',
   	'buildtype=plain',
   	'c_std=c99' ]
 
