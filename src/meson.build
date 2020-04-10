@@ -4,7 +4,7 @@ arch_path = 'arch/@0@/'.format(host_machine.cpu_family())
 # Sub directory for arch specific files
 subdir(arch_path)
 
-arch_linker_file = meson.current_source_dir() + '/arch/x86/linker.ld'
+arch_linker_file = meson.current_source_dir() + '/' + arch_path + 'linker.ld'
 
 # Kernel sources
 kernel_srcs = files(
