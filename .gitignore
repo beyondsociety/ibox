@@ -1,0 +1,6 @@
+# ignore .git folder
+.git
+
+# Build folders
+cross-build/
+clang-build/
