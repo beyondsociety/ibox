@@ -1,7 +1,9 @@
+# Ignore .git folder
+.git
+
+# Ignore build folders
 cross-build/
 clang-build/
-version/
-boot.iso
-kernel.elf
-bochsout.txt
 
+# Ignore kernel executable in iso folder
+iso/boot/kernel.elf

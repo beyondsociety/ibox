@@ -1,22 +1,19 @@
 [binaries]
-c = 'clang'
+c = ['clang', '-m32']
 c_ld = 'lld'
+#ld = 'ld'
 ar = 'ar'
 strip = 'strip'
 
-# Not used
-pkconfig = ''
-exe_wrapper = ''
-
 [properties]
-has_function_printf = 'false'
-needs_exe_wrapper = 'false'
+c_args = ['-ffreestanding']
+c_link_args = ['-ffreestanding', '-nostdlib']
 
 project_configuration = [
-	'b_asneeded=false',
-	'b_lundef=false',
+	  'b_asneeded=false',
+	  'b_lundef=false',
   	'buildtype=plain',
-  	'c_std=c99' ]
+  	'c_std=c99']
 
 [host_machine]
 system = 'ibox-kernel'

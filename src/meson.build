@@ -13,16 +13,23 @@ kernel_srcs = files(
 	'stdio.c', 'string.c',
 	'terminal.c', 'vsprintf.c')
 
+if meson.is_cross_build()
+		c_args = meson.get_cross_property('c_args')
+		link_args = meson.get_cross_property('c_link_args')
+else
+		c_args = meson.get_external_property('c_args')
+		link_args = meson.get_external_property('c_link_args')
+endif
+
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
-
 if compiler.get_id() == 'clang'
-	  c_args = ['-m32', '-c', '-ffreestanding', '-Wall', '-Wextra']
-	  link_args = ['-nostdlib', '-Wl,-T', arch_linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	  c_args = ['-Wall', '-Wextra']
+	  link_args = ['-Wl,-T', arch_linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 else
 	compiler.get_id() == 'gcc'
-		c_args = ['-c', '-ffreestanding', '-Wall', '-Wextra']
-		link_args = ['-nostdlib', '-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
+		c_args = ['-Wall', '-Wextra']
+		link_args += ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
 endif
 
 # Include directory
@@ -32,6 +39,7 @@ inc_dirs = include_directories('include')
 image = executable(
 	'kernel.elf',
 	asm_srcs, kernel_srcs,
-        c_args : c_args,
-        link_args : link_args,
-        include_directories : inc_dirs)
+  c_args : c_args,
+  link_args : link_args,
+  include_directories : inc_dirs,
+	implicit_include_directories : false)

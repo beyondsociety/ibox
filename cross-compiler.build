@@ -4,16 +4,9 @@ ld = 'i686-elf-ld'
 ar = 'i686-elf-ar'
 strip = 'i686-elf-strip'
 
-# Not used
-pkgconfig = ''
-exe_wrapper = ''
-
 [properties]
-#c_args = '-ffreestanding'
-#link_args = '-nostdlib'
-
-has_function_printf = 'false'
-needs_exe_wrapper = 'false'
+c_args = ['-ffreestanding']
+c_link_args = ['-ffreestanding', '-nostdlib']
 
 project_configuration = [
 	'b_asneeded=false',
