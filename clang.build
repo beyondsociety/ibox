@@ -9,12 +9,6 @@ strip = 'strip'
 c_args = ['-ffreestanding']
 c_link_args = ['-ffreestanding', '-nostdlib']
 
-project_configuration = [
-	  'b_asneeded=false',
-	  'b_lundef=false',
-  	'buildtype=plain',
-  	'c_std=c99']
-
 [host_machine]
 system = 'ibox-kernel'
 cpu_family = 'x86'
