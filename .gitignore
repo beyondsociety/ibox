@@ -1,9 +1,15 @@
 # Ignore .git folder
 .git
 
+# Ignore .gitignore file
+.gitignore
+
 # Ignore build folders
 cross-build/
 clang-build/
 
 # Ignore kernel executable in iso folder
 iso/boot/kernel.elf
+
+# Ignore Readme.md from dev branch
+Readme.md
