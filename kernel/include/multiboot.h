@@ -99,7 +99,7 @@
 
 typedef struct multiboot_header
 {
-	/* Must be MULTIBOOT_MAGIC - see above. */
+  /* Must be MULTIBOOT_MAGIC - see above. */
   uint32_t magic;
 
   /* Feature flags. */
@@ -136,7 +136,7 @@ typedef struct multiboot_elf_section_header_table
 {
   uint32_t number;
   uint32_t size;
-	uint32_t address;
+  uint32_t address;
   uint32_t shndx;
 } multiboot_elf_section_header_table_t;
 
@@ -162,7 +162,7 @@ typedef struct multiboot_info
   union
   {
     multiboot_aout_symbol_table_t aout_symbol;
-  	multiboot_elf_section_header_table_t elf_section;
+    multiboot_elf_section_header_table_t elf_section;
   } u;
 
   /* Memory Mapping buffer */

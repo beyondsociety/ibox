@@ -10,7 +10,7 @@ void multiboot_parse(multiboot_info_t *mbi)
   /* Print out the flags. */
   printk("Flags = 0x%X\n", (uint32_t) mbi->flags);
 
-	/* Are mem_* valid? */
+  /* Are mem_* valid? */
   if(CHECK_FLAG (mbi->flags, 0))
     printk("Memory-lower = %uKB, Memory-upper = %uKB\n",
       (uint32_t) mbi->memory_lower, (uint32_t) mbi->memory_upper);
@@ -54,7 +54,7 @@ void multiboot_parse(multiboot_info_t *mbi)
   /* Are mmap_* valid? */
   if(CHECK_FLAG (mbi->flags, 6))
   {
-		multiboot_map_t *mmap;
+    multiboot_map_t *mmap;
 
     printk("Memory-map Address = 0x%x, Memory-map Length = 0x%x\n",
       (uint32_t) mbi->mmap_address, (uint32_t) mbi->mmap_length);

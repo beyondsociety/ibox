@@ -15,17 +15,17 @@ void kernel_init(multiboot_info_t *mbi, uint32_t magic)
 	clear_screen();
 
 	/* Make sure we're booted by a multiboot loader */
-  if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
-  {
-  		printk("Not booted with a multiboot-compliant bootloader!");
-      	hlt();
-  }
+	if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
+	{
+		printk("Not booted with a multiboot-compliant bootloader!");
+		hlt();
+	}
 
-  /* Parse Multiboot structure */
-  multiboot_parse(mbi);
+	/* Parse Multiboot structure */
+	multiboot_parse(mbi);
 
-  /* Load kernel_main */
-  kernel_main();
+	/* Load kernel_main */
+	kernel_main();
 }
 
 void kernel_main(void)
