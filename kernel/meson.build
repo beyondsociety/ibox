@@ -34,9 +34,9 @@ inc_dirs = include_directories('include')
 
 # Executable
 image = executable(
-  	'kernel.elf',
-  	asm_srcs, kernel_srcs,
-  	c_args : c_args,
-  	link_args : link_args,
-  	include_directories : inc_dirs,
+  'kernel.elf',
+  asm_srcs, kernel_srcs,
+  c_args : c_args,
+  link_args : link_args,
+  include_directories : inc_dirs,
 	implicit_include_directories : false)
