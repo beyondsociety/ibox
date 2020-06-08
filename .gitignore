@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore .git folder
 .git
 
@@ -13,3 +14,11 @@ iso/boot/kernel.elf
 
 # Ignore Readme.md from dev branch
 Readme.md
+=======
+# ignore .git folder
+.git
+
+# Build folders
+cross-build/
+clang-build/
+>>>>>>> master
