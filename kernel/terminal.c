@@ -7,7 +7,7 @@ uint8_t make_color(enum vga_color fg, enum vga_color bg)
 {
 	return (uint8_t)(fg | bg << 4);
 }
- 
+
 uint16_t make_vgaentry(int8_t c, uint8_t color)
 {
 	uint16_t c16 = (uint16_t) c;
@@ -15,7 +15,7 @@ uint16_t make_vgaentry(int8_t c, uint8_t color)
 
 	return (uint16_t)(c16 | color16 << 8);
 }
- 
+
 void terminal_initialize(void)
 {
 	terminal_row = 0;
@@ -32,20 +32,20 @@ void terminal_initialize(void)
 		}
 	}
 
-        printk("Kernel Initialized...\n"); 
+  printk("Kernel Initialized...\n");
 }
- 
+
 void terminal_setcolor(uint8_t color)
 {
 	terminal_color = color;
 }
- 
+
 void terminal_putentryat(int8_t c, uint8_t color, size_t x, size_t y)
 {
 	const size_t index = y * VGA_WIDTH + x;
 	terminal_buffer[index] = make_vgaentry(c, color);
 }
- 
+
 void terminal_putchar(int8_t c)
 {
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
@@ -55,15 +55,15 @@ void terminal_putchar(int8_t c)
 		if(++terminal_row == VGA_HEIGHT)
 		{
 			terminal_row = 0;
-		}                
+		}
 	}
 }
- 
+
 void terminal_writestring(const int8_t * data)
 {
 	size_t datalen = strlen(data);
 	for(size_t i = 0; i < datalen; i++)
-        {
+  {
 		terminal_putchar(data[i]);
-        }
+  }
 }

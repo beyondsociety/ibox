@@ -1,5 +1,4 @@
 #!/bin/bash
-## GCC Cross Compiler ##
 
 # Dependency to build gcc cross compiler
 apt-get update && apt-get install -y gcc wget build-essential

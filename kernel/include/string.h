@@ -6,8 +6,8 @@
 
 #define UNUSED __attribute__((unused))
 
-//int8_t *itoa(int32_t, int8_t *, int32_t);
-//void reverse(int8_t *);
+// int8_t *itoa(int32_t, int8_t *, int32_t);
+// void reverse(int8_t *);
 
 void itoa(int n, char s[]);
 void reverse(char s[]);
