@@ -7,3 +7,7 @@ clang-build/
 
 # Ignore kernel executable in iso folder
 iso/boot/kernel.elf
+
+# Ignore Readme.md from dev branch
+README.md
+

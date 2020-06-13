@@ -1,37 +1,74 @@
 #!/bin/bash
 
-# Dependency to build gcc cross compiler
-apt-get update && apt-get install -y gcc wget build-essential
+# Specify the binutils/gcc versions
+BINUTILS_VERSION="binutils-2.34"
+GCC_VERSION="gcc-8.3.0"
 
-# Specify binutils/gcc version
-DOWNLOAD_BINUTILS=binutils-2.29
-DOWNLOAD_GCC=gcc-7.1.0
+# If the number of arguments is not equal to 2, then display an error message
+if [ "$#" -ne 2 ];
+   then
+        echo "You must supply a target-arch and prefix-dir to use"
+	exit 1
+
+elif [ -d $2 ];
+   then
+	echo "Cross-compiler directory found, adding cross-compiler path:$2"
+	export PATH=$2/bin:$PATH
+        exit 0
+
+else
+	echo "No Cross-compiler directory found, exiting"
+fi
+
+# Dependencies to build the gcc cross-compiler
+sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential
+
+# Create source directory and switch to it
+mkdir -p cross-src && cd cross-src
 
 # Download binutils/gcc and its dependencies
-cd /srv
-wget -q http://ftp.gnu.org/gnu/binutils/$DOWNLOAD_BINUTILS.tar.gz
-tar -xzf $DOWNLOAD_BINUTILS.tar.gz
+echo ""
+echo "--> [STATUS] downloading sources..."
+if [ ! -f $PWD/$BINUTILS_VERSION.tar.gz ] && [ ! -f $PWD/$GCC_VERSION.tar.gz ]
+   then
+	wget https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz &&
+	wget https://ftp.gnu.org/gnu/gcc/$GCC_VERSION/$GCC_VERSION.tar.gz
+   else
+	echo "$BINUTILS_VERSION.tar.gz already exists" &&
+	echo "$GCC_VERSION.tar.gz already exists"
+fi
 
-wget -q ftp://ftp.gnu.org/gnu/gcc/$DOWNLOAD_GCC/$DOWNLOAD_GCC.tar.gz
-tar -xzf $DOWNLOAD_GCC.tar.gz
+echo "--> [STATUS] unpacking source files"
+if [ ! -d $PWD/$BINUTILS_VERSION ] && [ ! -d $PWD/$GCC_VERSION ]
+   then
+	tar -xvzf $BINUTILS_VERSION.tar.gz &&
+	tar -xvzf $GCC_VERSION.tar.gz
+   else
+	echo "$BINUTILS_VERSION already unpacked" &&
+	echo "$GCC_VERSION already unpacked"
+fi
 
-cd /srv/$DOWNLOAD_GCC && contrib/download_prerequisites
+echo ""
+cd $GCC_VERSION && contrib/download_prerequisites
+echo ""
 
-# Specify PREFIX, TARGET and PATH
-export PREFIX=/usr/local/cross
-export TARGET=i686-elf
+# Specify PREFIX, TARGET, and PATH
+export TARGET=$1
+export PREFIX=$2
 export PATH="$PREFIX/bin:$PATH"
 
-# Build binutils (perpare seperate directory only for build)
-mkdir -p /srv/build_binutils && cd /srv/build_binutils
-/srv/$DOWNLOAD_BINUTILS/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
-make && make install
+# Build Binutils
+cd ..
+mkdir -p build-binutils && cd build-binutils
+$PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
+make -j $(nproc) && make install
 
-# Build gcc (perpare seperate directory only for build)
-mkdir -p /srv/build_gcc && cd /srv/build_gcc
-/srv/$DOWNLOAD_GCC/configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers
-make all-gcc && make all-target-libgcc
+# Build Gcc
+cd ..
+mkdir -p build-gcc && cd build-gcc
+$PWD/../$GCC_VERSION/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c,c++ --without-headers
+make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
 make install-gcc && make install-target-libgcc
 
-## Dependencies for building/runing ibox ##
-apt-get install -y nasm xorriso
+# Dependencies for build/running ibox
+sudo apt-get install -y nasm xorriso genisoimage
