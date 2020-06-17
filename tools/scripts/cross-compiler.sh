@@ -4,6 +4,7 @@
 BINUTILS_VERSION="binutils-2.34"
 GCC_VERSION="gcc-8.3.0"
 
+
 # If the number of arguments is not equal to 2, then display an error message
 if [ "$#" -ne 2 ];
    then
