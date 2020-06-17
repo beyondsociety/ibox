@@ -17,14 +17,14 @@ elif [ -d $2 ];
         exit 0
 
 else
-	echo "No Cross-compiler directory found, exiting"
+	echo "No Cross-compiler directory found, building cross-compiler"
 fi
 
 # Dependencies to build the gcc cross-compiler
 sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential
 
 # Create source directory and switch to it
-mkdir -p cross-src && cd cross-src
+mkdir -p src && cd src
 
 # Download binutils/gcc and its dependencies
 echo ""
@@ -62,6 +62,7 @@ cd ..
 mkdir -p build-binutils && cd build-binutils
 $PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
 make -j $(nproc) && make install
+make && make install
 
 # Build Gcc
 cd ..
@@ -72,3 +73,6 @@ make install-gcc && make install-target-libgcc
 
 # Dependencies for build/running ibox
 sudo apt-get install -y nasm xorriso genisoimage
+
+# Activate path for cross-compiler
+export PATH=$PREFIX/bin:$PATH

@@ -1,6 +1,9 @@
 # Ignore .git folder
 .git
 
+# Ignore src directory for building cross-compiler
+src 
+
 # Ignore build folders
 cross-build/
 clang-build/
