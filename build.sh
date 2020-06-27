@@ -11,7 +11,7 @@ show_menu()
 	echo -e "${MENU}** ${NUMBER}1) ${YELLOW_TEXT} Build Ibox with Cross-gcc ${NORMAL}"
 	echo -e "${MENU}** ${NUMBER}2) ${YELLOW_TEXT} Build Ibox with Clang ${NORMAL}"
 	echo -e "${MENU}** ${NUMBER}3) ${YELLOW_TEXT} Build Ibox Toolchain ${NORMAL}"
-  echo -e "${MENU}** ${NUMBER}4) ${YELLOW_TEXT} Run Qemu ${NORMAL}"
+  	echo -e "${MENU}** ${NUMBER}4) ${YELLOW_TEXT} Run Qemu ${NORMAL}"
 	echo -e "${MENU}** ${NUMBER}5) ${YELLOW_TEXT} Run Bochs ${NORMAL}"
 	echo -e "${MENU}** ${NUMBER}6) ${YELLOW_TEXT} Quit ${NORMAL}"
 	echo -e "${MENU}**************************************************************${NORMAL}"
@@ -29,9 +29,9 @@ while [ opt != '' ]
 	 	else
 			case $opt in
 				1) clear;
-			  	echo '';
-      		sh ./tools/scripts/run-cross.sh
-      		echo '';
+			  		echo '';
+      				sh ./tools/scripts/run-cross.sh
+      				echo '';
 					show_menu;
 					;;
 
@@ -40,39 +40,39 @@ while [ opt != '' ]
 					sh ./tools/scripts/run-clang.sh
 					echo '';
 					show_menu;
-					;;
+				;;
 
 				3) clear;
-			  	echo '';
+			  		echo '';
 					read -p $'\e[1;33mPlease specify a build-target and prefix-dir\e[0m: ' TARGET PREFIX
 					sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 					echo '';
 					show_menu;
-					;;
+				;;
 
 				4) clear;
-			  	echo '';
+			  		echo '';
 					read -p $'\e[1;33mPass the name of the build-tool for Qemu to run\e[0m: ' NAME
-        	if [ "$NAME" == "cross" ]; then
-				  	ninja -C cross-build qemu
+        			if [ "$NAME" == "cross" ]; then
+				  		ninja -C cross-build qemu
 					else [ "$NAME" == "clang" ];
-				    ninja -C clang-build qemu
+				    	ninja -C clang-build qemu
 					fi
 					echo '';
 					show_menu;
-					;;
+				;;
 
 				5) clear;
-			  	echo '';
+			  		echo '';
 					read -p $'\e[1;33mPass the name of the build-tool for Bochs to run\e[0m: ' name
-        	if [ "$NAME" == "cross" ]; then
-				  	ninja -C cross-build bochs
-			  	else [ "$NAME" == "clang" ]
-				  	ninja -C clang-build bochs
-			  	fi
+        			if [ "$NAME" == "cross" ]; then
+				  		ninja -C cross-build bochs
+			  		else [ "$NAME" == "clang" ]
+				  		ninja -C clang-build bochs
+			  		fi
 					echo '';
 					show_menu;
-					;;
+				;;
 
 				# Quit
 				6) break;
