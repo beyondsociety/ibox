@@ -1,5 +1,8 @@
 #!/bin/bash
 
 export DISPLAY=:0
-bochs -f .bochsrc -q 
-
+if [ "$NAME" == "cross" ]; then
+  sudo bochs -f ${PWD}/.bochsrc -q
+else [ "$NAME" == "clang" ]
+  bochs -f ${PWD}/.bochsrc -q
+fi

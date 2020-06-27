@@ -9,5 +9,5 @@ project('ibox', 'c',
 subdir('kernel')
 
 # Script that runs the ISO Image with qemu and bochs
-#run_target('qemu', command : 'scripts/qemu-meson-wrapper.sh')
-#run_target('bochs', command : 'scripts/bochs-meson-wrapper.sh')
+run_target('qemu', command : 'tools/scripts/qemu-meson-wrapper.sh')
+run_target('bochs', command : 'tools/scripts/bochs-meson-wrapper.sh')

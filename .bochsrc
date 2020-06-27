@@ -36,7 +36,7 @@
 # NOTE: if you use the "wx" configuration interface, you must also use
 # the "wx" display library.
 #=======================================================================
-#config_interface: textconfig
+config_interface: textconfig
 #config_interface: win32config
 #config_interface: wx
 
