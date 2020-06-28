@@ -5,8 +5,8 @@ NORMAL='\033[0;m'        # No color
 
 echo "${GREEN_TEXT}Found cross-compiler...${NORMAL}"
 PREFIX="/usr/local/cross"
-if [ "$PREFIX/bin" ] ; then
-    PATH="$PREFIX/bin:$PATH"
+if [ "$PREFIX/bin" ]; then
+  PATH="$PREFIX/bin:$PATH"
 fi
 #export PATH="/usr/local/cross/bin:$PATH" # Path to cross-compiler
 echo /usr/local/cross/bin
