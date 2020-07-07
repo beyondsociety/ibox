@@ -16,9 +16,9 @@ To update meson to the newest version, we type: ```$ pip3 install --upgrade meso
 If you get a message like: ```WARNING: You are using pip version 20.0.2; however, version 20.1 is available. You should consider upgrading via the 'usr/bin/python3 -m pip install --upgrade pip' command```, this means you need to update pip as well. (Pip = Pip3, so just use **pip3 install --upgrade pip** unless you have Python 2 installed as well, then use pip). 
 
 ## **How to build Ibox**
-If you need a build environment for Ibox, see the wiki below. If you just want to build Ibox, ignore the build instructions on the wiki and instead run the build script by typing '''./build.sh''' into a linux terminal. 
+If you need a build environment for Ibox, see the wiki below. If you just want to build Ibox, ignore the build instructions on the wiki and instead run the build script by typing ```./build.sh``` into a linux terminal. 
 
-```
+``` 
 Build options for Ibox
 -------------------------------------------
 1. Run cross-compiler build
