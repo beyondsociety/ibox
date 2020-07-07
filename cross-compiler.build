@@ -1,20 +1,15 @@
 [binaries]
 c = 'i686-elf-gcc'
-cpp = 'i686-elf-g++'
+ld = 'i686-elf-ld'
 ar = 'i686-elf-ar'
 strip = 'i686-elf-strip'
 
-# Not used
-pkgconfig = ''
-exe_wrapper = ''
-
 [properties]
-has_function_printf = 'false'
-needs_exe_wrapper = 'false'
+c_args = ['-ffreestanding']
+c_link_args = ['-ffreestanding', '-nostdlib']
 
 [host_machine]
 system = 'ibox-kernel'
 cpu_family = 'x86'
 cpu = 'i686'
 endian = 'little'
-

@@ -1,0 +1,14 @@
+# -*- mode: ruby -*-
+#vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+     config.vm.box = "ubuntu/xenial64"
+     config.vbguest.auto_update = true
+
+     config.vm.provider 'virtualbox' do |vb|
+          vb.memory = '2048' # 2GB of memory for vm
+     end
+
+     config.vm.provision 'shell', path: '../cross-compiler.sh'
+end
