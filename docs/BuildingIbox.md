@@ -16,16 +16,19 @@ To update meson to the newest version, we type: ```$ pip3 install --upgrade meso
 If you get a message like: ```WARNING: You are using pip version 20.0.2; however, version 20.1 is available. You should consider upgrading via the 'usr/bin/python3 -m pip install --upgrade pip' command```, this means you need to update pip as well. (Pip = Pip3, so just use **pip3 install --upgrade pip** unless you have Python 2 installed as well, then use pip). 
 
 ## **How to build Ibox**
-If you need a build environment for Ibox, see the wiki below. If you just want to build Ibox, ignore the build instructions on the wiki and instead run **make** followed by either **cross** for the cross-compiler build or **clang** for the clang build.
+If you need a build environment for Ibox, see the wiki below. If you just want to build Ibox, ignore the build instructions on the wiki and instead run the build script by typing **./build.sh** into a linux terminal. 
 
 ```
 Build options for Ibox
 -------------------------------------------
-make cross        Run cross-compiler build
-make clang        Run clang build
-make toolchain    Build toolchain
-make qemu         Run iso using Qemu
-make bochs        Run iso using Bochs
+1. Run cross-compiler build
+2. Run clang build
+3. Build toolchain
+4. Run iso using Qemu
+5. Run iso using Bochs
+6. Quit
+
+clear - Cleara the screen
 ```
 
 Instructions on how to build ibox are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
