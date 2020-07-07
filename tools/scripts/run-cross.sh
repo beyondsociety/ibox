@@ -3,13 +3,21 @@
 GREEN_TEXT='\033[1;32m'  # Bold Green
 NORMAL='\033[0;m'        # No color
 
-echo "${GREEN_TEXT}Found cross-compiler...${NORMAL}"
-PREFIX="/usr/local/cross"
-if [ "$PREFIX/bin" ]; then
-  PATH="$PREFIX/bin:$PATH"
+TARGET="i686-elf-gcc"
+#if ( find / -iname $TARGET -print -quit 2>/dev/null ); then
+#  echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}$TARGET"
+#else
+#  echo "Need cross-compiler to build Ibox... "
+#  exit 1
+#fi
+
+if [ -f "$TARGET" ]; then
+  echo "${GREEN_TEXT}Found cross-compiler...${NORMAL}"
+  echo "$TARGET"
+else
+  echo "Need cross-compiler to build Ibox... "
+  exit 1
 fi
-#export PATH="/usr/local/cross/bin:$PATH" # Path to cross-compiler
-echo /usr/local/cross/bin
 
 echo ''
 echo "${GREEN_TEXT}Removing build directiory for new build...${NORMAL}"

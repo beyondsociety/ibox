@@ -30,7 +30,7 @@ while [ opt != '' ]
 		  case $opt in
 			  1) clear;
 			    echo '';
-      	  sh ./tools/scripts/run-cross.sh
+      	  sh ./tools/scripts/run-cross.sh 
       	  echo '';
 				  show_menu;
 			  ;;
@@ -44,10 +44,9 @@ while [ opt != '' ]
 
 			  3) clear;
 			    echo '';
-				  echo -e "Please specify a build-target and prefix-dir to build the toolchain"
-				  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET
-				  read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
-				  sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
+				  echo "Please specify a build-target and prefix-dir to build the toolchain"; sleep 3;
+				  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET; read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
+          sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 				  echo '';
 				  show_menu;
 			  ;;
@@ -66,7 +65,7 @@ while [ opt != '' ]
 
 			  5) clear;
 			    echo '';
-				  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run\e[0m: ' name
+				  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run\e[0m: ' NAME
           if [ "$NAME" == "cross" ]; then
 				    ninja -C cross-build bochs
 			    else [ "$NAME" == "clang" ]

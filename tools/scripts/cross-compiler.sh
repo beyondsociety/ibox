@@ -10,15 +10,15 @@ NORMAL='\033[0;m'        # No color
 # If the number of arguments is not equal to 2, then display an error message
 if [ "$#" -ne 2 ];
   then
-    echo "${GREEN_TEXT} You must supply a target-arch and prefix-dir to use ${NORMAL}"
+    echo "${GREEN_TEXT}You must supply a target-arch and prefix-dir to use${NORMAL}"
 	exit 1
 elif [ -d $2 ];
   then
-    echo "${GREEN_TEXT} Cross-compiler directory found, adding cross-compiler path:$2 ${NORMAL}"
+    echo "${GREEN_TEXT}Cross-compiler directory found, adding cross-compiler path:$2${NORMAL}"
     export PATH="$2/bin:$PATH"
   exit 0
 else
-	echo "${GREEN_TEXT} No Cross-compiler directory found, building cross-compiler ${NORMAL}"
+	echo "${GREEN_TEXT}No Cross-compiler directory found, building cross-compiler${NORMAL}"
 fi
 
 # Dependencies to build the gcc cross-compiler
@@ -29,7 +29,7 @@ mkdir -p src && cd src
 
 # Download binutils/gcc and its dependencies
 echo ""
-echo "${GREEN_TEXT} --> [STATUS] downloading sources... ${NORMAL}"
+echo "${GREEN_TEXT}--> [STATUS] downloading sources...${NORMAL}"
 if [ ! -f $PWD/$BINUTILS_VERSION.tar.gz ] && [ ! -f $PWD/$GCC_VERSION.tar.gz ]
   then
 	  wget https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz &&
@@ -39,7 +39,7 @@ if [ ! -f $PWD/$BINUTILS_VERSION.tar.gz ] && [ ! -f $PWD/$GCC_VERSION.tar.gz ]
     echo "$GCC_VERSION.tar.gz already exists"
 fi
 
-echo "${GREEN_TEXT} --> [STATUS] unpacking source files ${NORMAL}"
+echo "${GREEN_TEXT}--> [STATUS] unpacking source files${NORMAL}"
 if [ ! -d $PWD/$BINUTILS_VERSION ] && [ ! -d $PWD/$GCC_VERSION ]
   then
 	  tar -xvzf $BINUTILS_VERSION.tar.gz &&
