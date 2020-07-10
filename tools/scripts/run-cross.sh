@@ -1,19 +1,14 @@
 #!bin/bash
 
-GREEN_TEXT='\033[1;32m'  # Bold Green
-NORMAL='\033[0;m'        # No color
+GREEN_TEXT='\033[1;32m'   # Bold Green
+NORMAL='\033[0;m'         # No color
 
-TARGET="i686-elf-gcc"
-#if ( find / -iname $TARGET -print -quit 2>/dev/null ); then
-#  echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}$TARGET"
-#else
-#  echo "Need cross-compiler to build Ibox... "
-#  exit 1
-#fi
+TARGET="i686-elf-gcc"     # Target arch of build
+PREFIX="/usr/local/cross" # Location of cross-compiler dir
 
-if [ -f "$TARGET" ]; then
-  echo "${GREEN_TEXT}Found cross-compiler...${NORMAL}"
-  echo "$TARGET"
+if [ -d "$PREFIX" ]; then
+  echo "${GREEN_TEXT}Found cross-compiler...${NORMAL}$TARGET"
+  export PATH="$PREFIX/bin:$PATH" # Path to cross-compiler
 else
   echo "Need cross-compiler to build Ibox... "
   exit 1
