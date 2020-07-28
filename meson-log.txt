@@ -1,0 +1,70 @@
+Build started at 2020-07-27T21:01:11.850576
+Main binary: /usr/bin/python3
+Build Options: '--cross-file cross-compiler.build'
+Python system: Linux
+The Meson build system
+Version: 0.54.999
+Source dir: /home/beyondsociety/ibox-min
+Build dir: /home/beyondsociety/ibox-min/cross-build
+Build type: cross build
+None of 'PKG_CONFIG_PATH_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+Project name: ibox
+Project version: 0.0.1
+None of 'CC_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'CFLAGS_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'LDFLAGS_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'CC_LD_FOR_BUILD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+None of 'CC_LD_FOR_BUILD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cc /home/beyondsociety/ibox-min/cross-build/meson-private/sanitycheckc.c -o /home/beyondsociety/ibox-min/cross-build/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/beyondsociety/ibox-min/cross-build/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 5.4.0 "cc (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609")
+C linker for the build machine: cc ld.bfd 2.26.1
+None of 'AR_FOR_BUILD' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: i686-elf-gcc
+Is cross compiler: True.
+Sanity check compiler command line: i686-elf-gcc /home/beyondsociety/ibox-min/cross-build/meson-private/sanitycheckc.c -o /home/beyondsociety/ibox-min/cross-build/meson-private/sanitycheckc_cross.exe -ffreestanding -pipe -D_FILE_OFFSET_BITS=64 -c
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+C compiler for the host machine: i686-elf-gcc (gcc 7.1.0 "i686-elf-gcc (GCC) 7.1.0")
+C linker for the host machine: i686-elf-gcc ld.bfd 2.29
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86
+Host machine cpu: i686
+Target machine cpu family: x86
+Target machine cpu: i686
+Program nasm found: YES (/usr/bin/nasm)
+Build targets in project: 3
+
+Found ninja-1.10.0 at /usr/local/bin/ninja
+Running compile:
+Working directory:  /home/beyondsociety/ibox-min/cross-build/meson-private/tmpqhl7io82
+Command line:  i686-elf-gcc /home/beyondsociety/ibox-min/cross-build/meson-private/tmpqhl7io82/testfile.c -o /home/beyondsociety/ibox-min/cross-build/meson-private/tmpqhl7io82/output.obj -pipe -c -ffreestanding -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/local/cross/lib/gcc/i686-elf/7.1.0/
+programs: =/usr/local/cross/libexec/gcc/i686-elf/7.1.0/:/usr/local/cross/libexec/gcc/i686-elf/7.1.0/:/usr/local/cross/libexec/gcc/i686-elf/:/usr/local/cross/lib/gcc/i686-elf/7.1.0/:/usr/local/cross/lib/gcc/i686-elf/:/usr/local/cross/lib/gcc/i686-elf/7.1.0/../../../../i686-elf/bin/i686-elf/7.1.0/:/usr/local/cross/lib/gcc/i686-elf/7.1.0/../../../../i686-elf/bin/
+libraries: =/usr/local/cross/lib/gcc/i686-elf/7.1.0/:/usr/local/cross/lib/gcc/i686-elf/7.1.0/../../../../i686-elf/lib/i686-elf/7.1.0/:/usr/local/cross/lib/gcc/i686-elf/7.1.0/../../../../i686-elf/lib/
+
+Compiler stderr:
+ 
