@@ -1,4 +1,4 @@
 # Ibox Development Branch
-Repo to test out development of Ibox, currently testing out using meson as build system
+Repo for minimal example of meson issue I am having.
 
 [How to build Ibox with meson](docs/BuildingIbox.md)
