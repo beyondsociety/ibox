@@ -26,8 +26,8 @@ endif
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
 if compiler.get_id() == 'gcc'
-	c_args = ['-ffreestanding', '-Wall', '-Wextra', '-m32']
-	link_args = ['-nostdlib', '-T', arch_linker_file, '-Wl,-Map=info.map', '-Wl,-m,elf_i386']
+	c_args = ['-Wall', '-Wextra', '-m32']
+	link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-Wl,-m,elf_i386']
 else
 	error('No compiler found')
 endif
