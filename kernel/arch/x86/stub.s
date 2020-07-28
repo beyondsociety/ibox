@@ -27,12 +27,6 @@ global start
 start:
 	mov esp, stack_top
 
-;	mov ebx, 0xb8000
-;	mov al, '!'
-;	mov ah, 0x1F
-;	mov [ebx], ax
-;	jmp $
-
 	push eax
 	push ebx
 
