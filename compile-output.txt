@@ -1,0 +1,25 @@
+Building Ibox...
+The Meson build system
+Version: 0.54.999
+Source dir: /home/beyondsociety/ibox-min
+Build dir: /home/beyondsociety/ibox-min/cross-build
+Build type: cross build
+Project name: ibox
+Project version: 0.0.1
+C compiler for the build machine: cc (gcc 5.4.0 "cc (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609")
+C linker for the build machine: cc ld.bfd 2.26.1
+C compiler for the host machine: i686-elf-gcc (gcc 7.1.0 "i686-elf-gcc (GCC) 7.1.0")
+C linker for the host machine: i686-elf-gcc ld.bfd 2.29
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86
+Host machine cpu: i686
+Target machine cpu family: x86
+Target machine cpu: i686
+Program nasm found: YES (/usr/bin/nasm)
+Build targets in project: 3
+
+Found ninja-1.10.0 at /usr/local/bin/ninja
+ninja: Entering directory `cross-build'
+[1/2] /usr/bin/nasm -f elf32 ../kernel/arch/x86/stub.s -o kernel.elf.p/stub.o -F dwarf
+[2/2] i686-elf-gcc  -o kernel.elf kernel.elf.p/stub.o -Wl,--allow-shlib-undefined -ffreestanding -nostdlib -T /home/beyondsociety/ibox-min/kernel/arch/x86/linker.ld -Wl,-Map=info.map -Wl,-m,elf_i386
