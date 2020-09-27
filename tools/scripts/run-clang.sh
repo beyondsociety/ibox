@@ -14,6 +14,6 @@ ninja -C clang-build
 
 echo ''
 echo "${GREEN_TEXT} Building ISO Image... ${NORMAL}"
-cp ./clang-build/kernel/kernel.elf ./iso/boot/
+cp ./clang-build/kernel.elf ./iso/boot/
 mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
 -boot-info-table -input-charset utf8 -o ./clang-build/boot.iso iso

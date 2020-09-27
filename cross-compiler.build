@@ -6,7 +6,7 @@ strip = 'i686-elf-strip'
 
 [properties]
 c_args = ['-ffreestanding']
-c_link_args = ['-ffreestanding', '-nostdlib']
+c_link_args = ['-nostdlib']
 
 [host_machine]
 system = 'ibox-kernel'
