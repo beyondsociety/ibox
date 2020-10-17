@@ -1,13 +1,13 @@
 [binaries]
 c = ['clang', '-m32']
-c_ld = 'lld' # Must have llvm installed to use
+c_ld = 'lld'   # Must have llvm installed to use
 #ld = 'ld'     # Optional instead of llvm
 ar = 'ar'
 strip = 'strip'
 
 [properties]
 c_args = ['-ffreestanding']
-c_link_args = ['-ffreestanding', '-nostdlib']
+c_link_args = ['-nostdlib']
 
 [host_machine]
 system = 'ibox-kernel'
