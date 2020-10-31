@@ -1,12 +1,13 @@
-# Ignore .git folder, not sure if this needed or not
+# Ignore .git folder, not sure if this is needed or not
 .git
 
 # Ignore build directories
-cross-build/
 clang-build/
+cross-build/
 
 # Ignore source directory for building cross-compiler
 src/
 
-# Ignore kernel executable in iso directory
+# Ignore kernel executable in iso-directory
 iso/boot/kernel.elf
+
