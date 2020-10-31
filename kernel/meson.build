@@ -18,6 +18,11 @@ if meson.is_cross_build()
 	link_args = meson.get_cross_property('c_link_args')
 endif
 
+#if get_option('other_one')
+#	#error('Incorrect value to boolean option.')
+#	add_project_link_arguments('-Wl,--no-allow-shlib-undefined', language: 'c')
+#endif
+
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
 if compiler.get_id() == 'clang'

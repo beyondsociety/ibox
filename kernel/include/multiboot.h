@@ -193,7 +193,7 @@ typedef struct multiboot_info
   uint64_t framebuffer_address;
   uint32_t framebuffer_pitch;
   uint32_t framebuffer_width;
-  uint32_t framebuffer_hieght;
+  uint32_t framebuffer_height;
   uint8_t framebuffer_bpp;
 
   #define MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED    0
