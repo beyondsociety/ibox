@@ -522,7 +522,7 @@ ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 #   ata3-slave:  type=cdrom, path=iso.sample, status=inserted
 #=======================================================================
 ata0-master: type=cdrom, path="./clang-build/boot.iso", status=inserted
-ata0-master: type=cdrom, path="./cross-build/boot.iso", status=inserted
+ata0-slave: type=cdrom, path="./cross-build/boot.iso", status=inserted
 #ata0-master: type=disk, mode=flat, path="hdd.img"
 #ata0-master: type=disk, mode=flat, path="30M.sample", cylinders=615, heads=6, spt=17
 #ata0-master: type=disk, mode=flat, path="c.img", cylinders=0 # autodetect
@@ -612,8 +612,8 @@ floppy_bootsig_check: disabled=0
 #   log: /dev/tty
 #=======================================================================
 #log: /dev/null
-log: ./clang-build/bochsout.txt
 log: ./cross-build/bochsout.txt
+log: ./clang-build/bochsout.txt
 
 #=======================================================================
 # LOGPREFIX:

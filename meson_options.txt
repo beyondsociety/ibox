@@ -1,1 +1,0 @@
-option('other_one', type : 'boolean', value : true)

@@ -1,5 +1,5 @@
 [binaries]
-c = ['clang', '-m32']
+c = ['clang']
 c_ld = 'lld'   # Must have llvm installed to use
 #ld = 'ld'     # Optional instead of llvm
 ar = 'ar'

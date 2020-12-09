@@ -51,6 +51,7 @@ int32_t putchar(int32_t c)
   {
     /* New line */
     case '\n':
+
     case '\r':
       screen_x = 0;
       screen_y++;

@@ -21,6 +21,6 @@ int8_t *strncat(int8_t *, const int8_t *,  size_t);
 int8_t *strcpy(int8_t *, const int8_t *);
 
 void *memcpy(void *, const void *, size_t num);
-void *memset(void *str, UNUSED int8_t val, size_t num);
-
+//void *memset(void *str, UNUSED int8_t val, size_t num);
+void* memset(void* bufptr, int value, size_t size);
 #endif

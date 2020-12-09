@@ -2,7 +2,8 @@
 nasm = find_program('nasm', required: true)
 
 # Assembler sources for ibox
-sources = files('stub.s')
+sources = files('multiboot_header.asm',
+  'stub.asm')
 
 # Generator that creates object files from assembler
 asm_gen = generator(nasm,

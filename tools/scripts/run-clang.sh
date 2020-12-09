@@ -8,12 +8,14 @@ rm -rfv ./clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
-export PATH="~/.local/bin:$PATH" # Path to meson
-meson clang-build --cross-file clang.build
+#export PATH="~/.local/bin:$PATH" # Path to meson
+~/.local/bin/meson clang-build --cross-file clang.build
 ninja -C clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building ISO Image... ${NORMAL}"
 cp ./clang-build/kernel.elf ./iso/boot/
-mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
--boot-info-table -input-charset utf8 -o ./clang-build/boot.iso iso
+#mkisofs -R -b boot/grub/eltorito.img -no-emul-boot -boot-load-size 4 \
+#-boot-info-table -input-charset utf8 -o ./clang-build/boot.iso iso
+
+grub-mkrescue -o ./clang-build/boot.iso iso

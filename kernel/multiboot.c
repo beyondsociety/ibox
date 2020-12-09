@@ -8,14 +8,15 @@ void multiboot_parse(multiboot_info_t *mbi)
   printk("Parsing Multiboot Info...\n\n");
 
   if(mbi->flags & MULTIBOOT_INFO_FRAMEBUFFER_INFO)
+  //if(CHECK_FLAG (mbi->flags, 12))
   {
-    printk("Framebuffer: \n");
-    printk("\taddress: 0x%X", (uint32_t) mbi->framebuffer_address);
-    printk("\ttype: %d\n", mbi->framebuffer_type);
-    printk("\twidth: %d\n", mbi->framebuffer_width);
-    printk("\theight: %d\n", mbi->framebuffer_height);
-    printk("\tbpp: %d\n", mbi->framebuffer_bpp);
-    printk("\tpitch: %d\n", mbi->framebuffer_pitch);
+    printk("Framebuffer \n");
+    printk("  Address: 0x%X\n", (uint32_t) mbi->framebuffer_address);
+    printk("  Type: %u\n", mbi->framebuffer_type);
+    printk("  Width: %u\n", mbi->framebuffer_width);
+    printk("  Height: %u\n", mbi->framebuffer_height);
+    printk("  Bpp: %u\n", mbi->framebuffer_bpp);
+    printk("  Pitch: %u\n", mbi->framebuffer_pitch);
   }
 
   /* Print out the flags. */

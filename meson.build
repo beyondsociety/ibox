@@ -3,18 +3,12 @@ project('ibox', 'c',
 	version : '0.0.1',
 	license : 'BSD 3-Clause',
 	meson_version : '>=0.50.0',
-<<<<<<< HEAD
+
 	default_options : [
 		'b_asneeded=false',
 		'b_lundef=false',
-		#'b_shlib=false',
 		'buildtype=plain',
-		'c_std=gnu99',
-		'default_library=static',
-		'auto_features=disabled'])
-=======
-	default_options : ['b_asneeded=false', 'b_lundef=false', 'buildtype=plain', 'c_std=gnu99'])
->>>>>>> bb44f9c5ab276cdb10c058b71fa5f1a5bda128bb
+		'c_std=gnu99'])
 
 # Directory for kernel files
 subdir('kernel')

@@ -1,7 +1,7 @@
 [binaries]
-c = 'i686-elf-gcc'
+c = '/usr/local/cross/bin/i686-elf-gcc'
 ld = 'i686-elf-ld'
-ar = 'i686-elf-ar'
+ar = '/usr/local/cross/bin/i686-elf-ar'
 strip = 'i686-elf-strip'
 
 [properties]

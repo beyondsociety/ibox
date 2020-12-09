@@ -30,7 +30,7 @@ while [ opt != '' ]
 		  case $opt in
 			  1) clear;
 			    echo '';
-      	  sh ./tools/scripts/run-cross.sh 
+      	  sh ./tools/scripts/run-cross.sh
       	  echo '';
 				  show_menu;
 			  ;;

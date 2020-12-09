@@ -25,7 +25,7 @@ fi
 sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential
 
 # Create source directory and switch to it
-mkdir -p src && cd src
+mkdir src && cd src
 
 # Download binutils/gcc and its dependencies
 echo ""
