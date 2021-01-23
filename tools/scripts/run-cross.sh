@@ -20,8 +20,7 @@ rm -rfv ./cross-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox...${NORMAL}"
-#export PATH="~/.local/bin:$PATH" # Path to meson
-~/.local/bin/meson cross-build --cross-file cross-compiler.build
+meson cross-build --cross-file cross-compiler.build
 ninja --verbose -C cross-build
 
 echo ''

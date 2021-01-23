@@ -8,9 +8,8 @@ rm -rfv ./clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
-#export PATH="~/.local/bin:$PATH" # Path to meson
-~/.local/bin/meson clang-build --cross-file clang.build
-ninja -C clang-build
+meson clang-build --native-file clang.build        # Was --cross-file
+ninja --verbose -C clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building ISO Image... ${NORMAL}"

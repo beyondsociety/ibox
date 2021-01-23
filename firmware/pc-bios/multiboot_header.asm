@@ -27,10 +27,10 @@ MULTIBOOT_HEADER_TAG_END         equ 0
 MULTIBOOT_HEADER_TAG_FRAMEBUFFER equ 5
 
 HEADER_LENGTH equ header_end - header_start
-CHECKSUM      equ -(MULTIBOOT2_HEADER_MAGIC + MULTIBOOT_ARCHITECTURE_I386 + HEADER_LENGTH)
+CHECKSUM      equ 0x100000000 - (MULTIBOOT2_HEADER_MAGIC + MULTIBOOT_ARCHITECTURE_I386 + HEADER_LENGTH)
 
 [section .multiboot2]
-;align 8
+align 8
 header_start:
   dd MULTIBOOT2_HEADER_MAGIC
   dd MULTIBOOT_ARCHITECTURE_I386
@@ -47,8 +47,7 @@ header_start:
   dd 800
   dd 600
   dd 32
-
-  dd 0 ; Align 8 bytes
+align 8
 
   dw MULTIBOOT_HEADER_TAG_END ; Type
   dw 0                        ; Flags, none set

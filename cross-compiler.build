@@ -1,12 +1,12 @@
+# GCC Cross-compiler cross-build file
 [binaries]
-c = '/usr/local/cross/bin/i686-elf-gcc'
-ld = 'i686-elf-ld'
-ar = '/usr/local/cross/bin/i686-elf-ar'
-strip = 'i686-elf-strip'
+c = '/usr/local/cross/bin/i686-elf-gcc'        # C Compiler, cross-compiled gcc
+ld = '/usr/local/cross/bin/i686-elf-ld'        # LD linker,  cross-compiled ld
+strip = '/usr/local/cross/bin/i686-elf-strip'  # Not used, but needed to suppress the meson build Warning
 
-[properties]
-c_args = ['-ffreestanding']
-c_link_args = ['-nostdlib']
+[built-in options]
+c_args = '-ffreestanding'
+c_link_args = '-nostdlib'
 
 [host_machine]
 system = 'ibox-kernel'

@@ -1,4 +1,4 @@
-# Finds the assembler program Nasm
+# Find the assembler program Nasm
 nasm = find_program('nasm', required: true)
 
 # Assembler sources for ibox
