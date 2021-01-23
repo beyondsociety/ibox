@@ -4,10 +4,11 @@ c = 'clang'                   # C compiler
 c_ld = 'lld'                  # LD linker for LLVM
 strip = 'strip'               # Not used, but needed to suppress the meson build Warning
 
-# is AR, EXE_WRAPPER, and PKG_CONFIG need to be supplied for binaries
+# Does AR, EXE_WRAPPER, and PKG_CONFIG need to be supplied for binaries
+#exe_wrapper = ''
 
 [built-in options]
-c_args = ['-ffreestanding', '--target=i686-pc-none-elf']
+c_args = ['-ffreestanding', '-m32']
 c_link_args = ['-nostdlib', '--target=i686-pc-linux-elf']
 
 [properties]
