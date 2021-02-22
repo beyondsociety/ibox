@@ -13,38 +13,17 @@ kernel_srcs = files(
 if meson.is_cross_build()
 	c_args = meson.get_external_property('c_args', 'native: false')
   link_args = meson.get_external_property('c_link_args', 'native: false')
-else
-	meson.can_run_host_binaries()    # For exe_wrapper, host binaries
-	  c_args = meson.get_external_property('c_args', 'native: true')
-	  link_args = meson.get_external_property('c_link_args', 'native: true')
 endif
 
 # Find the compiler program Clang
 find_program('clang', required: true)
 
 # Compiler options based on type of compiler used
-compiler = meson.get_compiler('c', native: false)
-
+compiler = meson.get_compiler('c')
 if compiler.get_id() == 'gcc'
  	c_args = ['-Wall', '-Wextra']
  	link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
-else
-	compiler.get_id() == 'clang'
+elif compiler.get_id() == 'clang'
 		c_args = ['-Wall', '-Wextra']
 		link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 endif
-
-# Include directory
-#inc_dirs = include_directories('include')
-
-#asm_srcs = []
-
-# Executable
-#kernel = executable(
-#	'kernel.elf',
-#	asm_srcs, kernel_srcs,
-#	c_args : c_args,
-#	link_args : link_args,
-#	include_directories : inc_dirs,
-#	implicit_include_directories : false,
-#	native : false)

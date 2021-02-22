@@ -1,23 +1,14 @@
-# Clang/LLVM native-build file
+# Clang/LLVM cross-build file (freestanding mode)
 [binaries]
-c = 'clang'                   # C compiler
-c_ld = 'lld'                  # LD linker for LLVM
-strip = 'strip'               # Not used, but needed to suppress the meson build Warning
+c = 'clang'          # C compiler
+c_ld = 'lld'         # LD linker for LLVM
 
-# Does AR, EXE_WRAPPER, and PKG_CONFIG need to be supplied for binaries
-#exe_wrapper = ''
+# AR, OBJCOPY, EXE_WRAPPER, and PKG_CONFIG are not supplied as they are not needed.
+strip = 'strip'      # Not used, but needed to suppress the meson build Warning
 
 [built-in options]
 c_args = ['-ffreestanding', '-m32']
 c_link_args = ['-nostdlib', '--target=i686-pc-linux-elf']
-
-[properties]
-# Skip sanity tests when native compiling, otherwise meson fails due to not being able to run
-# executable: EXEC format error (temp fix for error) when passing --native-file to meson instead of --cross-file
-skip_sanity_check = true
-
-# For exe_wrapper, not sure if this works to fix problem
-#need_exe_wrapper = true
 
 [host_machine]
 system = 'ibox-kernel'

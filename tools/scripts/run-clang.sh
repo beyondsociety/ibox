@@ -8,7 +8,7 @@ rm -rfv ./clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
-meson clang-build --native-file clang.build        # Was --cross-file
+meson clang-build --cross-file clang.build
 ninja --verbose -C clang-build
 
 echo ''

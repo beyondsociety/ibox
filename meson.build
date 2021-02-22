@@ -1,8 +1,8 @@
 # Specify the project
 project('ibox', 'c',
-	version : '0.0.1',
+	version : '0.1',
 	license : 'BSD 3-Clause',
-	meson_version : '>=0.55.0',
+	meson_version : '>=0.54.0',
 
 	default_options : [
 		'b_asneeded=false',
@@ -33,13 +33,14 @@ kernel = executable(
 	implicit_include_directories : false,
 	native : false)
 
-#gen_image = find_program(meson.current_source_dir() / 'kernel/gen_image.sh', required: false)
+#gen_image = find_program('kernel/gen_image.sh', required: false)
 #mkrescue = find_program('grub-mkrescue', required: false)
 
 # image
 #image = custom_target(
 #	'ibox.iso',
 #	build_by_default : true,
-#	command : [files(meson.current_source_dir() / 'kernel/gen_image.sh'), meson.current_source_dir() / 'iso/grub/grub.cfg', kernel, mkrescue],
+#	command : [meson.current_source_dir() / 'kernel/gen_image.sh', 'iso/grub/grub.cfg', kernel, mkrescue],
+#	#command : [files(meson.current_source_dir() / 'kernel/gen_image.sh'), meson.current_source_dir() / 'iso/grub/grub.cfg', kernel, mkrescue],
 #	output : 'ibox.iso'
 #)
