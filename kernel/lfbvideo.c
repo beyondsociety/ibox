@@ -4,7 +4,8 @@
 
 void lfb_clear(multiboot_info_t * mbi)
 {
-  volatile uint32_t *fb = (uint32_t)((uint32_t) mbi->framebuffer_address);
+  //volatile uint32_t * fb = (uint32_t)((uint32_t) mbi->framebuffer_address);
+  uint32_t * fb = (uint32_t *) mbi->framebuffer_address;
   uint32_t cell;
 
   for(cell = 0; cell < mbi->framebuffer_width * mbi->framebuffer_height; cell++)
@@ -13,7 +14,7 @@ void lfb_clear(multiboot_info_t * mbi)
 
 void clear(unsigned color)
 {
-	int x, y;
+	UNUSED int x, y;
 	for(unsigned y = 0; y < mbi->framebuffer_height; ++y)
 	{
     for(unsigned x = 0; x < mbi->framebuffer_width; ++x)
@@ -25,8 +26,10 @@ void clear(unsigned color)
 
 void putpixel1(int x, int y, int color)
 {
-	uint32_t *pixel = (uint32_t *) mbi->framebuffer_address + y * mbi->framebuffer_pitch + y;
-	pixel = color;
+  uint32_t * pixel = (uint32_t *) mbi->framebuffer_address;
+  // Not sure first param = x or second param = x?
+  unsigned where = mbi->framebuffer_width + x * mbi->framebuffer_height + y;
+  pixel[where] = color;
 }
 
 /* Only valid for 800x600x32bpp */

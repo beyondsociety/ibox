@@ -4,6 +4,8 @@
 #include <lfbvideo.h>
 #include <multiboot.h>
 
+#define UNUSED __attribute__((unused))
+
 // Defines
 multiboot_info_t * mbi;
 

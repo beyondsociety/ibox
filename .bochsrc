@@ -613,7 +613,7 @@ floppy_bootsig_check: disabled=0
 #=======================================================================
 #log: /dev/null
 log: ./cross-build/bochsout.txt
-log: ./clang-build/bochsout.txt
+#log: ./clang-build/bochsout.txt
 
 #=======================================================================
 # LOGPREFIX:

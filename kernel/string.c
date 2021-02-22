@@ -49,12 +49,11 @@
 // Convert n to characters in s
 void itoa(int n, char s[])
 {
-	int i, sign;
+	int i = 0, sign;
 
   if ((sign = n) < 0)  // Record sign
   {
     n = -n;           // Make n positive
-    i = 0;
   }
 
 	do
