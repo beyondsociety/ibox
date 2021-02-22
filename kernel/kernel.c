@@ -3,12 +3,16 @@
 #include <io.h>
 #include <lfbvideo.h>
 #include <multiboot.h>
+#include <multiboot2.h>
 #include <serial.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include <terminal.h>
+
+// This should be in %eax.
+#define MULTIBOOT2_BOOTLOADER_MAGIC                0x36d76289
 
 // Perform some preloading stuff
 void kernel_init(uint32_t magic, uint32_t address)
@@ -20,30 +24,31 @@ void kernel_init(uint32_t magic, uint32_t address)
   // Set MBI to the address of the Multiboot information structure.
   mbi = (multiboot_info_t *) address;
 
-	lfb_clear(mbi);
-  //putpixel(0xFD000000, 300, 300, 0x00ffffff);
+  //struct multiboot_tag *tag;
+  //unsigned size;
+
+	// Clear the screen
+	clear_screen();
+
+	// Make sure we're booted by a multiboot loader
+	if(magic != MULTIBOOT_BOOTLOADER_MAGIC && MULTIBOOT2_BOOTLOADER_MAGIC)
+	{
+		//printk("Not booted with a multiboot-compliant bootloader!");
+    printk("Invalid magic number: 0x%x\n", (unsigned) magic);
+    hlt();
+  }
 
   init_serial();
   serial_print("Testing Serial Output");
 
-	// Clear the screen
-	/*clear_screen();
-
-	// Make sure we're booted by a multiboot loader
-	if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
-	{
-		printk("Not booted with a multiboot-compliant bootloader!");
-		hlt();
-	}
-
 	// Parse Multiboot structure
-	multiboot_parse(mbi);
+	//multiboot_parse(mbi);
 
 	// Load kernel_main
-	kernel_main();*/
+	//kernel_main();
 }
 
-/*void kernel_main(void)
+void kernel_main(void)
 {
 	printk("Booted into kernel mode..\n");
 
@@ -53,5 +58,5 @@ void kernel_init(uint32_t magic, uint32_t address)
 	printk("Testing delay...\n");
 
 	// Initialize the bochs video adapter interface
-	bga_init();
-}*/
+	//bga_init();
+}
