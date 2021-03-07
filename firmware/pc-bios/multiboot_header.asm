@@ -22,12 +22,12 @@ align 4
 ;----------------------------------------------------------------------------------------
 ; Declare constants for the Multiboot2 header
 ;----------------------------------------------------------------------------------------
-MULTIBOOT2_HEADER_MAGIC          equ 0xe85250d6
-MULTIBOOT_ARCHITECTURE_I386      equ 0
-MULTIBOOT_HEADER_TAG_END         equ 0
-MULTIBOOT_HEADER_TAG_FRAMEBUFFER equ 5
+MULTIBOOT2_HEADER_MAGIC          equ 0xe85250d6   ; Magic field of mulitboot header
+MULTIBOOT_ARCHITECTURE_I386      equ 0            ; ISA:i386 arch field
+MULTIBOOT_HEADER_TAG_END         equ 0            ;
+MULTIBOOT_HEADER_TAG_FRAMEBUFFER equ 5            ;
 
-HEADER_LENGTH equ header_end - header_start
+HEADER_LENGTH equ header_end - header_start       ; Header length field
 CHECKSUM      equ 0x100000000 - (MULTIBOOT2_HEADER_MAGIC + MULTIBOOT_ARCHITECTURE_I386 + (HEADER_LENGTH))
 
 [section .multiboot2]
@@ -38,14 +38,14 @@ header_start:
   dd HEADER_LENGTH
   dd CHECKSUM
 
-info_tag_start:
-  dw 1
-	dw 0
-	dd info_tag_end - info_tag_start
-	dd 1
-	dd 2
-	dd 6
-info_tag_end:
+;info_tag_start:
+;  dw 1
+;	dw 0
+;	dd info_tag_end - info_tag_start
+;	dd 1
+;	dd 2
+;	dd 6
+;info_tag_end:
 
 ;----------------------------------------
 ; Console
@@ -55,7 +55,7 @@ console_tag_start:
   dw 4
 	dw 0
 	dd console_tag_end - console_tag_start
-	dd 0x3
+	dd 0x03   ; Console + EGA text mode
 console_tag_end:
 
 ;-------------------------------------
@@ -77,16 +77,16 @@ console_tag_end:
 ;  dd 8                        ; Size, including itself (short + short + long)
 ;header_end:
 
-align 8
-framebuffer_tag_start:
+;align 8
+;framebuffer_tag_start:
   ; framebuffer_text_tag
-  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER
-  dw 1
-  dd framebuffer_tag_end - framebuffer_tag_start   ; 12
-  dd 80
-  dd 25
-  dd 0
-framebuffer_tag_end:
+;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER
+;  dw 1
+;  dd framebuffer_tag_end - framebuffer_tag_start   ; 12
+;  dd 80
+;  dd 25
+;  dd 0
+;framebuffer_tag_end:
 
 align 8
 end_tag_start:

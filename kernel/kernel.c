@@ -3,7 +3,6 @@
 #include <io.h>
 #include <lfbvideo.h>
 #include <multiboot.h>
-#include <multiboot2.h>
 #include <serial.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -11,8 +10,7 @@
 #include <string.h>
 #include <terminal.h>
 
-// This should be in %eax.
-#define MULTIBOOT2_BOOTLOADER_MAGIC                0x36d76289
+#include <multiboot2.h>
 
 // Perform some preloading stuff
 void kernel_init(uint32_t magic, uint32_t address)
@@ -31,18 +29,15 @@ void kernel_init(uint32_t magic, uint32_t address)
 	clear_screen();
 
 	// Make sure we're booted by a multiboot loader
-	if(magic != MULTIBOOT_BOOTLOADER_MAGIC && MULTIBOOT2_BOOTLOADER_MAGIC)
+	if((magic != MULTIBOOT_BOOTLOADER_MAGIC) & (magic != MULTIBOOT2_BOOTLOADER_MAGIC))
 	{
-		//printk("Not booted with a multiboot-compliant bootloader!");
     printk("Invalid magic number: 0x%x\n", (unsigned) magic);
+    printk("  no multiboot-compliant bootloader found, halting...");
     hlt();
   }
 
-  init_serial();
-  serial_print("Testing Serial Output");
-
 	// Parse Multiboot structure
-	//multiboot_parse(mbi);
+	multiboot_parse(mbi);
 
 	// Load kernel_main
 	//kernel_main();

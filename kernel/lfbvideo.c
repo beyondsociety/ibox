@@ -32,7 +32,7 @@ void putpixel1(int x, int y, int color)
   pixel[where] = color;
 }
 
-/* Only valid for 800x600x32bpp */
+// Only valid for 800x600x32bpp 
 void putpixel(unsigned char * screen, int x, int y, int color)
 {
     unsigned where = x * 4 + y * 3200;

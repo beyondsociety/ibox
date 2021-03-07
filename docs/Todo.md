@@ -6,7 +6,7 @@
 
 3.  <del>Fix and close open code Issues</del><b> - 3/17/15</b>
 
-4.  <del>Create and upload iso for testing as soon as code is stable enough</del><b> - 3/23/15</b> 
+4.  <del>Create and upload iso for testing as soon as code is stable enough</del><b> - 3/23/15</b>
 
 5.  Create tests and check all code for first release.
 
@@ -20,7 +20,5 @@
 
 10. Future goal is 64 bit mode loaded by loader that switches from 32 to 64 after detection.
 
-11. Get vagrant to create a sucessful build environment for building my os and get it to run, 
+11. Get vagrant to create a sucessful build environment for building my os and get it to run,
 This means modifiy files/path for vagrant and editing the Vagrant file.
-
-
