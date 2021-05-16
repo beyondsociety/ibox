@@ -20,12 +20,12 @@ void multiboot_parse(multiboot_info_t *mbi)
   }
 
   // Print out the flags
-  /*printk("Flags = 0x%X\n", (uint32_t) mbi->flags);
+  printk("Flags = 0x%X\n", (uint32_t) mbi->flags);
 
   // Are mem_* valid?
   if(CHECK_FLAG (mbi->flags, 0))
     printk("Memory-lower = %uKB, Memory-upper = %uKB\n",
-      (uint32_t) mbi->memory_lower, (uint32_t) mbi->memory_upper);*?
+      (uint32_t) mbi->memory_lower, (uint32_t) mbi->memory_upper);
 
   // Is boot_device valid?
   if(CHECK_FLAG (mbi->flags, 1))
@@ -77,11 +77,11 @@ void multiboot_parse(multiboot_info_t *mbi)
           printk("Size = 0x%x, Base Address = 0x%x%x," " Length = 0x%x%x, Type = 0x%x\n",
           	(uint32_t)mmap->size, (uint32_t)mmap->base_address_high, (uint32_t)mmap->base_address_low,
                 (uint32_t)mmap->length_high, (uint32_t)mmap->length_low, (uint32_t)mmap->type);
-  }*/
+  }
 }
 
 // Prints the memory map as reported by grub, map = memory map pointer, size = size of map
-/*void print_memory_map(uint32_t *map, uint32_t size)
+void print_memory_map(uint32_t *map, uint32_t size)
 {
   uint32_t *p = map;
   uint32_t index = 0;
@@ -92,4 +92,4 @@ void multiboot_parse(multiboot_info_t *mbi)
     printk("<address_low = 0x%x, address_high = 0x%x ,length_low = %x, length_high = %x,"\
       " type = %d>\n", * (p + 1), * (p + 2), * (p + 3), * (p + 4), * (p + 5));
   }
-}*/
+}

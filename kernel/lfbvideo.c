@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-void lfb_clear(multiboot_info_t * mbi)
+/*void lfb_clear(multiboot_info_t * mbi)
 {
   //volatile uint32_t * fb = (uint32_t)((uint32_t) mbi->framebuffer_address);
   uint32_t * fb = (uint32_t *) mbi->framebuffer_address;
@@ -30,9 +30,9 @@ void putpixel1(int x, int y, int color)
   // Not sure first param = x or second param = x?
   unsigned where = mbi->framebuffer_width + x * mbi->framebuffer_height + y;
   pixel[where] = color;
-}
+}*/
 
-// Only valid for 800x600x32bpp 
+// Only valid for 800x600x32bpp
 void putpixel(unsigned char * screen, int x, int y, int color)
 {
     unsigned where = x * 4 + y * 3200;

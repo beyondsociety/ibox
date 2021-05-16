@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Must have access to root to run script, otherwise gives permission denied errors, need to add detection for this.
+# Temp fix is to pass sudo to the ./build.sh file before selecting the cross-compiler build, switching to a root user or
+# giving the user root privileges.
+
 # Specify the binutils/gcc versions
 BINUTILS_VERSION="binutils-2.34"
 GCC_VERSION="gcc-8.3.0"
@@ -22,10 +26,11 @@ else
 fi
 
 # Dependencies to build the gcc cross-compiler
-sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential
+sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential bison flex \
+libgmp3-dev libmpc-dev libmpfr-dev
 
 # Create source directory and switch to it
-mkdir src && cd src
+mkdir -p src && cd src
 
 # Download binutils/gcc and its dependencies
 echo ""
@@ -62,14 +67,17 @@ export PATH="$PREFIX/bin:$PATH"
 cd ..
 mkdir -p build-binutils && cd build-binutils
 $PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
-make -j $(nproc) && make install
+#make -j $(nproc) && make install
 make && make install
+
 
 # Build Gcc
 cd ..
 mkdir -p build-gcc && cd build-gcc
 $PWD/../$GCC_VERSION/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c,c++ --without-headers
-make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
+#make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
+#make install-gcc && make install-target-libgcc
+make all-gcc && make all-target-libgcc
 make install-gcc && make install-target-libgcc
 
 # Dependencies for build/running ibox

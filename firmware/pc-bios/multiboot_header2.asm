@@ -38,25 +38,25 @@ header_start:
   dd HEADER_LENGTH
   dd CHECKSUM
 
-;info_tag_start:
-;  dw 1
-;	dw 0
-;	dd info_tag_end - info_tag_start
-;	dd 1
-;	dd 2
-;	dd 6
-;info_tag_end:
+info_tag_start:
+  dw 1
+	dw 0
+	dd info_tag_end - info_tag_start
+	dd 1
+	dd 2
+	dd 6
+info_tag_end:
 
 ;----------------------------------------
 ; Console
 ;----------------------------------------
-align 8
-console_tag_start:
-  dw 4
-	dw 0
-	dd console_tag_end - console_tag_start
-	dd 0x03   ; Console + EGA text mode
-console_tag_end:
+;align 8
+;console_tag_start:
+; dw 4
+;	dw 0
+;	dd console_tag_end - console_tag_start
+;	dd 0x03   ; Console + EGA text mode
+;console_tag_end:
 
 ;-------------------------------------
 ; Framebuffer Graphics
@@ -78,8 +78,8 @@ console_tag_end:
 ;header_end:
 
 ;align 8
+; framebuffer_text_tag
 ;framebuffer_tag_start:
-  ; framebuffer_text_tag
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER
 ;  dw 1
 ;  dd framebuffer_tag_end - framebuffer_tag_start   ; 12
@@ -89,10 +89,10 @@ console_tag_end:
 ;framebuffer_tag_end:
 
 align 8
-end_tag_start:
+;end_tag_start:
   dw MULTIBOOT_HEADER_TAG_END ; Type
   dw 0                        ; Flags, none set
   dd 8                        ; Size, including itself (short + short + long)
-end_tag_end:
+;end_tag_end:
 
 header_end:

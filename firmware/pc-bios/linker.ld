@@ -1,5 +1,5 @@
-OUTPUT_FORMAT(elf32-i386)
-OUTPUT_ARCH(i386)
+OUTPUT_FORMAT(elf64-x86-64)
+OUTPUT_ARCH(i386:x86-64)
 ENTRY(start)
 
 SECTIONS
@@ -7,17 +7,17 @@ SECTIONS
 	/* Load kernel at 1MB */
 	. = 1M;
 
-	/* Multiboot1 Header */
-	.multiboot :
-	{
-		*(.multiboot)
-	}
+  /* Multiboot Header */
+  .multiboot :
+  {
+    *(.multiboot)
+  }
 
 	/* Multiboot2 Header */
 	.multiboot2 :
 	{
-		*(.multiboot2)
-	}
+	  *(.multiboot2)
+  }
 
 	/* Text section */
 	.text :

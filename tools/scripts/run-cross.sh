@@ -1,10 +1,10 @@
 #!bin/bash
 
-GREEN_TEXT='\033[1;32m'   # Bold Green
-NORMAL='\033[0;m'         # No color
+GREEN_TEXT='\033[1;32m'     # Bold Green
+NORMAL='\033[0;m'           # No color
 
-TARGET="i686-elf-gcc"     # Target arch of build
-PREFIX="/usr/local/cross" # Location of cross-compiler directory
+TARGET="x86_64-elf-gcc"     # Target arch of build
+PREFIX="/usr/local/cross64" # Location of cross-compiler directory
 
 #if ( find / -type f -iname $TARGET -print -quit 2>/dev/null ); then
 #  echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}$TARGET"
@@ -20,7 +20,7 @@ rm -rfv ./cross-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox...${NORMAL}"
-meson cross-build --cross-file cross-compiler.build
+~/.local/bin/meson cross-build --cross-file cross-compiler.build
 ninja --verbose -C cross-build
 
 echo ''
