@@ -1,0 +1,17 @@
+# Clang/LLVM cross-build file (freestanding mode)
+[binaries]
+c = 'clang'          # C compiler
+c_ld = 'lld'         # LD linker for LLVM
+
+# AR, OBJCOPY, EXE_WRAPPER, and PKG_CONFIG are not supplied as they are not needed.
+strip = 'strip'      # Not used, but needed to suppress the meson build Warning
+
+[built-in options]
+c_args = ['-ffreestanding', '-m32']
+c_link_args = ['-nostdlib', '--target=i686-pc-linux-elf']
+
+[host_machine]
+system = 'ibox-kernel'
+cpu_family = 'x86'
+cpu = 'i686'
+endian = 'little'
