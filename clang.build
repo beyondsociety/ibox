@@ -7,11 +7,11 @@ c_ld = 'lld'         # LD linker for LLVM
 strip = 'strip'      # Not used, but needed to suppress the meson build Warning
 
 [built-in options]
-c_args = ['-ffreestanding', '-m32']
-c_link_args = ['-nostdlib', '--target=i686-pc-linux-elf']
+c_args = ['-ffreestanding', '-m64', '-mcmodel=large', '-mno-red-zone', '-mno-mmx', '-mno-sse', '-mno-sse2']
+c_link_args = ['-nostdlib', '--target=x86_64-pc-linux-elf', '-Wl,-zmax-page-size=0x1000']
 
 [host_machine]
 system = 'ibox-kernel'
-cpu_family = 'x86'
-cpu = 'i686'
+cpu_family = 'x86_64'
+cpu = 'x86_64'
 endian = 'little'

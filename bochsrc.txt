@@ -79,13 +79,13 @@ config_interface: textconfig
 #display_library: carbon
 #display_library: macintosh
 #display_library: nogui
-#display_library: rfb, options="timeout=60" # time to wait for client
-#display_library: sdl, options="fullscreen" # startup in fullscreen mode
+#display_library: rfb, options="timeout=60" # Time to wait for client
+#display_library: sdl, options="fullscreen" # Startup in fullscreen mode
 #display_library: term
 #display_library: win32
 #display_library: wx
 display_library: x
-#display_library: sdl
+#display_library: sdl2 # Loads but doesnt display bochs window, not sure what issue is?
 
 #=======================================================================
 # ROMIMAGE:
@@ -380,6 +380,7 @@ memory: guest=32, host=512
 #=======================================================================
 #vgaromimage: file=bios/VGABIOS-elpin-2.40
 vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+#vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest-debug
 #vgaromimage: file=bios/VGABIOS-lgpl-latest-cirrus
 
 #=======================================================================
@@ -466,7 +467,7 @@ vga: extension=vbe, update_freq=60
 #   ata3: enabled=1, ioaddr1=0x168, ioaddr2=0x360, irq=9
 #=======================================================================
 ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
-#ata1: enabled=1, ioaddr1=0x170, ioaddr2=0x370, irq=15
+ata1: enabled=1, ioaddr1=0x170, ioaddr2=0x370, irq=15
 #ata2: enabled=0, ioaddr1=0x1e8, ioaddr2=0x3e0, irq=11
 #ata3: enabled=0, ioaddr1=0x168, ioaddr2=0x360, irq=9
 
@@ -520,8 +521,8 @@ ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 #   ata3-master: type=disk, mode=flat, path=483M.sample, cylinders=1024, heads=15, spt=63
 #   ata3-slave:  type=cdrom, path=iso.sample, status=inserted
 #=======================================================================
-ata0-master: type=cdrom, path="./cross-build/boot.iso", status=inserted
-ata0-slave: type=cdrom, path="./clang-build/boot.iso", status=inserted
+ata0-master: type=cdrom, path="$PWD/boot.iso", status=inserted
+ata1-master: type=cdrom, path="$PWD/boot.iso", status=inserted
 #ata0-master: type=disk, mode=flat, path="hdd.img"
 #ata0-master: type=disk, mode=flat, path="30M.sample", cylinders=615, heads=6, spt=17
 #ata0-master: type=disk, mode=flat, path="c.img", cylinders=0 # autodetect
@@ -611,10 +612,7 @@ floppy_bootsig_check: disabled=0
 #   log: /dev/tty
 #=======================================================================
 #log: /dev/null
-
-# How to add logs to both directories?
-log: ./cross-build/bochsout.txt
-#log: ./clang-build/bochsout1.txt
+log: $PWD/bochsout.txt
 
 #=======================================================================
 # LOGPREFIX:
@@ -1141,4 +1139,4 @@ private_colormap: enabled=0
 # Sets sound configuration, pass dummy to waveoutdrv to fix ALSA errors
 # when running bochs.
 #======================================================================
-#sound: waveoutdrv=dummy, waveindrv=alsa, midioutdrv=dummy
+sound: waveoutdrv=dummy, waveindrv=alsa, midioutdrv=dummy

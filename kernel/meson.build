@@ -25,5 +25,6 @@ compiler = meson.get_compiler('c')
 	 	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 	elif compiler.get_id() == 'gcc'
 		c_args = ['-Wall', '-Wextra']
-		link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
+		#link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc
+		link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 endif
