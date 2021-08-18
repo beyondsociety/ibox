@@ -3,8 +3,8 @@
 GREEN_TEXT='\033[1;32m'   # Bold Green
 NORMAL='\033[0;m'         # No color
 
-TARGET="i686-elf-gcc"     # Target arch of build
-PREFIX="/usr/local/cross" # Location of cross-compiler directory
+#TARGET="i686-elf-gcc"     # Target arch of build
+#PREFIX="/usr/local/cross" # Location of cross-compiler directory
 
 #if ( find / -type f -iname $TARGET -print -quit 2>/dev/null ); then
 #  echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}$TARGET"
@@ -20,7 +20,7 @@ rm -rfv ./cross-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox...${NORMAL}"
-meson cross-build --cross-file cross-compiler.build
+meson cross-build --cross-file cross-files/cross32.ini
 ninja --verbose -C cross-build
 
 echo ''

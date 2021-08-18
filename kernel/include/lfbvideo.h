@@ -7,10 +7,10 @@
 #define UNUSED __attribute__((unused))
 
 // Defines
-multiboot_info_t * mbi;
+multiboot_info_t *mbi;
 
 // Functions
-void lfb_clear(multiboot_info_t * mbi);
+void lfb_clear(multiboot_info_t *mbi);
 void clear(unsigned color);
 void putpixel1(int x, int y, int color);
 

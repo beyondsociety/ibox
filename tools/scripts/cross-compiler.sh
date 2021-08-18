@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Specify the binutils/gcc versions
-BINUTILS_VERSION="binutils-2.34"
-GCC_VERSION="gcc-8.3.0"
+BINUTILS_VERSION="binutils-2.37"
+GCC_VERSION="gcc-10.3.0"
 
 GREEN_TEXT='\033[1;32m'  # Bold Green
 NORMAL='\033[0;m'        # No color

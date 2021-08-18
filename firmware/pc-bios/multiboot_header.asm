@@ -11,12 +11,14 @@ MULTIBOOT_HEADER_CHECKSUM equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS
 
 [section .multiboot]
 align 4
+;header1_start:
 	dd MULTIBOOT_HEADER_MAGIC
 	dd MULTIBOOT_HEADER_FLAGS
 	dd MULTIBOOT_HEADER_CHECKSUM
 	dd 0, 0, 0, 0, 0                ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr
 	dd 1                            ; 0 = linear graphics mode, 1 = EGA-standard text mode
   dd 80, 25, 0                    ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
+;header1_end:
 
 ;----------------------------------------------------------------------------------------
 ; Declare constants for the Multiboot2 header
@@ -60,7 +62,7 @@ console_tag_start:
 	dd 0x03  																; EGA text support, require console (Console: 0 + EGA text mode: 1)
 console_tag_end:
 
-align 8
+;align 8
 ; Framebuffer Graphics
 ;framebuffer_tag_start:
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER             ; Type = 5

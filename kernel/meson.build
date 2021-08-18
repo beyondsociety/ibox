@@ -1,5 +1,9 @@
 # Location of linker file (Todo: fix hardcoded path)
-linker_file = meson.source_root() + '/firmware/pc-bios/linker.ld'
+if host_machine.cpu_family() == 'x86'
+  linker_file = meson.source_root() + '/firmware/pc-bios/linker32.ld'
+else
+  linker_file = meson.source_root() + '/firmware/pc-bios/linker64.ld'
+endif
 
 # Kernel sources
 kernel_srcs = files(

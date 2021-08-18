@@ -10,7 +10,7 @@ export LIBGL_ALWAYS_INDIRECT=1
 
 # Run image from build folder (cross = cross-compiled build, clang = clang/llvm build)
 if [ "$NAME" == "cross" ]; then
-  bochs -f .bochsrc -q
+  bochs -f $PWD/../bochsrc.txt -q
 else [ "$NAME" == "clang" ]
-  bochs -f ~/ibox-test/bochsrc.txt -q
+  bochs -f $PWD/../bochsrc.txt -q
 fi

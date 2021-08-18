@@ -1,29 +1,25 @@
-OUTPUT_FORMAT(elf64-x86-64)
-/*OUTPUT_ARCH(i386:x86_64)*/
+OUTPUT_FORMAT(elf32-i386)
+OUTPUT_ARCH(i386:i386)
 ENTRY(start)
 
+KERNEL_LMA = 1M;
 SECTIONS
 {
 	/* Load kernel at 1MB */
-	. = 1M;
+	. = KERNEL_LMA;
 
-	/* Multiboot1 Header */
-	/*.multiboot :*/
-	/*{*/
-	/*	*(.multiboot)*/
-	/*}*/
+	.boot :
+  {
+  	/* Ensure the multiboot header is at the beginning */
+  	KEEP(*(.multiboot))
 
-	/* Multiboot2 Header */
-	/*.multiboot2 :*/
-	/*{*/
-	/*	*(.multiboot2)*/
-	/*}*/
+		/* Ensure the multiboot2 header is at the beginning */
+  	KEEP(*(.multiboot2))
+  }
 
 	/* Text section */
 	.text :
 	{
-		*(.multiboot)
-		*(.multiboot2)
 		*(.text)
 	}
 

@@ -8,16 +8,8 @@ rm -rfv ./clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
-
-if [ "$ARCH" = "x86" ]; then
-  # 32-bit stuff here
-  meson clang-build --cross-file cross-files/clang32.ini
-  ninja --verbose -C clang-build
-else  [ "$ARCH" = "x86_64" ]
-  # 64-bit stuff here
-  meson clang-build --cross-file cross-files/clang64.ini
-  ninja --verbose -C clang-build
-fi
+meson clang-build --cross-file cross-files/clang64.ini
+ninja --verbose -C clang-build
 
 echo ''
 echo "${GREEN_TEXT}Building ISO Image... ${NORMAL}"
