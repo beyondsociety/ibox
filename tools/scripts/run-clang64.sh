@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 GREEN_TEXT='\033[1;32m'  # Bold Green
 NORMAL='\033[0;m'        # No Color

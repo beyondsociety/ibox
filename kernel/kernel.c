@@ -1,7 +1,7 @@
 #include <bga.h>
 #include <kernel.h>
 #include <io.h>
-#include <lfbvideo.h>
+//#include <lfbvideo.h>
 #include <multiboot.h>
 #include <multiboot2.h>
 #include <serial.h>
@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <terminal.h>
+//#include <terminal.h>
 
 /* Perform some preloading stuff */
 //void kernel_init(struct multiboot_tag *tag, uint32_t magic)

@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 GREEN_TEXT='\033[1;32m'   # Bold Green
 NORMAL='\033[0;m'         # No color
@@ -20,7 +20,7 @@ rm -rfv ./cross-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox...${NORMAL}"
-meson cross-build --cross-file cross-files/cross32.ini
+~/.local/bin/meson cross-build --cross-file cross-files/cross32.ini
 ninja --verbose -C cross-build
 
 echo ''

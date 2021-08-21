@@ -2,7 +2,6 @@
 global start
 [bits 32]
 start:
-
   ; Setup a kernel stack
   mov esp, stack_top
 
@@ -17,6 +16,7 @@ start:
 	hlt
 	jmp .halt
 
+[section .bss]
   align 4096
 stack_bottom:
   resb 16384

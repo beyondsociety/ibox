@@ -30,7 +30,7 @@ while [ opt != '' ]
 		  case $opt in
 			  1) clear;
 			    echo '';
-					read -p $'\e[1;33mPlease specify a build-arch to build Ibox (x86 or x86_64)\e[0m: ' ARCH
+					read -p $'\e[1;33mPlease specify a build-arch so we can build Ibox (x86 or x86_64)\e[0m: ' ARCH
 					if [ "$ARCH" == "x86" ]; then
 						# 32-bit stuff here
 					  sh ./tools/scripts/run-cross32.sh
@@ -44,7 +44,7 @@ while [ opt != '' ]
 
 			  2) clear;
 				  echo '';
-				  read -p $'\e[1;33mPlease specify a build-arch to build Ibox (x86 or x86_64)\e[0m: ' ARCH
+				  read -p $'\e[1;33mPlease specify a build-arch so we can build Ibox (x86 or x86_64)\e[0m: ' ARCH
 					if [ "$ARCH" == "x86" ]; then
 						# 32-bit stuff here
 					  sh ./tools/scripts/run-clang32.sh
@@ -58,7 +58,7 @@ while [ opt != '' ]
 
 			  3) clear;
 			    echo '';
-				  echo "Please specify a build-target and prefix-dir to build the toolchain"; sleep 3;
+				  echo "Please specify a build-target and prefix-dir so we can build the toolchain"; sleep 3;
 				  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET; read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
           sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 				  echo '';
@@ -67,7 +67,7 @@ while [ opt != '' ]
 
 			  4) clear;
 			    echo '';
-				  read -p $'\e[1;33mPass the name of the build-tool for Qemu to run\e[0m: ' NAME
+				  read -p $'\e[1;33mPass the name of the build-tool so Qemu can test Ibox (cross or clang)\e[0m: ' NAME
           if [ "$NAME" == "cross" ]; then
 				    ninja -C cross-build qemu
 				  else [ "$NAME" == "clang" ];
@@ -79,7 +79,7 @@ while [ opt != '' ]
 
 			  5) clear;
 			    echo '';
-				  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run\e[0m: ' NAME
+				  read -p $'\e[1;33mPass the name of the build-tool so Bochs can test Ibox (cross or clang)\e[0m: ' NAME
           if [ "$NAME" == "cross" ]; then
 				    ninja -C cross-build bochs
 			    else [ "$NAME" == "clang" ]

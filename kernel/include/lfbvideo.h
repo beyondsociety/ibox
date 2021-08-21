@@ -1,7 +1,6 @@
 #ifndef INCLUDE_LFBVIDEO_H
 #define INCLUDE_LFBVIDEO_H
 
-#include <lfbvideo.h>
 #include <multiboot.h>
 
 #define UNUSED __attribute__((unused))
