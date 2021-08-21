@@ -423,8 +423,8 @@ struct multiboot_tag_load_base_addr
 };
 
 /* Functions */
-void multiboot2_parse(struct multiboot_tag *tag); /* Multiboot2 function */
-//void multiboot2_parse(uint32_t address); /* Multiboot2 function */
+//void multiboot2_parse(struct multiboot_tag *tag); /* Multiboot2 function */
+void multiboot2_parse(uint32_t address); /* Multiboot2 function */
 //void multiboot2_parse(); /* Multiboot2 function */
 
 #endif /* ASM_FILE */

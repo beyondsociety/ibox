@@ -26,7 +26,7 @@ void kernel_init(uint32_t magic, uint32_t address)
   //tag = (struct multiboot_tag *) address;
 
   multiboot_info_t *mbi = (multiboot_info_t *) address;
-  struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
+  //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address);
 
 	/* Clear the screen */

@@ -81,16 +81,16 @@ void multiboot_parse(multiboot_info_t *mbi)
 }
 
 //void multiboot2_parse(multiboot_tag_t *tag)
-//void multiboot2_parse(uint32_t address)
+void multiboot2_parse(uint32_t address)
 //void multiboot2_parse()
-void multiboot2_parse(struct multiboot_tag *tag)
+//void multiboot2_parse(struct multiboot_tag *tag)
 {
   printk("\nParsing Multiboot Info...\n");
 
   unsigned size;
-  uint32_t address;
+  //uint32_t address;
 
-  //struct multiboot_tag *tag;
+  struct multiboot_tag *tag;
   //tag = (struct multiboot_tag *) address;
 
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
