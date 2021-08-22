@@ -30,28 +30,14 @@ while [ opt != '' ]
 		  case $opt in
 			  1) clear;
 			    echo '';
-					read -p $'\e[1;33mPlease specify a build-arch so we can build Ibox (x86 or x86_64)\e[0m: ' ARCH
-					if [ "$ARCH" == "x86" ]; then
-						# 32-bit stuff here
-					  sh ./tools/scripts/run-cross32.sh
-					else [ "$ARCH" == "x86_64" ]
-						# 64-bit stuff here
-					  sh ./tools/scripts/run-cross64.sh
-					fi
+					sh ./tools/scripts/run-cross.sh
       	  echo '';
 				  show_menu;
 			  ;;
 
 			  2) clear;
 				  echo '';
-				  read -p $'\e[1;33mPlease specify a build-arch so we can build Ibox (x86 or x86_64)\e[0m: ' ARCH
-					if [ "$ARCH" == "x86" ]; then
-						# 32-bit stuff here
-					  sh ./tools/scripts/run-clang32.sh
-					else [ "$ARCH" == "x86_64" ]
-						# 64-bit stuff here
-					  sh ./tools/scripts/run-clang64.sh
-					fi
+					sh ./tools/scripts/run-clang.sh
 				  echo '';
 				  show_menu;
 			  ;;
