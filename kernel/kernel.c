@@ -16,21 +16,20 @@
 //void kernel_init(multiboot_info_t *mbi, uint32_t magic)
 void kernel_init(uint32_t magic, uint32_t address)
 {
-  //multiboot_info_t *mbi;
+  multiboot_info_t *mbi;
   //struct multiboot_tag *tag;
-
   //uint32_t address;
 
   /* Set MBI to the address of the Multiboot information structure. */
-  //mbi = (multiboot_info_t *) address;
-  //tag = (struct multiboot_tag *) address;
-
-  multiboot_info_t *mbi = (multiboot_info_t *) address;
+  mbi = (multiboot_info_t *) address;
+  //tag = (struct multiboot_tag *) (address);
+  //multiboot_info_t *mbi = (multiboot_info_t *) address;
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
-  //struct multiboot_tag *tag = (struct multiboot_tag *)(address);
+
+  //hlt();
 
 	/* Clear the screen */
-	clear_screen();
+	//clear_screen();
 
 	/* Make sure we're booted by a multiboot loader */
 	if((magic != MULTIBOOT_BOOTLOADER_MAGIC) && (magic != MULTIBOOT2_BOOTLOADER_MAGIC))
@@ -46,7 +45,7 @@ void kernel_init(uint32_t magic, uint32_t address)
   }
 
 	/* Parse Multiboot structure */
-	if(magic == MULTIBOOT_BOOTLOADER_MAGIC)
+	/*if(magic == MULTIBOOT_BOOTLOADER_MAGIC)
   {
     multiboot_parse(mbi);
   }
@@ -54,7 +53,7 @@ void kernel_init(uint32_t magic, uint32_t address)
   {
     //multiboot2_parse(tag);
     multiboot2_parse(address);
-  }
+  }*/
 
   hlt();
 

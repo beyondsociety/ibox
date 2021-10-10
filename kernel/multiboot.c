@@ -91,7 +91,7 @@ void multiboot2_parse(uint32_t address)
   //uint32_t address;
 
   struct multiboot_tag *tag;
-  //tag = (struct multiboot_tag *) address;
+  tag = (struct multiboot_tag *)(address + 8);
 
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
   //struct multiboot_tag *tag = (struct multiboot_tag *) address;
