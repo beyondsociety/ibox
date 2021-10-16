@@ -188,8 +188,8 @@ struct multiboot2_color
 
 struct multiboot_mmap_entry
 {
-  uint64_t addr;
-  uint64_t len;
+  uint64_t address;
+  uint64_t length;
 
   #define MULTIBOOT_MEMORY_AVAILABLE         1
   #define MULTIBOOT_MEMORY_RESERVED          2
@@ -207,6 +207,7 @@ struct multiboot_tag
   uint32_t type;
   uint32_t size;
 };
+typedef struct multiboot_tag multiboot_tag_t;
 
 struct multiboot_tag_string
 {
@@ -219,8 +220,8 @@ struct multiboot_tag_module
 {
   uint32_t type;
   uint32_t size;
-  uint32_t mod_start;
-  uint32_t mod_end;
+  uint32_t module_start;
+  uint32_t module_end;
   char cmdline[0];
 };
 
@@ -228,8 +229,8 @@ struct multiboot_tag_basic_meminfo
 {
   uint32_t type;
   uint32_t size;
-  uint32_t mem_lower;
-  uint32_t mem_upper;
+  uint32_t memory_lower;
+  uint32_t memory_upper;
 };
 
 struct multiboot_tag_bootdev
@@ -279,7 +280,7 @@ struct multiboot_tag_framebuffer_common
   uint32_t type;
   uint32_t size;
 
-  uint64_t framebuffer_addr;
+  uint64_t framebuffer_address;
   uint32_t framebuffer_pitch;
   uint32_t framebuffer_width;
   uint32_t framebuffer_height;
@@ -301,7 +302,7 @@ struct multiboot_tag_framebuffer
   {
     struct
     {
-      uint16_t framebuffer_palette_num_colors;
+      uint16_t framebuffer_palette_number_colors;
       struct multiboot2_color framebuffer_palette[0];
     };
 
@@ -416,6 +417,9 @@ struct multiboot_tag_load_base_addr
   uint32_t size;
   uint32_t load_base_addr;
 };
+
+//void multiboot2_parse(multiboot_tag_t *tag);
+void multiboot2_parse();
 
 //#endif //  ! ASM_FILE
 #endif //  ! MULTIBOOT_HEADER

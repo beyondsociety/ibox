@@ -196,6 +196,7 @@ typedef struct multiboot_module_list
 // -----------------------------------------------------------------------------------------
 // Functions
 //---------------------------------------------------------------------------------------------
+//void multiboot_parse();
 void multiboot_parse(multiboot_info_t *mbi); // Multiboot function
 void print_memory_map(uint32_t *map, uint32_t size); // Prints the memory map as reported by grub, map = memory map pointer, size = size of map
 

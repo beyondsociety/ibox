@@ -47,21 +47,16 @@ info_tag_start:
 	dd 6
 info_tag_end:
 
-;----------------------------------------
 ; Console
-;----------------------------------------
-;align 8
-;console_tag_start:
-; dw 4
-;	dw 0
-;	dd console_tag_end - console_tag_start
-;	dd 0x03   ; Console + EGA text mode
-;console_tag_end:
+align 8
+console_tag_start:
+  dw 4
+	dw 0
+	dd console_tag_end - console_tag_start
+	dd 0x03   ; Console + EGA text mode
+console_tag_end:
 
-;-------------------------------------
 ; Framebuffer Graphics
-;-------------------------------------
-; framebuffer_graphics_tag
 ;framebuffer_tag_start:
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER
 ;  dw 0
@@ -69,30 +64,12 @@ info_tag_end:
 ;  dd 800
 ;  dd 600
 ;  dd 32
-;align 8
-
-;framebuffer_tag_end:
-;  dw MULTIBOOT_HEADER_TAG_END ; Type
-;  dw 0                        ; Flags, none set
-;  dd 8                        ; Size, including itself (short + short + long)
-;header_end:
-
-;align 8
-; framebuffer_text_tag
-;framebuffer_tag_start:
-;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER
-;  dw 1
-;  dd framebuffer_tag_end - framebuffer_tag_start   ; 12
-;  dd 80
-;  dd 25
-;  dd 0
-;framebuffer_tag_end:
 
 align 8
-;end_tag_start:
+; Terminating end tag
+;framebuffer_tag_end:
   dw MULTIBOOT_HEADER_TAG_END ; Type
   dw 0                        ; Flags, none set
   dd 8                        ; Size, including itself (short + short + long)
-;end_tag_end:
 
 header_end:
