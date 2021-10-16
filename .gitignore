@@ -10,3 +10,4 @@ src/
 
 # Ignore kernel executable in iso-directory
 iso/boot/kernel.elf
+

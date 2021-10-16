@@ -1,6 +1,4 @@
-;----------------------------------------------------------------------------------------
-; Define constants for the Multiboot1 Header
-;----------------------------------------------------------------------------------------
+; Multiboot Header
 MULTIBOOT_PAGE_ALIGN	    equ 1 << 0   ; Align loaded modules on page boundaries
 MULTIBOOT_MEMORY_INFO	    equ 1 << 1   ; Provide memory map
 MULTIBOOT_VIDEO		        equ 1 << 2   ; Video Information
@@ -16,5 +14,32 @@ align 4
 	dd MULTIBOOT_HEADER_CHECKSUM
 	dd 0, 0, 0, 0, 0                ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr
 	dd 1                            ; 0 = linear graphics mode, 1 = EGA-standard text mode
-;	dd 800, 600, 32                 ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
-  dd 80, 25, 0
+	dd 1024, 768, 32                ; Width, Height, Depth
+
+[section .bss]
+align 16
+stack_bottom:
+	resb 16384
+stack_top:
+
+[section .text]
+global start
+start:
+	mov esp, stack_top
+
+;	mov ebx, 0xb8000
+;	mov al, '!'
+;	mov ah, 0x1F
+;	mov [ebx], ax
+;	jmp $
+
+	push eax
+	push ebx
+
+	[extern kernel_init]
+	call kernel_init
+
+	cli
+.halt:
+	hlt
+	jmp .halt

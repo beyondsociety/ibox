@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-typedef struct _FILE FILE;
+typedef struct _FILE FILE; 
 
 /* Typedefs */
 typedef int32_t (*fnptr_t)(signed c, void *ptr);
