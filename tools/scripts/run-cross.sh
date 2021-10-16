@@ -1,4 +1,5 @@
 #!bin/bash
+# Todo: add 32/64 bit detection to build script
 
 GREEN_TEXT='\033[1;32m'   # Bold Green
 NORMAL='\033[0;m'         # No color
