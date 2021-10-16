@@ -11,7 +11,7 @@
 #define VBE_DISPI_INDEX_ID          0x00
 #define VBE_DISPI_INDEX_XRES        0x01
 #define VBE_DISPI_INDEX_YRES        0x02
-#define VBE_DISPI_INDEX_BPP         0x03
+#define VBE_DISPI_INDEX_BPP         0x03 
 #define VBE_DISPI_INDEX_ENABLE      0x04
 #define VBE_DISPI_INDEX_BANK        0x05
 #define VBE_DISPI_INDEX_VIRT_WIDTH  0x06
@@ -27,7 +27,7 @@
 #define VBE_DISPI_NOCLEARMEM        0x80
 
 /* Bochs BGA Version */
-#define VBE_DISPI_ID5               0xB0C5
+#define VBE_DISPI_ID5               0xB0C5 
 
 /* Different Bit Per Pixels */
 #define VBE_DISPI_BPP_4             0x04
@@ -35,7 +35,7 @@
 #define VBE_DISPI_BPP_15            0x0F
 #define VBE_DISPI_BPP_16            0x10
 #define VBE_DISPI_BPP_24            0x18
-#define VBE_DISPI_BPP_32            0x20
+#define VBE_DISPI_BPP_32            0x20 
 
 /* VBE Resolution */
 #define VBE_WIDTH  1024

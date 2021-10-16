@@ -1,17 +1,15 @@
-# GCC Cross-compiler cross-build file (freestanding mode)
 [binaries]
-c = '/usr/local/cross64/bin/x86_64-elf-gcc'        # C Compiler, cross-compiled gcc
-ld = '/usr/local/cross64/bin/x86_64-elf-ld'        # LD linker,  cross-compiled ld
+c = 'i686-elf-gcc'
+ld = 'i686-elf-ld'
+ar = 'i686-elf-ar'
+strip = 'i686-elf-strip'
 
-# AR, OBJCOPY, EXE_WRAPPER, and PKG_CONFIG are not supplied as they are not needed.
-strip = '/usr/local/cross64/bin/x86_64-elf-strip'  # Not used, but needed to suppress the meson build Warning
-
-[built-in options]
-c_args = ['-ffreestanding', '-mcmodel=large', '-mno-red-zone', '-mno-mmx', '-mno-sse', '-mno-sse2']
-c_link_args = ['-nostdlib', '-Wl,-z,max-page-size=0x1000']
+[properties]
+c_args = ['-ffreestanding']
+c_link_args = ['-nostdlib']
 
 [host_machine]
 system = 'ibox-kernel'
-cpu_family = 'x86_64'
-cpu = 'x86_64'
+cpu_family = 'x86'
+cpu = 'i686'
 endian = 'little'

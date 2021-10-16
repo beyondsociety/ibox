@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Must have access to root to run script, otherwise gives permission denied errors, need to add detection for this.
-# Temp fix is to pass sudo to the ./build.sh file before selecting the cross-compiler build, switching to a root user or
-# giving the user root privileges.
-
 # Specify the binutils/gcc versions
 BINUTILS_VERSION="binutils-2.34"
 GCC_VERSION="gcc-8.3.0"
@@ -18,7 +14,7 @@ if [ "$#" -ne 2 ];
 	exit 1
 elif [ -d $2 ];
   then
-    echo "${GREEN_TEXT}Cross-compiler directory found, adding cross-compiler path - $2${NORMAL}"
+    echo "${GREEN_TEXT}Cross-compiler directory found, adding cross-compiler path:$2${NORMAL}"
     export PATH="$2/bin:$PATH"
   exit 0
 else
@@ -26,8 +22,7 @@ else
 fi
 
 # Dependencies to build the gcc cross-compiler
-sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential bison flex \
-libgmp3-dev libmpc-dev libmpfr-dev
+sudo apt-get update && sudo apt-get install -y gcc wget m4 texinfo build-essential
 
 # Create source directory and switch to it
 mkdir -p src && cd src
@@ -68,20 +63,14 @@ cd ..
 mkdir -p build-binutils && cd build-binutils
 $PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
 make -j $(nproc) && make install
-
-# Not sure why I need to sudo the configure/make/isntall commands in order to run?
-#sudo make -j $(nproc) && sudo make install
+make && make install
 
 # Build Gcc
 cd ..
 mkdir -p build-gcc && cd build-gcc
 $PWD/../$GCC_VERSION/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c,c++ --without-headers
-
 make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
 make install-gcc && make install-target-libgcc
-
-#sudo make -j $(nproc) all-gcc && sudo make -j $(nproc) all-target-libgcc
-#sudo make install-gcc && sudo make install-target-libgcc
 
 # Dependencies for build/running ibox
 sudo apt-get install -y nasm xorriso genisoimage
