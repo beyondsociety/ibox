@@ -1,4 +1,4 @@
-# 4/1/15 -  need to figure out how to not hardcode the paths for copying/removing files, maybe a build directory
+# 4/1/15 -  need to figure out how to not hardcode the paths for copying/removing files, maybe a build directory or build script
 
 include ./rules32.mk
 #include ./rules64.mk
