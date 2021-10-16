@@ -44,7 +44,7 @@ while [ opt != '' ]
 
 			  3) clear;
 			    echo '';
-				  echo "Please specify a build-target and prefix-dir so we can build the toolchain"; sleep 3;
+				  echo "Please specify a build-target (i686-elf or x86_64-elf) and prefix-dir (location of toolchain) so we can build the toolchain"; sleep 3;
 				  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET; read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
           sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 				  echo '';

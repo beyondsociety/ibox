@@ -8,15 +8,6 @@ SECTIONS
 	/* Load kernel at 1MB */
 	. = KERNEL_LMA;
 
-	/*.boot :*/
-  /*{*/
-  	/* Ensure the multiboot header is at the beginning */
-  	/*KEEP(*(.multiboot))*/
-
-		/* Ensure the multiboot2 header is at the beginning */
-  	/*KEEP(*(.multiboot2))*/
-  /*}*/
-
 	.multiboot :
   {
 	 	/* Ensure the multiboot header is at the beginning */
@@ -28,7 +19,6 @@ SECTIONS
 		/* Ensure the multiboot2 header is at the beginning */
   	KEEP(*(.multiboot2))
   }
-
 
 	/* Text section */
 	.text :
@@ -55,8 +45,6 @@ SECTIONS
 		*(.bss)
 	}
 
-	.note.gnu.build-id :
-	{
-		*(.note.gnu.build-id)
-	}
+  /DISCARD/ : { *(.note.gnu.build-id) }
+  /DISCARD/ : { *(.interp) }
 }

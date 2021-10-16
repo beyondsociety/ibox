@@ -10,6 +10,7 @@ subdir('kernel')
 
 # Directory for firmware (pc-bios and uefi files)
 subdir('firmware/pc-bios')
+subdir('firmware/uefi')
 
 # Script that runs the ISO Image with qemu and bochs
 run_target('qemu', command : 'tools/scripts/qemu-meson-wrapper.sh')

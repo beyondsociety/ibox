@@ -6,15 +6,15 @@
 
 #define UNUSED __attribute__((unused))
 
-// Defines
+/* Defines */
 //multiboot_info_t * mbi;
 
-// Functions
+/* Functions */
 //void lfb_clear(multiboot_info_t * mbi);
-void clear(unsigned color);
-void putpixel1(int x, int y, int color);
+//void clear(unsigned color);
+//void putpixel1(int x, int y, int color);
 
-// Only valid for 800x600x32bpp
+/* Only valid for 800x600x32bpp */
 void putpixel(unsigned char * screen, int x, int y, int color);
 
 #endif

@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-void lfb_clear(multiboot_info_t *mbi)
+/*void lfb_clear(multiboot_info_t *mbi)
 {
   //volatile uint32_t * fb = (uint32_t)((uint32_t) mbi->framebuffer_address);
   uint32_t * fb = (uint32_t *) mbi->framebuffer_address;
@@ -10,9 +10,9 @@ void lfb_clear(multiboot_info_t *mbi)
 
   for(cell = 0; cell < mbi->framebuffer_width * mbi->framebuffer_height; cell++)
   fb[cell] = 0x00000080;
-}
+}*/
 
-void clear(unsigned color)
+/*void clear(unsigned color)
 {
 	UNUSED int x, y;
 	for(unsigned y = 0; y < mbi->framebuffer_height; ++y)
@@ -22,17 +22,17 @@ void clear(unsigned color)
 	    putpixel1(x, y, color);
 		}
 	}
-}
+}*/
 
-void putpixel1(int x, int y, int color)
+/*void putpixel1(int x, int y, int color)
 {
   uint32_t * pixel = (uint32_t *) mbi->framebuffer_address;
-  // Not sure first param = x or second param = x?
+  // Not sure first param = x or second param = x? 
   unsigned where = mbi->framebuffer_width + x * mbi->framebuffer_height + y;
   pixel[where] = color;
-}
+}*/
 
-// Only valid for 800x600x32bpp
+/* Only valid for 800x600x32bpp */
 void putpixel(unsigned char * screen, int x, int y, int color)
 {
     unsigned where = x * 4 + y * 3200;
