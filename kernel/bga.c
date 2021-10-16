@@ -1,3 +1,4 @@
+/* BGA video stuff */
 #include <bga.h>
 #include <io.h>
 #include <stdio.h>

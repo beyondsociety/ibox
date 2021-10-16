@@ -1,3 +1,4 @@
+/* Print stuff */
 #include <kernel.h>
 #include <io.h>
 #include <stdarg.h>

@@ -1,3 +1,4 @@
+/* Print stuff for stdio */
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
@@ -43,7 +44,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 	      /* Found %, get next char and advance state to check if next char is a flag */
         state++;
           fmt++;
-        // break;
+        //break;
 
       /* STATE 1: AWAITING FLAGS (%-0) */
       case 1:
@@ -74,7 +75,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
               fmt++;
           }
 
-            // break;
+            //break;
 
         /* STATE 2: AWAITING (NUMERIC) FIELD WIDTH */
         case 2:
@@ -86,7 +87,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 
             /* Not field width: advance state to check if it's a modifier */
             state++;
-              // break;
+              //break;
 
         /* STATE 3: AWAITING MODIFIER CHARS (FNlh) */
         case 3:
@@ -115,7 +116,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 
           /* Not modifier: advance state to check if it's a conversion char */
           state++;
-            // break;
+            //break;
 
         /* STATE 4: AWAITING CONVERSION CHARS (Xxpndiuocs) */
         case 4:
@@ -126,7 +127,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
           {
             case 'X':
               flags |= PR_CA;
-                // break;
+                //break;
 
             /* xxx - Far pointers (%Fp, %Fn) not yet supported */
             case 'x':

@@ -1,9 +1,9 @@
-#include <stdio.h>
+/* String stuff */
 #include <stdarg.h>
 #include <string.h>
 
 /* Convert an integer into a string */
-/* int8_t *itoa(int32_t n, int8_t *s, int32_t base)
+/*int8_t *itoa(int32_t n, int8_t *s, int32_t base)
 {
   int32_t j, i = 0;
   int32_t temp[20];
@@ -47,7 +47,7 @@
 } */
 
 /* Convert n to characters in s */
-void itoa(int n, char s[])
+void itoa(int32_t n, int8_t s[])
 {
 	int i, sign;
 
@@ -70,7 +70,7 @@ void itoa(int n, char s[])
 }
 
 /* Reverse string s in place */
-void reverse(char s[])
+void reverse(int8_t s[])
 {
 	unsigned int i, j;
   char c;
@@ -149,7 +149,7 @@ int8_t *strncat(int8_t *dest, const int8_t *src, size_t n)
 }
 
 /* Copies source to destination */
-char *strcpy(char *dest, const char *src)
+int8_t *strcpy(int8_t *dest, const int8_t *src)
 {
   const char *s = src;
   char *d = dest;

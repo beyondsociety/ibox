@@ -9,7 +9,7 @@
 multiboot_info_t *sys_multiboot_info;
 
 /* Functions */
-void kernel_init(multiboot_info_t *mbi, uint32_t magic);
-void kernel_main(void);
+//void kernel_init(multiboot_info_t *mbi, uint32_t address);
+void kernel_init(uint32_t magic, uint32_t address);
 
 #endif
