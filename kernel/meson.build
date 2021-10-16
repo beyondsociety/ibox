@@ -1,4 +1,4 @@
-# Location of linker file (Todo: fix hardcoded path)
+# Location of linker file (Todo: fix hardcoded path and add 32/64 bit detection)
 linker_file = meson.source_root() + '/firmware/pc-bios/linker.ld'
 
 # Kernel sources
