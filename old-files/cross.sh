@@ -34,4 +34,4 @@ make all-gcc && make all-target-libgcc
 make install-gcc && make install-target-libgcc
 
 ## Dependencies for building/runing ibox ##
-apt-get install -y nasm xorriso
+apt-get install -y nasm xorriso genisoimage
