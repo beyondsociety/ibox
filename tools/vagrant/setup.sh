@@ -1,4 +1,5 @@
 #!/bin/bash
+# Todo: update setup.sh file
 # Download Vagrant and virtualbox
 
 # Install virtualbox guest additions
