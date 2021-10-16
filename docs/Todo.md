@@ -23,4 +23,4 @@
 11. Get vagrant to create a sucessful build environment for building my os and get it to run, 
 This means modifiy files/path for vagrant and editing the Vagrant file.
 
-
+12. Fix repo issues and get history correct for all branches.
