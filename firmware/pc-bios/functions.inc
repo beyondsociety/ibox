@@ -106,11 +106,11 @@ enable_paging:
   or eax, 1 << 8
   wrmsr
 
-  ; Enable paging in the cr0 register
+  ; Enable paging (using cr0 register)
   mov eax, cr0
   or eax, 1 << 31
+  ;or eax, (1 << 31 | 1 << 16)
   mov cr0, eax
-
   ret
 
 ; Prints `ERR: ` and the given error code to screen and hangs.

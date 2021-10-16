@@ -1,5 +1,9 @@
 # Location of linker file (Todo: fix hardcoded path)
-linker_file = meson.source_root() + '/firmware/pc-bios/linker.ld'
+if host_machine.cpu_family() == 'x86'
+  linker_file = meson.source_root() + '/firmware/pc-bios/linker32.ld'
+else
+  linker_file = meson.source_root() + '/firmware/pc-bios/linker64.ld'
+endif
 
 # Kernel sources
 kernel_srcs = files(
@@ -20,10 +24,11 @@ find_program('clang', required: true)
 
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
-if compiler.get_id() == 'gcc'
- 	c_args = ['-Wall', '-Wextra']
- 	link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
-elif compiler.get_id() == 'clang'
+	if compiler.get_id() == 'clang'
 		c_args = ['-Wall', '-Wextra']
-		link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	 	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	elif compiler.get_id() == 'gcc'
+		c_args = ['-Wall', '-Wextra']
+		#link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc
+		link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 endif
