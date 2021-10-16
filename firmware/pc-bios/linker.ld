@@ -2,10 +2,12 @@ OUTPUT_FORMAT(elf32-i386)
 OUTPUT_ARCH(i386) 
 ENTRY(start)
 
+Physical_address = 1M;
+
 SECTIONS
 {
 	/* Load kernel at 1MB */
-	. = 1M;
+	. = Physical_address;
 
 	/* Multiboot Header */
 	.multiboot :
