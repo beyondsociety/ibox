@@ -2,21 +2,22 @@ OUTPUT_FORMAT(elf64-x86-64)
 OUTPUT_ARCH(i386:x86-64)
 ENTRY(start)
 
+KERNEL_LMA = 1M;
 SECTIONS
 {
 	/* Load kernel at 1MB */
-	. = 1M;
+	. = KERNEL_LMA;
 
-  /* Multiboot Header */
-  .multiboot :
+	.multiboot :
   {
-    *(.multiboot)
+	 	/* Ensure the multiboot header is at the beginning */
+  	KEEP(*(.multiboot))
   }
 
-	/* Multiboot2 Header */
 	.multiboot2 :
-	{
-	  *(.multiboot2)
+  {
+		/* Ensure the multiboot2 header is at the beginning */
+  	KEEP(*(.multiboot2))
   }
 
 	/* Text section */
@@ -28,7 +29,8 @@ SECTIONS
 	/* Read-only data */
 	.rodata :
 	{
-		*(.rodata)
+	  *(.rodata)
+		*(.rodata*)
 	}
 
 	/* Read-write data (initialized) */
@@ -44,8 +46,7 @@ SECTIONS
 		*(.bss)
 	}
 
-	.note.gnu.build-id :
-	{
-		*(.note.gnu.build-id)
-	}
+  /DISCARD/ : { *(.note.gnu.build-id) }
+  /DISCARD/ : { *(.interp) }
+
 }
