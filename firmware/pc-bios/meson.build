@@ -1,3 +1,4 @@
+# Todo : add code for 32/64 bit detection
 # Finds the assembler program Nasm
 nasm = find_program('nasm', required: true)
 
