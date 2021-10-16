@@ -1,13 +1,16 @@
+# Binaries
 [binaries]
 c = 'i686-elf-gcc'
 ld = 'i686-elf-ld'
 ar = 'i686-elf-ar'
 strip = 'i686-elf-strip'
 
+# Properties
 [properties]
 c_args = ['-ffreestanding']
 c_link_args = ['-nostdlib']
 
+# Host Machine
 [host_machine]
 system = 'ibox-kernel'
 cpu_family = 'x86'
