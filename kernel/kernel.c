@@ -1,6 +1,7 @@
 #include <bga.h>
 #include <kernel.h>
 #include <io.h>
+#include <lfbvideo.h>
 #include <multiboot.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -25,18 +26,18 @@ void kernel_init(multiboot_info_t *mbi, uint32_t magic)
 	multiboot_parse(mbi);
 
 	/* Load kernel_main */
-	kernel_main();
+        kernel_main();
 }
 
 void kernel_main(void)
 {
 	printk("Booted into kernel mode..\n");
 
-	/* Wait a bit */
+	// Wait a bit
 	for(volatile int32_t i = 0; i < 10000000; ++i) { }
 
 	printk("Testing delay...\n");
 
-	/* initialize the bochs video adapter interface */
+	// Initialize the bochs video adapter interface
 	//bga_init();
 }

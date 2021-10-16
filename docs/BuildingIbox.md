@@ -31,3 +31,4 @@ Build options for Ibox
 clear - Clears the screen
 ```
 Instructions on how to build ibox are found on the [Wiki](https://github.com/beyondsociety/ibox/wiki) .
+

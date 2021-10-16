@@ -62,14 +62,16 @@ export PATH="$PREFIX/bin:$PATH"
 cd ..
 mkdir -p build-binutils && cd build-binutils
 $PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
-make -j $(nproc) && make install
+#make -j $(nproc) && make install
 make && make install
 
 # Build Gcc
 cd ..
 mkdir -p build-gcc && cd build-gcc
 $PWD/../$GCC_VERSION/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c,c++ --without-headers
-make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
+#make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
+#make install-gcc && make install-target-libgcc
+make all-gcc && make all-target-libgcc
 make install-gcc && make install-target-libgcc
 
 # Dependencies for build/running ibox
