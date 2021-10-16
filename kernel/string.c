@@ -1,8 +1,8 @@
-#include <stdio.h>
+/* String stuff */
 #include <stdarg.h>
 #include <string.h>
 
-// Convert an integer into a string
+/* Convert an integer into a string */
 /*int8_t *itoa(int32_t n, int8_t *s, int32_t base)
 {
   int32_t j, i = 0;
@@ -46,29 +46,29 @@
   s[i] = '\0'; // Terminate the string
 }*/
 
-// Convert n to characters in s
+/* Convert n to characters in s */
 void itoa(int32_t n, int8_t s[])
 {
 	int i = 0, sign;
 
-  if ((sign = n) < 0)  // Record sign
+  if ((sign = n) < 0)  /* Record sign */
   {
-    n = -n;           // Make n positive
+    n = -n;           /* Make n positive */
   }
 
 	do
-	{                          // Generate digits in reverse order
-    s[i++] = n % 10 + '0';   // Get next digit
+	{                          /* Generate digits in reverse order */
+    s[i++] = n % 10 + '0';   /* Get next digit */
   }
 
-	while ((n /= 10) > 0);     // Delete it
+	while ((n /= 10) > 0);     /* Delete it */
 	if (sign < 0)
       s[i++] = '-';
     s[i] = '\0';
     reverse(s);
 }
 
-// Reverse string s in place
+/* Reverse string s in place */
 void reverse(int8_t s[])
 {
 	unsigned int i, j;
@@ -82,7 +82,7 @@ void reverse(int8_t s[])
   }
 }
 
-// Returns length of a string
+/* Returns length of a string */
 size_t strlen(const int8_t *str)
 {
   size_t len = 0;
@@ -95,7 +95,7 @@ size_t strlen(const int8_t *str)
   return len;
 }
 
-// Compares first number of characters of two strings
+/* Compares first number of characters of two strings */
 int32_t strncmp(const int8_t *s1, const int8_t *s2, size_t n)
 {
   size_t i = 1;
@@ -103,28 +103,28 @@ int32_t strncmp(const int8_t *s1, const int8_t *s2, size_t n)
   for(; *s1 == *s2 && i <= n; s1++, s2++, i++)
   if(i == n)
   {
-    return 0; // Equal
+    return 0; /* Equal */
   }
 
   return *s1 - *s2;
 }
 
-// Compares two strings
+/* Compares two strings */
 int32_t strcmp(const int8_t *s1, const int8_t *s2)
 {
   for(; *s1 == *s2; s1++, s2++)
   if(*s1 == '\0')
   {
-    return 0;         // Equal
+    return 0;         /* Equal */
   }
 
   return *s1 - *s2;
 }
 
-// Adds source to destination
+/* Adds source to destination */
 int8_t *strcat(int8_t *dest, const int8_t *src)
 {
-  for(; *dest != '\0'; dest++); // Go through destination until we reach a NULL
+  for(; *dest != '\0'; dest++); /* Go through destination until we reach a NULL */
   while(*src != '\0')
   {
     *(dest++) = *(src++);
@@ -134,10 +134,10 @@ int8_t *strcat(int8_t *dest, const int8_t *src)
   return dest;
 }
 
-// Adds number of characters of source to destination
+/* Adds number of characters of source to destination */
 int8_t *strncat(int8_t *dest, const int8_t *src, size_t n)
 {
-  for(; *dest != '\0'; dest++); // Go through destination until we reach a NULL
+  for(; *dest != '\0'; dest++); /* Go through destination until we reach a NULL */
   while(*src != '\0' && n-- > 0)
   {
     *(dest++) = *(src++);
@@ -147,7 +147,7 @@ int8_t *strncat(int8_t *dest, const int8_t *src, size_t n)
   return dest;
 }
 
-// Copies source to destination
+/* Copies source to destination */
 int8_t *strcpy(int8_t *dest, const int8_t *src)
 {
   const char *s = src;
@@ -161,7 +161,7 @@ int8_t *strcpy(int8_t *dest, const int8_t *src)
   return dest;
 }
 
-// Copies number of bytes from source to destination
+/* Copies number of bytes from source to destination */
 void *memcpy(void *str1, const void *str2, size_t num)
 {
   char *to = (char*) str1, *from = (char*) str2;
@@ -173,7 +173,7 @@ void *memcpy(void *str1, const void *str2, size_t num)
   return str1;
 }
 
-// Fills the first number of bytes of string with the constant byte c
+/* Fills the first number of bytes of string with the constant byte c */
 /*void *memset(void *str, UNUSED int8_t val, size_t num)
 {
   size_t *temp = (size_t *) str;

@@ -1,3 +1,4 @@
+/* Port stuff */
 #include <io.h>
 #include <stdint.h>
 

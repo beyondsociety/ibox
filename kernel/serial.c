@@ -1,3 +1,4 @@
+/* Serial stuff */
 #include <io.h>
 #include <serial.h>
 #include <stddef.h>

@@ -1,10 +1,10 @@
 #ifndef INCLUDE_SERIAL_H
 #define INCLUDE_SERIAL_H
 
-// Defines
+/* Defines */
 #define PORT 0x3f8   // COM1
 
-// Functions
+/* Functions */
 void init_serial();
 int serial_received();
 char read_serial();
