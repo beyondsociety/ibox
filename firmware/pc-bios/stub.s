@@ -3,9 +3,9 @@ MULTIBOOT_PAGE_ALIGN	    equ 1 << 0   ; Align loaded modules on page boundaries
 MULTIBOOT_MEMORY_INFO	    equ 1 << 1   ; Provide memory map
 MULTIBOOT_VIDEO		        equ 1 << 2   ; Video Information
 
-MULTIBOOT_HEADER_MAGIC	  equ 0x1badb002 ; 'magic number' lets bootloader find the header
-MULTIBOOT_HEADER_FLAGS	  equ MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO ; Multiboot flags
-MULTIBOOT_HEADER_CHECKSUM equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS) ; Multiboot Checksum
+MULTIBOOT_HEADER_MAGIC	  equ 0x1badb002                                                      ; 'magic number' lets bootloader find the header
+MULTIBOOT_HEADER_FLAGS	  equ MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO  ; Multiboot flags
+MULTIBOOT_HEADER_CHECKSUM equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)             ; Multiboot Checksum
 
 [section .multiboot]
 align 4
