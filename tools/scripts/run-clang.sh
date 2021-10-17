@@ -1,9 +1,10 @@
 #!bin/bash
 
 GREEN_TEXT='\033[1;32m'  # Bold Green
+YELLOW_TEXT='\033[1;33m' # Bold Yellow
 NORMAL='\033[0;m'        # No Color
 
-read -p "$(echo $YELLOW_TEXT"Please specify a build-arch so we can build Ibox (x86 or x86-64): "$NORMAL)" ARCH
+read -p "$(echo ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox (x86 or x86-64): "${NORMAL})" ARCH
 
 echo "${GREEN_TEXT}Removing build directory for new build... ${NORMAL}"
 rm -rfv ./clang-build

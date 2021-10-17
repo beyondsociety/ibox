@@ -16,8 +16,8 @@ kernel_srcs = files(
 
 # Pass compiler and linker args from cross-file to Ibox
 if meson.is_cross_build()
-	c_args = meson.get_cross_property('c_args')
-	link_args = meson.get_cross_property('c_link_args')
+  c_args = meson.get_external_property('c_args', 'native: false')
+  link_args = meson.get_external_property('c_link_args', 'native: false')
 endif
 
 # Compiler options based on type of compiler used

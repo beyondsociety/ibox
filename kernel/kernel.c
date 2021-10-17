@@ -10,34 +10,46 @@
 #include <terminal.h>
 
 /* Perform some preloading stuff */
-void kernel_init(multiboot_info_t *mbi, uint32_t magic)
+//void kernel_init(multiboot_info_t *mbi, uint32_t magic)
+void kernel_init(uint32_t magic, uint32_t address)
 {
+  multiboot_info_t *mbi;
+
+  /* Set MBI to the address of the Multiboot information structure. */
+  mbi = (multiboot_info_t *) address;
+
 	/* Clear the screen */
 	clear_screen();
 
 	/* Make sure we're booted by a multiboot loader */
 	if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
 	{
-		printk("Not booted with a multiboot-compliant bootloader!");
-		hlt();
+    printk("Invalid magic number: 0x%x\n", (unsigned) magic);
+    printk("  no multiboot-compliant bootloader found, halting...");
+    hlt();  /* Return */
+  }
+  else
+  {
+    printk("magic number: 0x%x\n", (uint32_t) magic);
+    printk("address number: 0x%x\n", (uint32_t) address);
 	}
 
 	/* Parse Multiboot structure */
 	multiboot_parse(mbi);
 
 	/* Load kernel_main */
-        kernel_main();
+  kernel_main();
 }
 
 void kernel_main(void)
 {
-	printk("Booted into kernel mode..\n");
+	printk("\nBooted into kernel mode..\n");
 
-	// Wait a bit
+	/* Wait a bit */
 	for(volatile int32_t i = 0; i < 10000000; ++i) { }
 
 	printk("Testing delay...\n");
 
-	// Initialize the bochs video adapter interface
+	/* Initialize the bochs video adapter interface */
 	//bga_init();
 }

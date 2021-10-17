@@ -1,5 +1,8 @@
 #!bin/bash
-# Todo: add 32/64 bit detection to build script
+
+GREEN_TEXT='\033[1;32m'       # Bold Green
+YELLOW_TEXT='\033[1;33m'      # Bold Yellow
+NORMAL='\033[0;m'             # No Color
 
 TARGET32="i686-elf-gcc"       # Target 32-bit arch of build
 TARGET64="x86_64-elf-gcc"     # Target 64-bit arch of build
@@ -22,17 +25,24 @@ else if [ "$ARCH" = "x86-64" ]; then
 else
   echo "Need cross-compiler to build Ibox... "
   exit 1
+ fi
 fi
 
-echo ''
+sleep 3 && echo ''
 echo "${GREEN_TEXT}Removing build directiory for new build...${NORMAL}"
 rm -rfv ./cross-build
 
 echo ''
-echo "${GREEN_TEXT}Building Ibox...${NORMAL}"
-export PATH="~/.local/bin:$PATH" # Path to meson
-meson cross-build --cross-file cross-compiler.build
-ninja -C cross-build
+echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
+if [ "$ARCH" = "x86" ]; then
+  # 32-bit stuff here
+  meson cross-build --cross-file cross-files/cross32.ini
+  ninja --verbose -C cross-build
+else [ "$ARCH" = "x86-64" ]
+  # 64-bit stuff here
+  meson cross-build --cross-file cross-files/cross64.ini
+  ninja --verbose -C cross-build
+fi
 
 echo ''
 echo "${GREEN_TEXT}Building ISO Image...${NORMAL}"

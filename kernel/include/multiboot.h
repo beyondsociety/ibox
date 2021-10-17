@@ -20,7 +20,7 @@
 
 #ifndef MULTIBOOT_HEADER
 #define MULTIBOOT_HEADER 1
- 
+
 #define MULTIBOOT_SEARCH                       8192       // How many bytes from the start of the file we search for the header
 #define MULTIBOOT_HEADER_ALIGN                 4
 #define MULTIBOOT_HEADER_MAGIC                 0x1BADB002 // The magic field should contain this
@@ -34,7 +34,7 @@
 #define MULTIBOOT_VIDEO_MODE                   0x00000004 // Pass video information to OS
 #define MULTIBOOT_AOUT_KLUDGE                  0x00010000 // This flag indicates the use of the address fields in the header
 
-// Multiboot flags for the multiboot info structure
+/* Multiboot flags for the multiboot info structure */
 #define MULTIBOOT_INFO_MEMORY                  0x00000001 // Is there basic lower/upper memory information?
 #define MULTIBOOT_INFO_BOOTDEV                 0x00000002 // Is there a boot device set?
 #define MULTIBOOT_INFO_CMDLINE                 0x00000004 // Is the command-line defined?
@@ -63,14 +63,12 @@ typedef struct multiboot_header
   uint32_t checksum;              // The above fields plus this one must equal 0 mod 2^32
 
   uint32_t header_address;        // These are only valid if MULTIBOOT_AOUT_KLUDGE is set
->>>>>>> parent of 0773030... Fixed conflicts with code for merge.
-  uint32_t load_address;
   uint32_t load_end_address;
   uint32_t bss_end_address;
   uint32_t entry_address;
 
   /* These are only valid if MULTIBOOT_VIDEO_MODE is set. */
-  uint32_t mode_type;.
+  uint32_t mode_type;
   uint32_t width;
   uint32_t height;
   uint32_t depth;
@@ -145,7 +143,7 @@ typedef struct multiboot_info
   uint64_t framebuffer_address;
   uint32_t framebuffer_pitch;
   uint32_t framebuffer_width;
-  uint32_t framebuffer_hieght;
+  uint32_t framebuffer_height;
   uint8_t framebuffer_bpp;
 
   #define MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED    0
