@@ -75,7 +75,7 @@ void multiboot_parse(multiboot_info_t *mbi)
     printk("Width: %u, ", mbi->framebuffer_width);
     printk("Height: %u\n", mbi->framebuffer_height);
     printk("Bpp: %u, ", mbi->framebuffer_bpp);
-    printk("Pitch: %u", mbi->framebuffer_pitch);
+    printk("Pitch: %u\n", mbi->framebuffer_pitch);
   }
 }
 

@@ -65,7 +65,7 @@ console_tag_start:
 console_tag_end:
 
 ; Framebuffer Graphics
-align 8
+;align 8
 ;framebuffer_graphics_tag_start:
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER          ; Type = 5
 ;  dw 0                                         ; Flags (Optional, 0 = graphics)
@@ -74,14 +74,14 @@ align 8
 ;  dd 600                                       ; Height (600)
 ;  dd 32                                        ; Depth (32)
 
-align 8
+;align 8
 ;framebuffer_graphics_tag_end:
 ;  dw MULTIBOOT_HEADER_TAG_END                  ; Type
 ;  dw 0                                         ; Flags, none set
 ;  dd 8                                         ; Size, including itself (short + short + long)
 
 ; Framebuffer Text
-align 8
+;align 8
 ;framebuffer_text_tag_start:
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER          ; Type = 5
 ;  dw 1                                         ; Flags (Optional, 1 = text mode)
@@ -90,7 +90,7 @@ align 8
 ;  dd 25                                        ; Height (25)
 ;  dd 0                                         ; Depth (0)
 
-align 8
+;align 8
 ;framebuffer_text_tag_end:
 ;  dw MULTIBOOT_HEADER_TAG_END                  ; Type
 ;  dw 0                                         ; Flags, none set
