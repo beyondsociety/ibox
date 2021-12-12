@@ -79,6 +79,12 @@ void multiboot_parse(multiboot_info_t *mbi)
   }
 }
 
+void multiboot2_parse(uint32_t address);
+void multiboot2_parse(uint32_t address)
+{
+  printk("\nParsing Multiboot2 Info...\n");
+}
+
 /* Prints the memory map as reported by grub, map = memory map pointer, size = size of map */
 void print_memory_map(uint32_t *map, uint32_t size)
 {
