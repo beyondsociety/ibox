@@ -30,6 +30,7 @@ SECTIONS
 	.rodata :
 	{
 		*(.rodata)
+    *(.rodata*)
 	}
 
 	/* Read-write data (initialized) */

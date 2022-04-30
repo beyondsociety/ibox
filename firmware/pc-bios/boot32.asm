@@ -24,7 +24,7 @@ start:
 
 [section .bss]
   align 4096
-; align 16  
+; align 16
 stack_bottom:
   resb 16384
 stack_top:

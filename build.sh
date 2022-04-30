@@ -53,7 +53,7 @@ while [ opt != '' ]
 
 			  4) clear;
 			    echo '';
-				  read -p $'\e[1;33mPass the name of the build-tool for Qemu to run\e[0m: ' NAME
+				  read -p $'\e[1;33mPass the name of the build-tool for Qemu to run (cross or clang)\e[0m: ' NAME
           if [ "$NAME" == "cross" ]; then
 				    ninja -C cross-build qemu
 				  else [ "$NAME" == "clang" ];
@@ -65,7 +65,7 @@ while [ opt != '' ]
 
 			  5) clear;
 			    echo '';
-				  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run\e[0m: ' NAME
+				  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run (cross or clang)\e[0m: ' NAME
           if [ "$NAME" == "cross" ]; then
 				    ninja -C cross-build bochs
 			    else [ "$NAME" == "clang" ]

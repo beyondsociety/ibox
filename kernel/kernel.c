@@ -10,23 +10,29 @@
 #include <terminal.h>
 
 /* Perform some preloading stuff */
-//void kernel_init(multiboot_info_t *mbi, uint32_t magic)
+//void kernel_init(multiboot_info_t *mbi, unsigned long magic)
 void kernel_init(uint32_t magic, uint32_t address)
+//void kernel_init(unsigned long magic, unsigned long address)
 {
   multiboot_info_t *mbi;
+  //unsigned long address;
 
   /* Set MBI to the address of the Multiboot information structure. */
-  mbi = (multiboot_info_t *) address;
+  //mbi = (multiboot_info_t *) address;
+
+  //multiboot_info_t *mbi = (multiboot_info_t *) address;
+  //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
 
 	/* Clear the screen */
-	clear_screen();
+	//clear_screen();
 
 	/* Make sure we're booted by a multiboot loader */
-	if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
+  if((magic != MULTIBOOT_BOOTLOADER_MAGIC) && (magic != MULTIBOOT2_BOOTLOADER_MAGIC))
 	{
     printk("Invalid magic number: 0x%x\n", (unsigned) magic);
     printk("  no multiboot-compliant bootloader found, halting...");
-    hlt();  /* Return */
+    //hlt();  /* Return */
+    return;
   }
   else
   {
@@ -34,11 +40,24 @@ void kernel_init(uint32_t magic, uint32_t address)
     printk("address number: 0x%x\n", (uint32_t) address);
 	}
 
-	/* Parse Multiboot structure */
-	multiboot_parse(mbi);
+  hlt();
+
+  /* Set MBI to the address of the Multiboot information structure. */
+  mbi = (multiboot_info_t *) address;
+
+  /* Parse Multiboot structures */
+	if(magic == MULTIBOOT_BOOTLOADER_MAGIC)
+  {
+    multiboot_parse(mbi);
+    //multiboot_parse(address);
+  }
+  else if(magic == MULTIBOOT2_BOOTLOADER_MAGIC)
+  {
+    multiboot2_parse(address);
+  }
 
 	/* Load kernel_main */
-  kernel_main();
+  //kernel_main();
 }
 
 void kernel_main(void)

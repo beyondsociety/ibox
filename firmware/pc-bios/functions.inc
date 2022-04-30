@@ -1,10 +1,12 @@
 [bits 32]
-check_multiboot2:
+check_multiboot:
+  cmp eax, 0x2badb002
+  jne .no_multiboot
   cmp eax, 0x36d76289
-  jne .no_multiboot2
+  jne .no_multiboot
   ret
 
-.no_multiboot2:
+.no_multiboot:
   mov al, "1"
   jmp error
 
@@ -67,19 +69,19 @@ setup_page_tables:
   ; Map first P4 entry to P3 table
   mov eax, p3_table
   or eax, 0b11                    ; Present + writable
-  mov [p4_table], eax
+  mov [p4_table + 0], eax
 
   ; Map first P3 entry to P2 table
   mov eax, p2_table
   or eax, 0b11                    ; Present + writable
-  mov [p3_table], eax
+  mov [p3_table + 0], eax
 
-  ; Map each P2 entry to a huge 2MiB page
+  ; Map each P2 entry to a huge 4MiB page
   mov ecx, 0                      ; Counter variable
 
 .map_p2_table:
   ; Map ecx-th P2 entry to a huge page that starts at address 2MiB*ecx
-  mov eax, 0x200000               ; 2MiB
+  mov eax, 0x400000               ; 4MiB
   mul ecx                         ; Start address of ecx-th page
   or eax, 0b10000011              ; Present + writable + huge
   mov [p2_table + ecx * 8], eax   ; Map ecx-th entry
@@ -108,6 +110,7 @@ enable_paging:
   ; Enable paging (using cr0 register)
   mov eax, cr0
   or eax, 1 << 31
+  or eax, 1 << 16
   ; or eax, (1 << 31 | 1 << 16)
   mov cr0, eax
   ret

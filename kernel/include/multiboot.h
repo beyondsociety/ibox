@@ -210,6 +210,7 @@ typedef struct multiboot_module_list
 
 /* Multiboot function */
 void multiboot_parse(multiboot_info_t *mbi);
+//void multiboot_parse(uint32_t address);
 
 /* Prints the memory map as reported by grub, map = memory map pointer, size = size of map */
 void print_memory_map(uint32_t *map, uint32_t size);
