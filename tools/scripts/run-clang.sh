@@ -11,7 +11,7 @@ echo "${GREEN_TEXT}Removing build directory for new build... ${NORMAL}"
 rm -rfv ./clang-build
 
 echo ''
-echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
+echo "${YELLOW_TEXT}Building Ibox... ${NORMAL}"
 if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
   meson clang-build --cross-file cross-files/clang32.ini

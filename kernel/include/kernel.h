@@ -5,6 +5,14 @@
 #include <multiboot2.h>
 #include <stdint.h>
 
+#if defined(__x86_64__)
+/* 64 bit detected */
+#endif
+
+#if defined(__i386__)
+/* 32 bit x86 detected */
+#endif
+
 /* Defines */
 #define UNUSED __attribute__((unused))
 

@@ -1,10 +1,10 @@
 # Location of linker file (Todo: fix hardcoded paths)
 if host_machine.cpu_family() == 'x86'
-  linker_file = meson.source_root() + '/firmware/pc-bios/linker32.ld'
+  linker_file = meson.global_source_root() + '/firmware/pc-bios/linker32.ld'
 elif host_machine.cpu_family() == 'x86_64'
-  linker_file = meson.source_root() + '/firmware/pc-bios/linker64.ld'
+  linker_file = meson.global_source_root() + '/firmware/pc-bios/linker64.ld'
 else
-    error('Missing file: No linker script found for this platform')
+  error('Missing file: No linker script found for this platform')
 endif
 
 # Kernel sources
@@ -27,5 +27,6 @@ compiler = meson.get_compiler('c')
 	 	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 	elif compiler.get_id() == 'gcc'
 		c_args = ['-Wall', '-Wextra']
-		link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
+		#link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
+    link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
 endif
