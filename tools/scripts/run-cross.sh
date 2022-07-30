@@ -18,7 +18,7 @@ if [ "$ARCH" = "x86" ]; then
   echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}\c"
   find /usr -name $TARGET32 -print -quit 2>/dev/null
   #export PATH="$PREFIX32/bin:$PATH"
-else if [ "$ARCH" = "x86-64" ]; then
+elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
   echo "${YELLOW_TEXT}Found cross-compiler: ${NORMAL}\c"
   find /usr -name $TARGET64 -print -quit 2>/dev/null
@@ -26,7 +26,6 @@ else if [ "$ARCH" = "x86-64" ]; then
 else
   echo "No cross-compiler found, halting... "
   exit 1
- fi
 fi
 
 echo ''
@@ -37,16 +36,15 @@ echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
 if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
-  meson cross-build --cross-file cross-files/cross32.ini
+  ~/.local/bin/meson cross-build --cross-file cross-files/cross32.ini
   ninja --verbose -C cross-build
-else if [ "$ARCH" = "x86-64" ]; then
+elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
-  meson cross-build --cross-file cross-files/cross64.ini
+  ~/.local/bin/meson cross-build --cross-file cross-files/cross64.ini
   ninja --verbose -C cross-build
 else
   echo "No build-arch found, halting... "
   exit 1
- fi
 fi
 
 echo ''
