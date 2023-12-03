@@ -1,5 +1,5 @@
 ## **How to use the meson build system**
-Meson requires two main dependences to run: ```Python 3 (3.6+) and Ninja (1.7+)```
+Meson requires two main dependences to run: ```Python 3 (3.7+) and Ninja (1.7+)```
 
 On Ubuntu these dependencies can be easily installed with the following command: \
 ```$ sudo apt-get install python3 python3-pip python3-setuptools python3-wheel ninja-build```
