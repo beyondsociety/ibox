@@ -13,9 +13,10 @@ kernel_srcs = files(
 	'stdio.c', 'string.c',
 	'terminal.c', 'vsprintf.c')
 
+# Pass compiler and linker args from cross-file to Ibox
 if meson.is_cross_build()
-	c_args = meson.get_cross_property('c_args')
-	link_args = meson.get_cross_property('c_link_args')
+  c_args = meson.get_external_property('c_args', 'native: false')
+  link_args = meson.get_external_property('c_link_args', 'native: false')
 endif
 
 # Compiler options based on type of compiler used
@@ -26,7 +27,8 @@ if compiler.get_id() == 'clang'
 else
 	compiler.get_id() == 'gcc'
 	c_args = ['-Wall', '-Wextra']
-	link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
+	link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+  #link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
 endif
 
 # Include directory

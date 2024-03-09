@@ -4,7 +4,7 @@ ld = 'i686-elf-ld'
 ar = 'i686-elf-ar'
 strip = 'i686-elf-strip'
 
-[properties]
+[built-in options]
 c_args = ['-ffreestanding']
 c_link_args = ['-nostdlib']
 
