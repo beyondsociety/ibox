@@ -22,22 +22,12 @@ endif
 
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
-<<<<<<< HEAD
-if compiler.get_id() == 'clang'
+  if compiler.get_id() == 'clang'
 	c_args = ['-Wall', '-Wextra']
 	link_args = ['-Wl,-T', arch_linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
-else
+  else
 	compiler.get_id() == 'gcc'
 	c_args = ['-Wall', '-Wextra']
 	link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
-  #link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
-=======
-	if compiler.get_id() == 'clang'
-		c_args = ['-Wall', '-Wextra']
-	 	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
-	elif compiler.get_id() == 'gcc'
-		c_args = ['-Wall', '-Wextra']
-		#link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
-    link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
->>>>>>> 4eebe1e210736467073cdb9a695d9063c49f9715
+        #link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
 endif
