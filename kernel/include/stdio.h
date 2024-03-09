@@ -1,3 +1,4 @@
+/* stdio.h - Standard C++ print stuff */
 #ifndef INCLUDE_STDIO_H
 #define INCLUDE_STDIO_H
 
@@ -5,12 +6,11 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-typedef struct _FILE FILE; 
-
 /* Typedefs */
+typedef struct _FILE FILE;
 typedef int32_t (*fnptr_t)(signed c, void *ptr);
 
-/* Functions */
+// Functions
 int32_t putc(int32_t, UNUSED FILE *stream);
 int32_t putchar(int32_t c);
 int32_t printk(const int8_t *fmt, ...);

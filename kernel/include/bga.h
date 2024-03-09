@@ -1,3 +1,4 @@
+/* BGA video Stuff */
 #ifndef INCLUDE_BGA_H
 #define INCLUDE_BGA_H
 

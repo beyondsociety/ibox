@@ -5,9 +5,25 @@ project('ibox', 'c',
 	meson_version : '>=0.60.0',
 	default_options : ['b_asneeded=false', 'b_lundef=false', 'buildtype=plain', 'c_std=c99'])
 
-# Directory for kernel sources
+# Directory for kernel files
 subdir('kernel')
+
+# Directory for firmware (pc-bios and uefi files)
+subdir('firmware/pc-bios')
+subdir('firmware/uefi')
 
 # Script that runs the ISO Image with qemu and bochs
 run_target('qemu', command : 'tools/scripts/qemu-meson-wrapper.sh')
 run_target('bochs', command : 'tools/scripts/bochs-meson-wrapper.sh')
+
+# Include directory
+inc_dirs = include_directories('kernel/include')
+
+# Executable
+image = executable(
+	'kernel.elf',
+	asm_srcs, kernel_srcs,
+	c_args : c_args,
+	link_args : link_args,
+	include_directories : inc_dirs,
+	implicit_include_directories : false)

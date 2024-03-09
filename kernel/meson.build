@@ -1,10 +1,11 @@
-# Finds subdirectory for asm files depending on architecture
-arch_path = 'arch/@0@/'.format(host_machine.cpu_family())
-
-# Sub directory for arch specific files
-subdir(arch_path)
-
-arch_linker_file = meson.current_source_dir() + '/' + arch_path + 'linker.ld'
+# Location of linker file (Todo: fix hardcoded paths)
+if host_machine.cpu_family() == 'x86'
+  linker_file = meson.global_source_root() + '/firmware/pc-bios/linker32.ld'
+elif host_machine.cpu_family() == 'x86_64'
+  linker_file = meson.global_source_root() + '/firmware/pc-bios/linker64.ld'
+else
+  error('Missing file: No linker script found for this platform')
+endif
 
 # Kernel sources
 kernel_srcs = files(
@@ -21,6 +22,7 @@ endif
 
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
+<<<<<<< HEAD
 if compiler.get_id() == 'clang'
 	c_args = ['-Wall', '-Wextra']
 	link_args = ['-Wl,-T', arch_linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
@@ -29,16 +31,13 @@ else
 	c_args = ['-Wall', '-Wextra']
 	link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
   #link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
+=======
+	if compiler.get_id() == 'clang'
+		c_args = ['-Wall', '-Wextra']
+	 	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	elif compiler.get_id() == 'gcc'
+		c_args = ['-Wall', '-Wextra']
+		#link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-lgcc']
+    link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+>>>>>>> 4eebe1e210736467073cdb9a695d9063c49f9715
 endif
-
-# Include directory
-inc_dirs = include_directories('include')
-
-# Executable
-image = executable(
-	'kernel.elf',
-	asm_srcs, kernel_srcs,
-	c_args : c_args,
-	link_args : link_args,
-	include_directories : inc_dirs,
-	implicit_include_directories : false)

@@ -1,42 +1,75 @@
 #include <bga.h>
 #include <kernel.h>
 #include <io.h>
+#include <lfbvideo.h>
 #include <multiboot.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <terminal.h>
+//#include <terminal.h>
 
 /* Perform some preloading stuff */
-void kernel_init(multiboot_info_t *mbi, uint32_t magic)
+//void kernel_init(multiboot_info_t *mbi, unsigned long magic)
+void kernel_init(uint32_t magic, uint32_t address)
+//void kernel_init(unsigned long magic, unsigned long address)
 {
+  multiboot_info_t *mbi;
+  //unsigned long address;
+
+  /* Set MBI to the address of the Multiboot information structure. */
+  //mbi = (multiboot_info_t *) address;
+
+  //multiboot_info_t *mbi = (multiboot_info_t *) address;
+  //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
+
 	/* Clear the screen */
-	clear_screen();
+	//clear_screen();
 
-	/* Make sure we're booted by a multiboot loader */
-	if(magic != MULTIBOOT_BOOTLOADER_MAGIC)
-	{
-		printk("Not booted with a multiboot-compliant bootloader!");
-		hlt();
-	}
+  /* To fix issue of mulitboot structure being overriden in 64-bit mode
+   * If booting 32-bit mode, continue check of multiboot */
+  #if __386__
+    /* Make sure we're booted by a multiboot loader */
+    if((magic != MULTIBOOT_BOOTLOADER_MAGIC) && (magic != MULTIBOOT2_BOOTLOADER_MAGIC))
+	  {
+      printk("Invalid magic number: 0x%x\n", (unsigned) magic);
+      printk("  no multiboot-compliant bootloader found, halting...");
+      hlt();  /* Halt the Cpu */
+    }
+    else
+    {
+      printk("magic number: 0x%x\n", (uint32_t) magic);
+      printk("address number: 0x%x\n", (uint32_t) address);
+	  }
 
-	/* Parse Multiboot structure */
-	multiboot_parse(mbi);
+  /* If booting in 64-bit mode, continue booting without checking multiboot */
+  #elif __x86_64__
+    printk("Checking of multiboot disabled for 64-bit mode");
+  #endif
+
+  /* Parse Multiboot structurea */
+	if(magic == MULTIBOOT_BOOTLOADER_MAGIC)
+  {
+    multiboot_parse(mbi);
+  }
+  else if(magic == MULTIBOOT2_BOOTLOADER_MAGIC)
+  {
+    multiboot2_parse(address);
+  }
 
 	/* Load kernel_main */
-	kernel_main();
+  //kernel_main();
 }
 
 void kernel_main(void)
 {
-	printk("Booted into kernel mode..\n");
+	printk("\nBooted into kernel mode..\n");
 
 	/* Wait a bit */
 	for(volatile int32_t i = 0; i < 10000000; ++i) { }
 
 	printk("Testing delay...\n");
 
-	/* initialize the bochs video adapter interface */
+	/* Initialize the bochs video adapter interface */
 	//bga_init();
 }

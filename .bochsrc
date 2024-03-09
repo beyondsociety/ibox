@@ -36,7 +36,7 @@
 # NOTE: if you use the "wx" configuration interface, you must also use
 # the "wx" display library.
 #=======================================================================
-config_interface: textconfig
+#config_interface: textconfig
 #config_interface: win32config
 #config_interface: wx
 
@@ -86,7 +86,7 @@ config_interface: textconfig
 #display_library: win32
 #display_library: wx
 #display_library: x
-display_library: sdl2
+#display_library: sdl2
 
 #=======================================================================
 # ROMIMAGE:
@@ -101,7 +101,7 @@ display_library: sdl2
 # now supported, but we still recommend to use the BIOS distributed with
 # Bochs. The start address optional, since it can be calculated from image size.
 #=======================================================================
-romimage: file=$BXSHARE/BIOS-bochs-latest
+#romimage: file=$BXSHARE/BIOS-bochs-latest
 #romimage: file=bios/seabios-1.6.3.bin
 #romimage: file=mybios.bin, address=0xfff80000 # 512k at memory top
 
@@ -181,7 +181,6 @@ romimage: file=$BXSHARE/BIOS-bochs-latest
 #    the measurement of BogoMips and other benchmarks.
 #
 #  Examples:
-#
 #  Bochs Machine/Compiler                                 Mips
 # ______________________________________________________________________
 #  2.4.6 3.4Ghz Intel Core i7 2600 with Win7x64/g++ 4.5.2 85 to 95 Mips
@@ -352,7 +351,7 @@ romimage: file=$BXSHARE/BIOS-bochs-latest
 # used all allocated host memory and wants more.
 #
 #=======================================================================
-memory: guest=32, host=512
+#memory: guest=32, host=512
 
 #=======================================================================
 # OPTROMIMAGE[1-4]:
@@ -380,7 +379,7 @@ memory: guest=32, host=512
 # You now need to load a VGA ROM BIOS into C0000.
 #=======================================================================
 #vgaromimage: file=bios/VGABIOS-elpin-2.40
-vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+#vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
 #vgaromimage: file=bios/VGABIOS-lgpl-latest-cirrus
 
 #=======================================================================
@@ -403,7 +402,7 @@ vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
 # Examples:
 #   vga: extension=cirrus, update_freq=10
 #=======================================================================
-vga: extension=vbe, update_freq=60
+#vga: extension=vbe, update_freq=60
 
 #=======================================================================
 # FLOPPYA:
@@ -466,7 +465,7 @@ vga: extension=vbe, update_freq=60
 #   ata2: enabled=1, ioaddr1=0x1e8, ioaddr2=0x3e0, irq=11
 #   ata3: enabled=1, ioaddr1=0x168, ioaddr2=0x360, irq=9
 #=======================================================================
-ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+#ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 #ata1: enabled=1, ioaddr1=0x170, ioaddr2=0x370, irq=15
 #ata2: enabled=0, ioaddr1=0x1e8, ioaddr2=0x3e0, irq=11
 #ata3: enabled=0, ioaddr1=0x168, ioaddr2=0x360, irq=9
@@ -522,8 +521,8 @@ ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 #   ata3-master: type=disk, mode=flat, path=483M.sample, cylinders=1024, heads=15, spt=63
 #   ata3-slave:  type=cdrom, path=iso.sample, status=inserted
 #=======================================================================
-ata0-master: type=cdrom, path="../clang-build/boot.iso", status=inserted
-ata0-master: type=cdrom, path="../cross-build/boot.iso", status=inserted
+#ata0-master: type=cdrom, path="../clang-build/boot.iso", status=inserted
+#ata0-master: type=cdrom, path="../cross-build/boot.iso", status=inserted
 #ata0-master: type=disk, mode=flat, path="hdd.img"
 #ata0-master: type=disk, mode=flat, path="30M.sample", cylinders=615, heads=6, spt=17
 #ata0-master: type=disk, mode=flat, path="c.img", cylinders=0 # autodetect
@@ -546,7 +545,7 @@ ata0-master: type=cdrom, path="../cross-build/boot.iso", status=inserted
 #=======================================================================
 #boot: floppy
 #boot: disk
-boot: cdrom
+#boot: cdrom
 #boot: floppy, cdrom
 #boot: cdrom, floppy
 
@@ -589,7 +588,7 @@ boot: cdrom
 #
 # Default value are sync=none, time0=local
 #=======================================================================
-clock: sync=none, time0=local, rtc_sync=0
+#clock: sync=none, time0=local, rtc_sync=0
 
 #=======================================================================
 # FLOPPY_BOOTSIG_CHECK: disabled=[0|1]
@@ -599,7 +598,7 @@ clock: sync=none, time0=local, rtc_sync=0
 #   floppy_bootsig_check: disabled=0
 #   floppy_bootsig_check: disabled=1
 #=======================================================================
-floppy_bootsig_check: disabled=0
+#floppy_bootsig_check: disabled=0
 
 #=======================================================================
 # LOG:
@@ -613,8 +612,8 @@ floppy_bootsig_check: disabled=0
 #   log: /dev/tty
 #=======================================================================
 #log: /dev/null
-log: ./clang-build/bochsout.txt
-log: ./cross-build/bochsout.txt
+#log: ./clang-build/bochsout.txt
+#log: ./cross-build/bochsout.txt
 
 #=======================================================================
 # LOGPREFIX:
@@ -630,7 +629,7 @@ log: ./cross-build/bochsout.txt
 #   logprefix: %t-%e-@%i-%d
 #   logprefix: %i%e%d
 #=======================================================================
-logprefix: %t%e%d
+#logprefix: %t%e%d
 
 #=======================================================================
 # LOG CONTROLS
@@ -658,10 +657,10 @@ logprefix: %t%e%d
 # cause bochs to become unstable.  The panic is a "graceful exit," so
 # if you disable it you may get a spectacular disaster instead.
 #=======================================================================
-panic: action=ask
-error: action=report
-info: action=report
-debug: action=ignore, pci=report # report BX_DEBUG from module 'pci'
+#panic: action=ask
+#error: action=report
+#info: action=report
+#debug: action=ignore, pci=report # Report BX_DEBUG from module 'pci'
 
 #=======================================================================
 # DEBUGGER_LOG:
@@ -673,7 +672,7 @@ debug: action=ignore, pci=report # report BX_DEBUG from module 'pci'
 #=======================================================================
 #debugger_log: /dev/null
 #debugger_log: debugger.out
-debugger_log: -
+#debugger_log: -
 
 #=======================================================================
 # COM1, COM2, COM3, COM4:
@@ -1132,6 +1131,135 @@ private_colormap: enabled=0
 #megs: 256
 #megs: 128
 #megs: 64
-#megs: 32
+megs: 32
 #megs: 16
 #megs: 8
+
+#=======================================================================
+# PLUGIN_CTRL:
+# Controls the presence of optional device plugins.
+#=======================================================================
+plugin_ctrl: serial=1
+
+#=======================================================================
+# CONFIG_INTERFACE:
+# The configuration interface is a series of menus or dialog boxes that
+# allows you to change all the settings that control Bochs's behavior.
+# ======================================================================
+config_interface: textconfig
+
+#=======================================================================
+# DISPLAY_LIBRARY:
+# The display library is the code that displays the Bochs VGA screen.
+#=======================================================================
+display_library: x
+
+#=======================================================================
+# MEMORY:
+# Set the amount of physical memory you want to emulate.
+#=======================================================================
+memory: guest=32, host=512
+
+#=======================================================================
+# ROMIMAGE:
+# The ROM BIOS controls what the PC does when it first powers on.
+#=======================================================================
+romimage: file=$BXSHARE/BIOS-bochs-latest
+
+#=======================================================================
+# VGAROMIMAGE
+# You now need to load a VGA ROM BIOS into C0000.
+#=======================================================================
+vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+
+#=======================================================================
+# VGA:
+# This defines parameters related to the VGA display
+#=======================================================================
+vga: extension=vbe, update_freq=60
+
+#=======================================================================
+# ATA0, ATA1, ATA2, ATA3:
+# ATA controller for hard disks and cdroms
+#=======================================================================
+ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+
+#=======================================================================
+# ATA[0-3]-MASTER, ATA[0-3]-SLAVE:
+# This defines the type and characteristics of all attached ata devices:
+# ======================================================================
+ata0-master: type=cdrom, path="boot.iso", status=inserted
+
+#=======================================================================
+# BOOT:
+# This defines the boot sequence.
+#=======================================================================
+boot: cdrom
+
+#=======================================================================
+# CLOCK:
+# This defines the parameters of the clock inside Bochs:
+#=======================================================================
+clock: sync=none, time0=local, rtc_sync=0
+
+#=======================================================================
+# LOG:
+# Give the path of the log file you'd like Bochs debug and misc. verbiage
+# to be written to.
+#=======================================================================
+log: bochsout.txt
+
+#=======================================================================
+# LOGPREFIX:
+# This handles the format of the string prepended to each log line.
+#=======================================================================
+logprefix: %t%e%d
+
+#=======================================================================
+# LOG CONTROLS:
+# Bochs has four severity levels for event logging.
+#   panic: cannot proceed. If you choose to continue after a panic,
+#     don't be surprised if you get strange behavior or crashes.
+#   error: something went wrong, but it is probably safe to continue the
+#     simulation.
+#   info: interesting or useful messages.
+#   debug: messages useful only when debugging the code.  This may
+#     spit out thousands per second.
+#======================================================================
+panic: action=ask
+error: action=report
+info: action=report
+debug: action=ignore
+
+#=======================================================================
+# DEBUGGER_LOG:
+# Give the path of the log file you'd like Bochs to log debugger output.
+#=======================================================================
+debugger_log: /dev/null
+
+#=======================================================================
+# COM1, COM2, COM3, COM4:
+# This defines a serial port (UART type 16550A).
+#=======================================================================
+com1: enabled=1, mode=file, dev=serial.out
+
+#=======================================================================
+# KEYBOARD:
+# This defines parameters related to the emulated keyboard
+#=======================================================================
+keyboard: type=mf, serial_delay=250
+
+#=======================================================================
+# MOUSE:
+# This defines parameters for the emulated mouse type, the initial status
+# of the mouse capture and the runtime method to toggle it.
+#=======================================================================
+mouse: enabled=1
+
+#======================================================================
+# Sound:
+# This defines the sound configuration, Disabled for now to fix ALSA
+# errors when running bochs.
+#======================================================================
+sound: waveoutdrv=dummy, waveindrv=alsa, midioutdrv=dummy
+
