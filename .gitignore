@@ -8,5 +8,8 @@ cross-build/
 # Ignore source directory for building cross-compiler
 src/
 
+bochsout.txt
+serial.log
+
 # Ignore kernel executable in iso-directory
 iso/boot/kernel.elf

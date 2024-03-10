@@ -14,11 +14,11 @@ echo ''
 echo "${YELLOW_TEXT}Building Ibox... ${NORMAL}"
 if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
-  ~/.local/bin/meson clang-build --cross-file cross-files/clang32.ini
+  ~/.local/bin/meson setup clang-build --cross-file cross-files/clang32.ini
   ninja --verbose -C clang-build
 elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
-  ~/.local/bin/meson clang-build --cross-file cross-files/clang64.ini
+  ~/.local/bin/meson setup clang-build --cross-file cross-files/clang64.ini
   ninja --verbose -C clang-build
 else
   echo "No build-arch found, halting... "

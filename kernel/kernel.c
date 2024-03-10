@@ -57,7 +57,7 @@ void kernel_init(uint32_t magic, uint32_t address)
     multiboot2_parse(address);
   }
 
-	/* Load kernel_main */
+  /* Load kernel_main */
   //kernel_main();
 }
 

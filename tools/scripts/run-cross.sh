@@ -36,11 +36,11 @@ echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"
 if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
-  ~/.local/bin/meson cross-build --cross-file cross-files/cross32.ini
+  ~/.local/bin/meson setup cross-build --cross-file cross-files/cross32.ini
   ninja --verbose -C cross-build
 elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
-  ~/.local/bin/meson cross-build --cross-file cross-files/cross64.ini
+  ~/.local/bin/meson setup cross-build --cross-file cross-files/cross64.ini
   ninja --verbose -C cross-build
 else
   echo "No build-arch found, halting... "
