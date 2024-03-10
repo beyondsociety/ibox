@@ -1,9 +1,9 @@
 # Specify the project
 project('ibox', 'c',
-	version : '0.0.5',
-	license : 'BSD 3-Clause',
-	meson_version : '>=0.60.0',
-	default_options : ['b_asneeded=false', 'b_lundef=false', 'buildtype=plain', 'c_std=c99'])
+  version : '0.0.5',
+  license : 'BSD 3-Clause',
+  meson_version : '>=0.60.0',
+  default_options : ['b_asneeded=false', 'b_lundef=false', 'buildtype=plain', 'c_std=c99'])
 
 # Directory for kernel files
 subdir('kernel')

@@ -14,7 +14,7 @@ endif
 # Generator that creates object files from assembler
 asm_gen = generator(nasm,
   output : '@BASENAME@.o',
-  arguments : ['-f', asm_format, '@INPUT@', '-o', '@OUTPUT@', '-F', 'dwarf'])
+  arguments : [ '-f', asm_format, '@INPUT@', '-o', '@OUTPUT@', '-F', 'dwarf' ])
 
 # Generator then processes the object files to assembler
 if host_machine.cpu_family() == 'x86'

@@ -24,7 +24,7 @@ endif
 compiler = meson.get_compiler('c')
   if compiler.get_id() == 'clang'
 	c_args = ['-Wall', '-Wextra']
-	link_args = ['-Wl,-T', linker_file, '-Wl,-m,elf_i386', '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
   else
 	compiler.get_id() == 'gcc'
 	c_args = ['-Wall', '-Wextra']

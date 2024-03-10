@@ -8,23 +8,23 @@ start:
   push ebx
   push eax
 
-  ;	mov ebx, 0xb8000
-  ;	mov al, '!'
-  ;	mov ah, 0x1F
-  ;	mov [ebx], ax
-  ;	jmp $
+  ;mov ebx, 0xb8000
+  ;mov al, '!'
+  ;mov ah, 0x1F
+  ;mov [ebx], ax
+  ;jmp $
 
   [extern kernel_init]
   call kernel_init
 
-	cli
+  cli
 .halt:
-	hlt
-	jmp .halt
+  hlt
+  jmp .halt
 
 [section .bss]
-  align 4096
-; align 16
+align 4096
+;align 16
 stack_bottom:
-  resb 16384
+ resb 16384
 stack_top:
