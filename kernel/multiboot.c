@@ -85,13 +85,13 @@ void multiboot_parse(multiboot_info_t *mbi)
 }
 
 //void multiboot2_parse(multiboot_tag_t *tag)
-void multiboot2_parse(uint32_t address)
+void multiboot2_parse(uint64_t address)
 //void multiboot2_parse()
 //void multiboot2_parse(struct multiboot_tag *tag)
 {
   printk("\nParsing Multiboot Info...\n");
 
-  unsigned size;
+  // unsigned size;
   //uint32_t address;
 
   struct multiboot_tag *tag;
@@ -106,7 +106,7 @@ void multiboot2_parse(uint32_t address)
     return;
   }
 
-  size = *(unsigned *) address;
+  // size = *(unsigned *) address;
   //printk("Announced mbi size 0x%x\n", size);
 
   for(tag = (struct multiboot_tag *)(address + 8);
@@ -156,9 +156,9 @@ void multiboot2_parse(uint32_t address)
             mmap = (multiboot_memory_map_t *) ((unsigned long) mmap + ((struct multiboot_tag_mmap *) tag)->entry_size))
               printk(" Base_address = 0x%x%x,"
                     " Length = 0x%x%x, Type = 0x%x\n",
-                    (unsigned) (mmap->address >> 32),
+                    // (unsigned) (mmap->address >> 32),
                     (unsigned) (mmap->address & 0xffffffff),
-                    (unsigned) (mmap->length >> 32),
+                    // (unsigned) (mmap->length >> 32),
                     (unsigned) (mmap->length & 0xffffffff),
                     (unsigned) mmap->type);
       }
@@ -166,11 +166,11 @@ void multiboot2_parse(uint32_t address)
 
       case MULTIBOOT_TAG_TYPE_FRAMEBUFFER:
       {
-        uint32_t color;
+        // uint32_t color;
         unsigned i;
 
         struct multiboot_tag_framebuffer *tagfb = (struct multiboot_tag_framebuffer *) tag;
-        void *fb = (void *) (unsigned long) tagfb->common.framebuffer_address;
+        // void *fb = (void *) (unsigned long) tagfb->common.framebuffer_address;
 
           printk("\nFramebuffer address: 0x%X, ", (uint32_t) tagfb->common.framebuffer_address);
           printk("Type: %u\n", tagfb->common.framebuffer_type);
@@ -183,24 +183,26 @@ void multiboot2_parse(uint32_t address)
           {
             case MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED:
             {
-              unsigned best_distance, distance;
-              struct multiboot_color *palette;
+              unsigned best_distance;
+              unsigned distance = 0;
+                
+              // struct multiboot_color *palette;
 
-              palette = tagfb->framebuffer_palette;
+              // palette = tagfb->framebuffer_palette;
 
-              color = 0;
+              // color = 0;
               best_distance = 4 * 256 * 256;
 
               for(i = 0; i < tagfb->framebuffer_palette_number_colors; i++)
               {
-                distance = (0xff - palette[i].blue)
-                  * (0xff - palette[i].blue)
-                  + palette[i].red * palette[i].red
-                  + palette[i].green * palette[i].green;
+                // distance = (0xff - palette[i].blue)
+                  // * (0xff - palette[i].blue)
+                  // + palette[i].red * palette[i].red
+                  // + palette[i].green * palette[i].green;
 
                 if(distance < best_distance)
                 {
-                  color = i;
+                  // color = i;
                   best_distance = distance;
                 }
               }
@@ -208,16 +210,16 @@ void multiboot2_parse(uint32_t address)
             break;
 
             case MULTIBOOT_FRAMEBUFFER_TYPE_RGB:
-              color = ((1 << tagfb->framebuffer_blue_mask_size) - 1)
-                << tagfb->framebuffer_blue_field_position;
+              // color = ((1 << tagfb->framebuffer_blue_mask_size) - 1)
+                // << tagfb->framebuffer_blue_field_position;
             break;
 
             case MULTIBOOT_FRAMEBUFFER_TYPE_EGA_TEXT:
-              color = '\\' | 0x0100;
+              // color = '\\' | 0x0100;
             break;
 
             default:
-              color = 0xffffffff;
+              // color = 0xffffffff;
             break;
           }
 

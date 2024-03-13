@@ -11,14 +11,14 @@
 
 /* Perform some preloading stuff */
 //void kernel_init(multiboot_info_t *mbi, unsigned long magic)
-void kernel_init(uint32_t magic, uint32_t address)
+void kernel_init(uint32_t magic, uint64_t address)
 //void kernel_init(unsigned long magic, unsigned long address)
 {
   multiboot_info_t *mbi;
   //unsigned long address;
 
   /* Set MBI to the address of the Multiboot information structure. */
-  //mbi = (multiboot_info_t *) address;
+  mbi = (multiboot_info_t *) address;
 
   //multiboot_info_t *mbi = (multiboot_info_t *) address;
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
@@ -40,7 +40,7 @@ void kernel_init(uint32_t magic, uint32_t address)
     {
       printk("magic number: 0x%x\n", (uint32_t) magic);
       printk("address number: 0x%x\n", (uint32_t) address);
-	  }
+    }
 
   /* If booting in 64-bit mode, continue booting without checking multiboot */
   #elif __x86_64__

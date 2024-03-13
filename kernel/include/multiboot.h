@@ -107,7 +107,7 @@ typedef struct multiboot_info
 
   /* Boot-Module list */
   uint32_t module_count;
-  uint32_t module_address;
+  uint64_t module_address;
 
   union
   {
@@ -117,7 +117,7 @@ typedef struct multiboot_info
 
   /* Memory Mapping buffer */
   uint32_t mmap_length;
-  uint32_t mmap_address;
+  uint64_t mmap_address;
 
   /* Drive Info buffer */
   uint32_t drives_length;

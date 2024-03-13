@@ -47,27 +47,26 @@
 } */
 
 /* Convert n to characters in s */
-void itoa(int32_t n, int8_t s[])
-{
-	int i, sign;
+//void itoa(int32_t n, int8_t s[])
+//{
+//	int i, sign;
 
-  if ((sign = n) < 0)  /* Record sign */
-  {
-    n = -n;           /* Make n positive */
-    i = 0;
-  }
+//  if ((sign = n) < 0)  /* Record sign */
+//  {
+//    n = -n;           /* Make n positive */
+//    i = 0;
+//  }
 
-	do
-	{                          /* Generate digits in reverse order */
-    s[i++] = n % 10 + '0';   /* Get next digit */
-  }
+//	do
+//	{                          /* Generate digits in reverse order */
+//    s[i++] = n % 10 + '0';   /* Get next digit */
+//  }
 
-	while ((n /= 10) > 0);     /* Delete it */
-	if (sign < 0)
-      s[i++] = '-';
-    s[i] = '\0';
-    reverse(s);
-}
+//	while ((n /= 10) > 0);     /* Delete it */
+//	if (sign < 0)
+//      s[i++] = '-';
+//    s[i] = '\0';
+//}
 
 /* Reverse string s in place */
 void reverse(int8_t s[])
