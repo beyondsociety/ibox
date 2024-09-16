@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # To supress libGL error on WSL2 when using VcXsrv Xserver.
 # Libgl error: No matching fbConfigs or visuals found, failed to load driver: swrast
@@ -24,5 +24,5 @@ fi
 if [ "$NAME" == "cross" ]; then
   qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}/boot.iso
 else [ "$NAME" == "clang" ]
-  qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}boot.iso
+  qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}/boot.iso
 fi

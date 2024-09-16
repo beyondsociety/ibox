@@ -1,7 +1,7 @@
 #ifndef INCLUDE_KERNEL_H
 #define INCLUDE_KERNEL_H
 
-#include <multiboot.h>
+//#include <multiboot.h>
 #include <multiboot2.h>
 #include <stdint.h>
 

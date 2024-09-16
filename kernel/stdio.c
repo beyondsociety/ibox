@@ -48,6 +48,7 @@ void gotoxy(int32_t x, int32_t y)
 int32_t putchar(int32_t c)
 {
   uint32_t video_index = 0;
+
   switch(c)
   {
     /* New line */
@@ -80,7 +81,7 @@ int32_t putchar(int32_t c)
         break;
 	    }
 
-      //break;
+      break;
 
       /* Tabulator */
       case '\t':
@@ -129,7 +130,7 @@ int32_t putchar(int32_t c)
 int32_t putc(int32_t c, UNUSED FILE *stream)
 {
   int32_t i;
-  i = putchar(c);
+  //i = putchar(c);
   return i;
 }
 

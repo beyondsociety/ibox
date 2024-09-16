@@ -1,24 +1,24 @@
 ;----------------------------------------------------------------------------------------
 ; Define constants for the Multiboot1 Header
 ;----------------------------------------------------------------------------------------
-MULTIBOOT_PAGE_ALIGN	    equ 1 << 0   ; Align loaded modules on page boundaries
-MULTIBOOT_MEMORY_INFO	    equ 1 << 1   ; Provide memory map
-MULTIBOOT_VIDEO		        equ 1 << 2   ; Video Information
+;MULTIBOOT_PAGE_ALIGN	    equ 1 << 0   ; Align loaded modules on page boundaries
+;MULTIBOOT_MEMORY_INFO	  equ 1 << 1   ; Provide memory map
+;MULTIBOOT_VIDEO		      equ 1 << 2   ; Video Information
 
-MULTIBOOT_HEADER_MAGIC	  equ 0x1badb002  ; 'magic number' lets bootloader find the header
-MULTIBOOT_HEADER_FLAGS	  equ MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO ; Multiboot flags
-MULTIBOOT_HEADER_CHECKSUM equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS) ; Multiboot Checksum
+;MULTIBOOT_HEADER_MAGIC	  equ 0x1badb002  ; 'magic number' lets bootloader find the header
+;MULTIBOOT_HEADER_FLAGS	  equ MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO | MULTIBOOT_VIDEO ; Multiboot flags
+;MULTIBOOT_HEADER_CHECKSUM equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS) ; Multiboot Checksum
 
-[section .multiboot]
-align 4
+;[section .multiboot]
+;align 4
 ;header1_start:
-	dd MULTIBOOT_HEADER_MAGIC
-	dd MULTIBOOT_HEADER_FLAGS
-	dd MULTIBOOT_HEADER_CHECKSUM
-	dd 0, 0, 0, 0, 0                     ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr
-	dd 1                                 ; 0 = linear graphics mode, 1 = EGA-standard text mode
-;	dd 800, 600, 32                      ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
-  dd 80, 25, 0
+;	dd MULTIBOOT_HEADER_MAGIC
+;	dd MULTIBOOT_HEADER_FLAGS
+;	dd MULTIBOOT_HEADER_CHECKSUM
+;	dd 0, 0, 0, 0, 0                     ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr
+;	dd 1                                 ; 0 = linear graphics mode, 1 = EGA-standard text mode
+  ;dd 800, 600, 32                     ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
+;  dd 80, 25, 0
 ;header1_end:
 
 ;----------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ console_tag_start:
   dw 4                                          ; Type = 4
   dw 0                                          ; Flags
   dd console_tag_end - console_tag_start        ; Size  = 12
-  dd 0x03  															       	; EGA text support, require console (Console: 0 + EGA text mode: 1)
+  dd 3    															        ; EGA text support, require console (Console: 0 + EGA text mode: 1) (0x03)
 console_tag_end:
 
 ; Framebuffer Graphics
@@ -80,11 +80,11 @@ console_tag_end:
 ;  dw 0                                         ; Flags, none set
 ;  dd 8                                         ; Size, including itself (short + short + long)
 
-; Framebuffer Text
+; Framebuffer Text (there does not work since we havent written a framebuffer driver yet, use consols instead) 
 ;align 8
 ;framebuffer_text_tag_start:
 ;  dw MULTIBOOT_HEADER_TAG_FRAMEBUFFER          ; Type = 5
-;  dw 1                                         ; Flags (Optional, 1 = text mode)
+;  dw 1                                         ; Flags (Optional, 2 = EGA text mode)
 ;  dd framebuffer_text_tag_end - framebuffer_text_tag_start ; Size = 12
 ;  dd 80                                        ; Width (80)
 ;  dd 25                                        ; Height (25)
