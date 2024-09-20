@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # To supress libGL error on WSL2 when using VcXsrv Xserver.
 # Libgl error: No matching fbConfigs or visuals found, failed to load driver: swrast

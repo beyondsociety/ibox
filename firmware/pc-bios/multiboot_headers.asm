@@ -16,9 +16,8 @@
 ;	dd MULTIBOOT_HEADER_FLAGS
 ;	dd MULTIBOOT_HEADER_CHECKSUM
 ;	dd 0, 0, 0, 0, 0                     ; Aout kluge info - header_addr, load_addr, load_end_addr, bss_end_addr, entry_addr
-;	dd 1                                 ; 0 = linear graphics mode, 1 = EGA-standard text mode
-  ;dd 800, 600, 32                     ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
-;  dd 80, 25, 0
+;	dd 1                                 ; 0 = linear graphics mode, 1 = EGA-standard text mode;dd 800, 600, 32                     ; Width (Horizontal pixels), Height (Vertical pixels), Bit Depth
+  ;dd 80, 25, 0
 ;header1_end:
 
 ;----------------------------------------------------------------------------------------

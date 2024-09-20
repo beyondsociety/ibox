@@ -1261,5 +1261,5 @@ mouse: enabled=1
 # This defines the sound configuration, Disabled for now to fix ALSA
 # errors when running bochs.
 #======================================================================
-sound: waveoutdrv=dummy, waveindrv=alsa, midioutdrv=dummy
+sound: waveoutdrv=dummy, waveindrv=dummy, midioutdrv=dummy
 

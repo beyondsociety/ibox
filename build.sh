@@ -31,6 +31,7 @@ while [ opt != '' ]
     else
       case $opt in
 
+  # Script to run Ibox with gcc cross-compiler
   1) clear;
 	  echo '';
     sh ./tools/scripts/run-cross.sh 
@@ -38,6 +39,7 @@ while [ opt != '' ]
 	  show_menu;
 	;;
 
+  # Script to build Ibox wtih clang (compiler) 
 	2) clear;
 	  echo '';
 	  sh ./tools/scripts/run-clang.sh
@@ -45,16 +47,19 @@ while [ opt != '' ]
 	  show_menu;
 	;;
 
+  # Script to build a gcc cross-compiler for Ibox 
 	3) clear;
 	  echo '';
-	  echo "Please specify a build-target (i686-elf or x86_64-elf) and prefix-dir (location of toolchain) \
-	    to build the toolchain"; sleep 3;
-	  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET; read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
-          sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
+	  echo -e "${YELLOW_TEXT}Please specify a build-target ${GREEN_TEXT}(i686-elf or x86_64-elf) ${NORMAL}and prefix-dir ${GREEN_TEXT}(location of toolchain) ${NORMAL}to build the toolchain"; 
+    sleep 3;
+	  
+    read -p $'\e[1;32mbuild-target\e[0m: ' TARGET; read -p $'\e[1;32mprefix-dir\e[0m: ' PREFIX
+      sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 	  echo '';
 	  show_menu;
 	;;
 
+  # Script to run Ibox on Qemu (Emulator)
 	4) clear;
 	  echo '';
 	  read -p $'\e[1;33mPass the name of the build-toolchain for Qemu to run (cross or clang)\e[0m: ' NAME
@@ -63,13 +68,14 @@ while [ opt != '' ]
 	    elif [ "$NAME" == "clang" ]; then 
 	      ninja -C clang-build qemu
       else  
-        echo -e ${GREEN_TEXT}"No build-toolchain found, must be either cross or clang"${NORMAL}
+        echo -e ${GREEN_TEXT}"No build-toolchain found, must be either cross or clang" ${NORMAL}
       fi
       
 	  echo '';
 	  show_menu;
 	;;
 
+  # Script to run Ibox on Bochs (Emulator)
 	5) clear;
 	  echo '';
 	  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run (cross or clang)\e[0m: ' NAME
@@ -78,7 +84,7 @@ while [ opt != '' ]
 	    elif [ "$NAME" == "clang" ]; then
 	      ninja -C clang-build bochs
       else
-        echo -e ${GREEN_TEXT}"No build-toolchain found, must be either cross or clang"${NORMAL} 
+        echo -e ${GREEN_TEXT}"No build-toolchain found, must be either cross or clang" ${NORMAL} 
 	    fi
 	  
     echo '';
