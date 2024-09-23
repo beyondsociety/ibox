@@ -2,7 +2,7 @@
 #include <kernel.h>
 #include <io.h>
 #include <lfbvideo.h>
-#include <multiboot.h>
+#include <multiboot2.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -11,7 +11,7 @@
 
 /* Perform some preloading stuff */
 //void kernel_init(multiboot_info_t *mbi, unsigned long magic)
-void kernel_init(uint32_t magic, uint64_t address)
+void kernel_init(uint64_t address)
 //void kernel_init(unsigned long magic, unsigned long address)
 {
   //multiboot_info_t *mbi;
@@ -21,7 +21,7 @@ void kernel_init(uint32_t magic, uint64_t address)
   //mbi = (multiboot_info_t *) address;
 
   //multiboot_info_t *mbi = (multiboot_info_t *) address;
-  struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
+  //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
 
   /* Clear the screen */
   clear_screen();
@@ -29,6 +29,9 @@ void kernel_init(uint32_t magic, uint64_t address)
   /* To fix issue of mulitboot structure being overriden in 64-bit mode
    * If booting 32-bit mode, continue check of multiboot */
   #if __i386__
+
+    uint32_t magic = 0;
+
     /* Make sure we're booted by a multiboot loader */
     //if((magic != MULTIBOOT_BOOTLOADER_MAGIC) && (magic != MULTIBOOT2_BOOTLOADER_MAGIC))
 	  if(magic != MULTIBOOT2_BOOTLOADER_MAGIC)
@@ -58,10 +61,7 @@ void kernel_init(uint32_t magic, uint64_t address)
     multiboot2_parse(address);
   } */
 
-  if(magic == MULTIBOOT2_BOOTLOADER_MAGIC)
-  {
-    multiboot2_parse(address);
-  }
+  multiboot2_parse(address);
 
   /* Load kernel_main */
   //kernel_main();
