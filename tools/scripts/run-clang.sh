@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 GREEN_TEXT='\033[1;32m'       # Bold Green
-YELLOW_TEXT='\033[1;33m'      # Bold Yellow
+YELLOW_TEXT='\033[1;33m'      # Bold Yellow e
 NORMAL='\033[0;m'             # No Color
 
-read -p "$(echo -e ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox ${GREEN_TEXT}(x86 or x86-64)${YELLOW_TEXT}:") ${NORMAL}" ARCH
+read -p "$(echo -e ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox${GREEN_TEXT} (x86 or x86-64):${YELLOW_TEXT}" ${NORMAL})" ARCH     
+#read -p "$(echo -e ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox ${GREEN_TEXT}(x86 or x86-64):${YELLOW_TEXT}") ${NORMAL}" ARCH
 
 echo ''
 echo -e "${GREEN_TEXT}Removing build directory for new build... ${NORMAL}"

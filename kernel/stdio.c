@@ -130,7 +130,7 @@ int32_t putchar(int32_t c)
 int32_t putc(int32_t c, UNUSED FILE *stream)
 {
   int32_t i;
-  //i = putchar(c);
+  i = putchar(c);
   return i;
 }
 
