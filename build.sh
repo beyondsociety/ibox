@@ -62,7 +62,7 @@ while [ opt != '' ]
   # Script to run Ibox on Qemu (Emulator)
 	4) clear;
 	  echo '';
-	  read -p $'\e[1;33mPass the name of the build-toolchain for Qemu to run (cross or clang)\e[0m: ' NAME
+	  read -p $'\e[1;33mPass the name of the build-toolchain for Qemu to run \e[1;32m(cross or clang)\e[0m: ' NAME
 	    if [ "$NAME" == "cross" ]; then
 	      ninja -C cross-build qemu
 	    elif [ "$NAME" == "clang" ]; then 
