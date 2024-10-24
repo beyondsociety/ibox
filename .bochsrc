@@ -855,7 +855,7 @@
 #   mouse: type=serial, enabled=1
 #   mouse: enabled=0, toggle=ctrl+f10
 #=======================================================================
-mouse: enabled=0
+#mouse: enabled=0
 
 #=======================================================================
 # private_colormap: Request that the GUI create and use it's own
@@ -868,7 +868,7 @@ mouse: enabled=0
 #   private_colormap: enabled=1
 #   private_colormap: enabled=0
 #=======================================================================
-private_colormap: enabled=0
+#private_colormap: enabled=0
 
 #=======================================================================
 # fullscreen: ONLY IMPLEMENTED ON AMIGA
@@ -1131,7 +1131,7 @@ private_colormap: enabled=0
 #megs: 256
 #megs: 128
 #megs: 64
-megs: 32
+#megs: 32
 #megs: 16
 #megs: 8
 
@@ -1152,7 +1152,7 @@ config_interface: textconfig
 # DISPLAY_LIBRARY:
 # The display library is the code that displays the Bochs VGA screen.
 #=======================================================================
-display_library: x
+display_library: sdl2
 
 #=======================================================================
 # MEMORY:
@@ -1165,6 +1165,8 @@ memory: guest=32, host=512
 # The ROM BIOS controls what the PC does when it first powers on.
 #=======================================================================
 romimage: file=$BXSHARE/BIOS-bochs-latest
+#romimage: file="$BXSHARE/BIOS-bochs-latest", address=0xe0000
+#romimage: file="$BXSHARE/BIOS-bochs-legacy"
 
 #=======================================================================
 # VGAROMIMAGE
@@ -1188,7 +1190,7 @@ ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
 # ATA[0-3]-MASTER, ATA[0-3]-SLAVE:
 # This defines the type and characteristics of all attached ata devices:
 # ======================================================================
-ata0-master: type=cdrom, path="boot.iso", status=inserted
+ata0-master: type=cdrom, path="/home/beyondsociety/repos/ibox/cross-build/boot.iso", status=inserted
 
 #=======================================================================
 # BOOT:

@@ -17,12 +17,12 @@ if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
   echo "${GREEN_TEXT}Found cross-compiler: ${NORMAL}\c"
   find /usr -name $TARGET32 -print -quit 2>/dev/null
-  #export PATH="$PREFIX32/bin:$PATH"
+  export PATH="$PREFIX32/bin:$PATH"
 elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
   echo "${YELLOW_TEXT}Found cross-compiler: ${NORMAL}\c"
   find /usr -name $TARGET64 -print -quit 2>/dev/null
-  #export PATH="$PREFIX64/bin:$PATH"
+  export PATH="$PREFIX64/bin:$PATH"
 else
   echo "No cross-compiler found, halting... "
   exit 1
@@ -31,6 +31,8 @@ fi
 echo ''
 echo "${YELLOW_TEXT}Removing build directiory for new build...${NORMAL}"
 rm -rfv ./cross-build
+
+#mkdir -p ./cross-build
 
 echo ''
 echo "${GREEN_TEXT}Building Ibox... ${NORMAL}"

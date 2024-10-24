@@ -22,7 +22,7 @@ inc_dirs = include_directories('kernel/include')
 # Executable
 image = executable(
 	'kernel.elf',
-	asm_srcs, kernel_srcs,
+  asm_srcs, kernel_srcs,
 	c_args : c_args,
 	link_args : link_args,
 	include_directories : inc_dirs,

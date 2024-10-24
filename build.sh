@@ -28,17 +28,18 @@ while [ opt != '' ]
       exit;
     else
       case $opt in
-	1) clear;
+
+  1) clear;
 	  echo '';
-      	  sh ./tools/scripts/run-cross.sh 
-      	  echo '';
+      sh ./tools/scripts/run-cross.sh 
+      echo '';
 	  show_menu;
 	  ;;
 
 	2) clear;
 	  echo '';
-	  sh ./tools/scripts/run-clang.sh
-	  echo '';
+	    sh ./tools/scripts/run-clang.sh
+	    echo '';
 	  show_menu;
 	  ;;
 
@@ -47,7 +48,7 @@ while [ opt != '' ]
 	  echo "Please specify a build-target (i686-elf or x86_64-elf)and prefix-dir (location of toolchain) \
 	    to build the toolchain"; sleep 3;
 	  read -p $'\e[1;33mbuild-target\e[0m: ' TARGET; read -p $'\e[1;33mprefix-dir\e[0m: ' PREFIX
-          sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
+      sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 	  echo '';
 	  show_menu;
 	  ;;
@@ -57,9 +58,9 @@ while [ opt != '' ]
 	  read -p $'\e[1;33mPass the name of the build-tool for Qemu to run (cross or clang)\e[0m: ' NAME
 
 	  if [ "$NAME" == "cross" ]; then
-	    ninja -C cross-build qemu
+	    ninja --verbose -C cross-build qemu
 	  else [ "$NAME" == "clang" ];
-	    ninja -C clang-build qemu
+	    ninja --verbose -C clang-build qemu
 	  fi
 	  echo '';
 	  show_menu;
@@ -68,10 +69,10 @@ while [ opt != '' ]
 	5) clear;
 	  echo '';
 	  read -p $'\e[1;33mPass the name of the build-tool for Bochs to run (cross or clang)\e[0m: ' NAME
-          if [ "$NAME" == "cross" ]; then
-	    ninja -C cross-build bochs
+    if [ "$NAME" == "cross" ]; then
+	    ninja --verbose -C cross-build bochs
 	  else [ "$NAME" == "clang" ]
-	    ninja -C clang-build bochs
+	    ninja --verbose -C clang-build bochs
 	  fi
 	  echo '';
 	  show_menu;
@@ -83,7 +84,7 @@ while [ opt != '' ]
 
 	# Clears the screen and shows memu
 	*) clear;
-	  show_menu;
+	    show_menu;
 	  ;;
 	  esac
   fi

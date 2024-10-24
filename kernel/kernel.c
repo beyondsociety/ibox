@@ -24,7 +24,7 @@ void kernel_init(uint32_t magic, uint64_t address)
   //struct multiboot_tag *tag = (struct multiboot_tag *)(address + 8);
 
 	/* Clear the screen */
-	//clear_screen();
+	clear_screen();
 
   /* To fix issue of mulitboot structure being overriden in 64-bit mode
    * If booting 32-bit mode, continue check of multiboot */
