@@ -8,11 +8,11 @@ SECTIONS
 	/* Load kernel at 1MB */
 	. = KERNEL_LMA;
 
-	.multiboot :
-  {
+	/* .multiboot :
+  {*/
 	 	/* Ensure the multiboot header is at the beginning */
-  	KEEP(*(.multiboot))
-  }
+  	/* KEEP(*(.multiboot))
+  } */
 
 	.multiboot2 :
   {

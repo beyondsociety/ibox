@@ -1,7 +1,7 @@
 #ifndef INCLUDE_KERNEL_H
 #define INCLUDE_KERNEL_H
 
-#include <multiboot.h>
+//#include <multiboot.h>
 #include <multiboot2.h>
 #include <stdint.h>
 
@@ -21,8 +21,9 @@
 
 /* Functions */
 //void kernel_init(multiboot_info_t *mbi, unsigned long magic);
-void kernel_init(uint32_t magic, uint64_t address);
+//void kernel_init(uint32_t magic, uint64_t address);
 //void kernel_init(unsigned long magic, unsigned long address);
+void kernel_init(uint64_t address);
 void kernel_main(void);
 
 #endif

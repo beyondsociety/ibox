@@ -1,10 +1,10 @@
-#!bin/bash
+#!/usr/bin/env bash
 
 GREEN_TEXT='\033[1;32m'       # Bold Green
-YELLOW_TEXT='\033[1;33m'      # Bold Yellow
+YELLOW_TEXT='\033[1;33m'      # Bold Yellow e
 NORMAL='\033[0;m'             # No Color
 
-read -p "$(echo ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox (x86 or x86-64): "${NORMAL})" ARCH
+read -p "$(echo ${YELLOW_TEXT}"Please specify a build-arch so we can build Ibox${GREEN_TEXT} (x86 or x86-64):${YELLOW_TEXT}" ${NORMAL})" ARCH     
 
 echo ''
 echo "${GREEN_TEXT}Removing build directory for new build... ${NORMAL}"
@@ -14,14 +14,14 @@ echo ''
 echo "${YELLOW_TEXT}Building Ibox... ${NORMAL}"
 if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
-  ~/.local/bin/meson setup clang-build --cross-file cross-files/clang32.ini
+  meson setup clang-build --cross-file cross-files/clang32.ini
   ninja --verbose -C clang-build
 elif [ "$ARCH" = "x86-64" ]; then
   # 64-bit stuff here
-  ~/.local/bin/meson setup clang-build --cross-file cross-files/clang64.ini
+  meson setup clang-build --cross-file cross-files/clang64.ini
   ninja --verbose -C clang-build
 else
-  echo "No build-arch found, halting... "
+  echo "${YELLOW_TEXT}No build-arch found, halting... "
   exit 1
 fi
 

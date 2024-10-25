@@ -48,6 +48,7 @@ void gotoxy(int32_t x, int32_t y)
 int32_t putchar(int32_t c)
 {
   uint32_t video_index = 0;
+
   switch(c)
   {
     /* New line */
@@ -80,7 +81,7 @@ int32_t putchar(int32_t c)
         break;
 	    }
 
-      //break;
+      break;
 
       /* Tabulator */
       case '\t':
@@ -151,28 +152,28 @@ int my_printf(const char *format, ...)
                 case 'd':
                 {
                     int x = va_arg(args, int);
-                    printf("%d", x);
+                    //printf("%d", x);
                     break;
                 }
 
                 case 'f':
                 {
                     double x = va_arg(args, double);
-                    printf("%f", x);
+                    //printf("%f", x);
                     break;
                 }
 
                 case 'c':
                 {
                     int x = va_arg(args, int);
-                    printf("%c", x);
+                    //printf("%c", x);
                     break;
                 }
 
                 case 's':
                 {
                     char *x = va_arg(args, char*);
-                    printf("%s", x);
+                    //printf("%s", x);
                     break;
                 }
 
@@ -180,14 +181,14 @@ int my_printf(const char *format, ...)
                 case 'X':
                 {
                     int x = va_arg(args, int);
-                    printf("%x", x);
+                    //printf("%x", x);
                     break;
                 }
 
                 case 'p':
                 {
                     void *x = va_arg(args, void*);
-                    printf("%p", x);
+                    //printf("%p", x);
                     break;
                 }
 

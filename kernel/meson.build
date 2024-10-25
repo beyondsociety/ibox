@@ -23,11 +23,11 @@ endif
 # Compiler options based on type of compiler used
 compiler = meson.get_compiler('c')
   if compiler.get_id() == 'clang'
-	c_args = ['-Wall', '-Wextra']
-	link_args = ['-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
+	  c_args = [ '-Wall', '-Wextra' ]
+	  link_args = [ '-Wl,-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc' ]
   else
 	compiler.get_id() == 'gcc'
-	c_args = ['-Wall', '-Wextra']
-	link_args = ['-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc']
-        #link_args = ['-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc']
-endif
+	  c_args = [ '-Wall', '-Wextra' ]
+	  link_args = [ '-T', linker_file, '-Wl,-Map=info.map', '-Wl,-L,libgcc' ]
+    #link_args = [ '-T', arch_linker_file, '-Wl,-Map=info.map', '-lgcc' ]
+  endif

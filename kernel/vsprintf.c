@@ -44,7 +44,7 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 	      /* Found %, get next char and advance state to check if next char is a flag */
         state++;
           fmt++;
-        //break;
+        break;
 
       /* STATE 1: AWAITING FLAGS (%-0) */
       case 1:
@@ -75,19 +75,19 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
               fmt++;
           }
 
-            //break;
+          break;
 
         /* STATE 2: AWAITING (NUMERIC) FIELD WIDTH */
         case 2:
           if(*fmt >= '0' && *fmt <= '9')
-            {
-              given_wd = 10 * given_wd + (uint32_t)(*fmt - '0');
-                break;
-            }
+          {
+            given_wd = 10 * given_wd + (uint32_t)(*fmt - '0');
+              break;
+          }
 
-            /* Not field width: advance state to check if it's a modifier */
-            state++;
-              //break;
+          /* Not field width: advance state to check if it's a modifier */
+          state++;
+            break;
 
         /* STATE 3: AWAITING MODIFIER CHARS (FNlh) */
         case 3:
@@ -116,18 +116,19 @@ int do_printf(const int8_t *fmt, va_list args, fnptr_t fn, void *ptr)
 
           /* Not modifier: advance state to check if it's a conversion char */
           state++;
-            //break;
+            break;
 
         /* STATE 4: AWAITING CONVERSION CHARS (Xxpndiuocs) */
         case 4:
           where = buffer + PR_BUFLEN - 1;
             *where = '\0';
 
+          /* FALLTHRU */
           switch(*fmt)
           {
             case 'X':
               flags |= PR_CA;
-                //break;
+                break;
 
             /* xxx - Far pointers (%Fp, %Fn) not yet supported */
             case 'x':
@@ -268,6 +269,7 @@ EMIT2:
     default:
       break;
       }
+        /* FALLTHRU */
         default:
           state = flags = given_wd = 0;
         break;

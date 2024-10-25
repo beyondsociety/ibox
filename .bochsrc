@@ -1152,7 +1152,7 @@ config_interface: textconfig
 # DISPLAY_LIBRARY:
 # The display library is the code that displays the Bochs VGA screen.
 #=======================================================================
-display_library: sdl2
+display_library: x
 
 #=======================================================================
 # MEMORY:
@@ -1263,5 +1263,5 @@ mouse: enabled=1
 # This defines the sound configuration, Disabled for now to fix ALSA
 # errors when running bochs.
 #======================================================================
-sound: waveoutdrv=dummy, waveindrv=alsa, midioutdrv=dummy
+sound: waveoutdrv=dummy, waveindrv=dummy, midioutdrv=dummy
 

@@ -3,20 +3,21 @@
 #include <string.h>
 
 /* Convert an integer into a string */
-/*int8_t *itoa(int32_t n, int8_t *s, int32_t base)
+int8_t *itoa(int32_t n, int8_t *s, int32_t base)
 {
-  int32_t j, i = 0;
-  int32_t temp[20];
+  int32_t j = 0; 
+  size_t i = 0;
+  int8_t temp[20];
   int32_t digit;
 
   do
   {
     j = n;
-    n /= base; // Divide number by base
-    n *= base; // Multiply number by base to isolate the digit
+    n /= base; /* Divide number by base */
+    n *= base; /* Multiply number by base to isolate the digit */
     digit = j - n;
 
-    // Change the numerical digit to printable ASCII value
+    /* Change the numerical digit to printable ASCII value */
     if(digit <= 9)
     {
       temp[i] = digit + '0';
@@ -27,46 +28,90 @@
       temp[i] = digit - 0x0A + 'A';
     }
 
-    n /= base; // Divide number by base again to get to the next digit
+    n /= base; /* Divide number by base again to get to the next digit */
     i++;
   }
 
   while(n != 0);
-  temp[i] = '\0'; // Add the terminator
+  temp[i] = '\0'; /* Add the terminator */
 
-  // Reserve the string
+  /* Reserve the string */
   j = strlen(temp) - 1;
 
   for(i = 0; i < strlen(temp); i++)
   {
     s[i] = temp[j];
-    j--; // Decrement j while incrementing i
+    j--; /* Decrement j while incrementing i */
   }
 
-  s[i] = '\0'; // Terminate the string 
-} */
+  s[i] = '\0'; /* Terminate the string */
+
+  return 0;
+} 
 
 /* Convert n to characters in s */
-//void itoa(int32_t n, int8_t s[])
-//{
-//	int i, sign;
+/* void itoa(int32_t n, int8_t s[])
+{
+	int i, sign;
 
-//  if ((sign = n) < 0)  /* Record sign */
-//  {
-//    n = -n;           /* Make n positive */
-//    i = 0;
-//  }
+  if((sign = n) < 0)  // Record sign 
+  {
+    n = -n;           // Make n positive 
+    i = 0;
+  }
 
-//	do
-//	{                          /* Generate digits in reverse order */
-//    s[i++] = n % 10 + '0';   /* Get next digit */
-//  }
+	do
+	{                          // Generate digits in reverse order 
+    s[i++] = n % 10 + '0';   // Get next digit 
+  }
 
-//	while ((n /= 10) > 0);     /* Delete it */
-//	if (sign < 0)
-//      s[i++] = '-';
-//    s[i] = '\0';
-//}
+	while ((n /= 10) > 0);     // Delete it 
+	if(sign < 0)
+    s[i++] = '-';
+    s[i] = '\0';
+} */
+
+/*void itoa (char *buf, int base, int d)
+{
+  char *p = buf;
+  char *p1, *p2;
+  unsigned long ud = d;
+  int divisor = 10;
+  
+  // If %d is specified and D is minus, put ‘-’ in the head. 
+  if (base == 'd' && d < 0)
+    {
+      *p++ = '-';
+      buf++;
+      ud = -d;
+    }
+  else if (base == 'x')
+    divisor = 16;
+
+  // Divide UD by DIVISOR until UD == 0. 
+  do
+    {
+      int remainder = ud % divisor;
+      
+      *p++ = (remainder < 10) ? remainder + '0' : remainder + 'a' - 10;
+    }
+  while (ud /= divisor);
+
+  // Terminate BUF. 
+  *p = 0;
+  
+  // Reverse BUF. 
+  p1 = buf;
+  p2 = p - 1;
+  while (p1 < p2)
+    {
+      char tmp = *p1;
+      *p1 = *p2;
+      *p2 = tmp;
+      p1++;
+      p2--;
+    }
+} */
 
 /* Reverse string s in place */
 void reverse(int8_t s[])
