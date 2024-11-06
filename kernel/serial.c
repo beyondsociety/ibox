@@ -24,7 +24,6 @@ int serial_received()
 char read_serial()
 {
    while (serial_received() == 0);
-
    return inportb(PORT);
 }
 

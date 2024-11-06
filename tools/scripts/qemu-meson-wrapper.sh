@@ -22,7 +22,7 @@ fi
 
 # Run image from build folder (cross = cross-compiled build, clang = clang/llvm build)
 if [ "$NAME" == "cross" ]; then
-  qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}/boot.iso
+  qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}/cross-build/boot.iso
 else [ "$NAME" == "clang" ]
   qemu-system-x86_64 -net none -boot order=d -vga std -serial file:${PWD}/serial.log -cdrom ${PWD}/boot.iso
 fi

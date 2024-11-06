@@ -419,7 +419,7 @@ struct multiboot_tag_load_base_addr
 };
 
 //void multiboot2_parse(multiboot_tag_t *tag);
-void multiboot2_parse();
+void multiboot2_parse(uint64_t adress);
 
 //#endif /* ! ASM_FILE */
 #endif /* ! MULTIBOOT_HEADER */

@@ -5,8 +5,9 @@
 /* Convert an integer into a string */
 int8_t *itoa(int32_t n, int8_t *s, int32_t base)
 {
-  int32_t j, i = 0;
-  int32_t temp[20];
+  int32_t j = 0; 
+  size_t i = 0;
+  int8_t temp[20];
   int32_t digit;
 
   do
@@ -44,6 +45,8 @@ int8_t *itoa(int32_t n, int8_t *s, int32_t base)
   }
 
   s[i] = '\0'; /* Terminate the string */
+
+  return 0;
 } 
 
 /* Convert n to characters in s */

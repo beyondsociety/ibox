@@ -123,14 +123,14 @@ int32_t putchar(int32_t c)
   gotoxy(screen_x, screen_y);
 
   /* For the moment, putch() always returns 1 which means everything is fine */
-  return 1;
+  return 0;
 }
 
 /* Frontend for putchar() */
 int32_t putc(int32_t c, UNUSED FILE *stream)
 {
   int32_t i;
-  //i = putchar(c);
+  i = putchar(c);
   return i;
 }
 
