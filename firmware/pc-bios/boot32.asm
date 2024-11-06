@@ -4,11 +4,6 @@ global start
 start:
    cli  
   
-   ;lidt [IDT]                        ; Load a zero length IDT so that any NMI causes a triple fault.
-  ;sti
-
-  ;jmp $
-
   ; Setup a kernel stack
   mov esp, stack_top
 

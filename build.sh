@@ -33,7 +33,7 @@ while [ opt != '' ]
 
   1) clear;
 	  echo '';
-      sh ./tools/scripts/run-cross.sh 
+      ./tools/scripts/run-cross.sh 
       echo '';
 	  show_menu;
 	  ;;
@@ -41,7 +41,7 @@ while [ opt != '' ]
   # Script to build Ibox wtih clang (compiler) 
 	2) clear;
 	  echo '';
-	    sh ./tools/scripts/run-clang.sh
+	    ./tools/scripts/run-clang.sh
 	    echo '';
 	  show_menu;
 	;;
@@ -49,11 +49,11 @@ while [ opt != '' ]
   # Script to build a gcc cross-compiler for Ibox 
 	3) clear;
 	  echo '';
-	  echo -e "${YELLOW_TEXT}Please specify a build-target ${GREEN_TEXT}(i686-elf or x86_64-elf) ${NORMAL}and prefix-dir ${GREEN_TEXT}(location of toolchain) ${NORMAL}to build the toolchain"; 
+	  echo -e "${YELLOW_TEXT}Please specify a build-target ${GREEN_TEXT}(i686-elf or x86_64-elf) $YELLOW_TEXT}and prefix-dir ${GREEN_TEXT}(location of toolchain) ${YELLOW_TEXT}to build the toolchain:"${NORMAL}; 
     sleep 3;
 	  
     read -p $'\e[1;32mbuild-target\e[0m: ' TARGET; read -p $'\e[1;32mprefix-dir\e[0m: ' PREFIX
-      sh ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
+      ./tools/scripts/cross-compiler.sh $TARGET $PREFIX
 	  echo '';
 	  show_menu;
 	;;
