@@ -9,15 +9,20 @@ export LIBGL_ALWAYS_INDIRECT=1
 export NO_AT_BRIDGE=1
 
 # To run the X terminal in WSL, we must export the display which is different for versions 1 and 2.
-# WSL2 uses the windows ip address to connect to the network host (nameserver) while WSL uses the localhost (127.0.0.1)
+# If using WSL2 on Windows 10/11. will use the windows ip address to connect to the network host (nameserver) when using a third party
+#   X server to run. If we are using WSLG on WIndows 11, use the localhost (127.0.0.1) just like we would on WSL1.
 if [[ "$(</proc/sys/kernel/osrelease)" == *microsoft* ]]; then
   echo Running on WSl2
-  export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+  # We are using WSLg on windows 11, so we are using export DISPALY=:0. if we were using WSL2 on Windows 10/11 with a third-party 
+  #   X server, we would use "export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0"
+  # See https://askubuntu.com/questions/1299323/how-to-set-up-display-variable-for-wsl2-of-ubuntu-20 for more info.
+  export DISPLAY=:0
 elif [[ "$(</proc/sys/kernel/osrelease)" == *Microsoft* ]]; then
   echo Running on WSL1
+  # For Windows 10/11 under WSL1 using a third-party X server to run
   export DISPLAY=:0
 else
-  echo WSL1/WSL2 not detected, must be runing on Linux
+  echo WSL1/WSL2 not detected, must be runing on Linux.
 fi
 
 # Run image from build folder (cross = cross-compiled build, clang = clang/llvm build)

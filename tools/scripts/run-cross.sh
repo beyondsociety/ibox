@@ -11,17 +11,16 @@ PREFIX32="/usr/local/cross32" # Location ofi 32-bit cross-compiler directory
 PREFIX64="/usr/local/cross64" # Location of 64-bit cross-compiler directory
 
 read -p "$(echo -e ${GREEN_TEXT}"Please specify a build-arch so we can build Ibox${YELLOW_TEXT} (x86 or x86-64):${GREEN_TEXT}" ${NORMAL})" ARCH          
-if [ "$ARCH" == "x86" ]; then
+if [ "$ARCH" = "x86" ]; then
   # 32-bit stuff here
+  echo -e "${YELLOW_TEXT}Found cross-compiler: ${NORMAL}\c"
+  find /usr -name $TARGET32 -print -quit 2>/dev/null
+  export PATH="$PREFIX32/bin:$PATH"
+elif [ "$ARCH" = "x86-64" ]; then
+  # 64-bit stuff here
   echo -e "${YELLOW_TEXT}Found cross-compiler: ${NORMAL}\c"
   find /usr -type f -name $TARGET32 -print -quit 2>/dev/null
   export PATH="$PREFIX32/bin:$PATH"
-
-elif [ "$ARCH" == "x86-64" ]; then
-  # 64-bit stuff here
-  echo -e "${YELLOW_TEXT}Found cross-compiler: ${NORMAL}\c"
-  find /usr -type f -name $TARGET64 -print -quit 2>/dev/null
-  export PATH="$PREFIX64/bin:$PATH"
 else
   echo -e "${YELLOW_TEXT}No compiler found, halting... ${NORMAL}"
   exit 1
@@ -30,6 +29,8 @@ fi
 echo ''
 echo -e "${GREEN_TEXT}Removing build directiory for new build...${NORMAL}"
 rm -rfv ./cross-build
+
+#mkdir -p ./cross-build
 
 echo ''
 echo -e "${YELLOW_TEXT}Building Ibox... ${NORMAL}"

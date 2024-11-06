@@ -11,8 +11,9 @@ endif
 kernel_srcs = files(
 	'bga.c', 'kernel.c',
 	'io.c', 'multiboot.c',
-	'stdio.c', 'string.c',
-	'terminal.c', 'vsprintf.c')
+  'serial.c', 'stdio.c',
+  'string.c', 'terminal.c', 
+  'vsprintf.c')
 
 # Pass compiler and linker args from cross-file to Ibox
 if meson.is_cross_build()

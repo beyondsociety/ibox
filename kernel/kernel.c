@@ -3,6 +3,8 @@
 #include <io.h>
 #include <lfbvideo.h>
 #include <multiboot.h>
+#include <multiboot2.h>
+#include <serial.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -52,6 +54,23 @@ void kernel_init(void)
    // }
 
   //hlt();
+	  if(magic != MULTIBOOT2_BOOTLOADER_MAGIC)
+    { 
+      serial_printk("Invalid magic number: %X\n", (unsigned) magic);
+      serial_printk("  no multiboot-compliant bootloader found, halting...");
+
+      printk("Invalid magic number: 0x%x\n", (unsigned) magic);
+      printk("  no multiboot-compliant bootloader found, halting...");
+      hlt();  /* Halt the Cpu */
+    }
+    else
+    {
+      serial_printk("Magic number: %X\n", (uint32_t) magic);
+      serial_printk("Address number: %X\n", (uint32_t) address);
+
+      printk("Magic number: 0x%x\n", (uint32_t) magic);
+      printk("Address number: 0x%x\n", (uint32_t) address);
+    }
 
   /* If booting in 64-bit mode, continue booting without checking multiboot */
   //#elif __x86_64__
