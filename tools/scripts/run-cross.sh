@@ -7,7 +7,7 @@ NORMAL='\033[0;m'             # No Color
 TARGET32="i686-elf-gcc"       # Target 32-bit arch of build
 TARGET64="x86_64-elf-gcc"     # Target 64-bit arch of build
 
-PREFIX32="/usr/local/cross32" # Location ofi 32-bit cross-compiler directory
+PREFIX32="/usr/local/cross32" # Location of 32-bit cross-compiler directory
 PREFIX64="/usr/local/cross64" # Location of 64-bit cross-compiler directory
 
 read -p "$(echo -e ${GREEN_TEXT}"Please specify a build-arch so we can build Ibox${YELLOW_TEXT} (x86 or x86-64):${GREEN_TEXT}" ${NORMAL})" ARCH          
@@ -29,8 +29,6 @@ fi
 echo ''
 echo -e "${GREEN_TEXT}Removing build directiory for new build...${NORMAL}"
 rm -rfv ./cross-build
-
-#mkdir -p ./cross-build
 
 echo ''
 echo -e "${YELLOW_TEXT}Building Ibox... ${NORMAL}"
