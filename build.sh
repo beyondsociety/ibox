@@ -31,6 +31,7 @@ while [ opt != '' ]
     else
       case $opt in
 
+  # Script to run Ibox with a gcc cross-compiler (Compiler)
   1) clear;
 	  echo '';
       ./tools/scripts/run-cross.sh 
@@ -38,7 +39,7 @@ while [ opt != '' ]
 	  show_menu;
 	  ;;
 
-  # Script to build Ibox wtih clang (compiler) 
+  # Script to run Ibox wtih clang (Compiler) 
 	2) clear;
 	  echo '';
 	    ./tools/scripts/run-clang.sh
@@ -63,9 +64,9 @@ while [ opt != '' ]
 	  echo '';
 	  read -p $'\e[1;33mPass the name of the build-toolchain for Qemu to run \e[1;32m(cross or clang)\e[0m: ' NAME
 	    if [ "$NAME" == "cross" ]; then
-	      ninja -C cross-build qemu
+	      ninja --verbose -C cross-build qemu
 	    elif [ "$NAME" == "clang" ]; then 
-	      ninja -C clang-build qemu
+	      ninja --verbose -C clang-build qemu
       else  
         echo -e ${GREEN_TEXT}"No build-toolchain found, must be either cross or clang" ${NORMAL}
       fi
