@@ -32,7 +32,7 @@ info()
 {
   echo '';
   echo "In order to build the cross-compiler you will need to have access to root because of an issue with the build directories" 
-  echo "not having root access (sudo), we will fix these permissions when we are dont building the cross-compiler. For now, either"
+  echo "not having root access (sudo), we will fix these permissions when we are done building the cross-compiler. For now, either"
   echo "use "sudo -i" to gain root access or wait for the build script to ask for your user password."
 
   echo '';
@@ -50,7 +50,6 @@ detect_os()
        OS="WSL"
     ;;     
 
-    # WARNING: My v2 uses ubuntu 20.4 at the moment slightly different name may not always work
     *microsoft*) 
       OS="WSL2"
     ;;
@@ -95,8 +94,8 @@ check_dependencies()
 {
   if command -v nix || -n "$NIX_PATH" &> /dev/null; then
     echo '';
-    echo "If we are runing on a Nixos System, our our dependencies for the cross-compiler will be defined in a flake.nix file"
-    echo "  that opens a nix shell for us. If we are instead using the nix package manager on a distro that supports it,"
+    echo "If we are runing on a Nixos System, our dependencies for the cross-compiler will be defined in a flake.nix file"
+    echo "that opens a nix shell for us. If we are instead using the nix package manager on a distro that supports it,"
     echo "see https://nix-tuapttorial.gitlabpages.inria.fr/nix-tutorial/getting-started.html for more details"
     echo '';
   else    
@@ -123,7 +122,7 @@ check_dependencies()
     done
   }
 
-  #Find the missing packages from list of dependencies
+  # Find the missing packages from list of dependencies
   declare -Ag missing_deps=(gcc wget m4 texinfo build-essential nasm xorriso genisoimage)
   for package in ${!deps[@]}
     do
@@ -194,13 +193,13 @@ build_deps()
   cd build-binutils
   $PWD/../$BINUTILS_VERSION/configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror
   #make -j $(nproc) && make install
-  sudo make && make install
+  make && make install
 
   # Build Gcc
   cd ..
   #mkdir -p build-gcc && 
   cd build-gcc
-  # IF we want to build a 32-bit cross-compiler, add --enable multilib, otherwsie us --disasble-multilib for a 64-bit crosscompiler 
+  # If we want to build a 32-bit cross-compiler, add --enable multilib, otherwsie us --disasble-multilib for a 64-bit crosscompiler 
   $PWD/../$GCC_VERSION/configure --target=$TARGET --prefix=$PREFIX --disable-nls --enable-languages=c,c++ --without-headers  
 
   #make -j $(nproc) all-gcc && make -j $(nproc) all-target-libgcc
